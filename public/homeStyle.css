@@ -1,10 +1,33 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
 }
-.homePage{
-    background-color: #B31312;
+
+.homePage {
+    background-color: #3F2E3E;
     height: fit-content;
- }
+}
+
+.navBar {
+    height: 60px;
+}
+
+.navBar div {
+    display: inline;
+}
+
+.navBar div img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+}
+
+.navBar div span p {
+    display: inline;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(216, 216, 216);
+}
