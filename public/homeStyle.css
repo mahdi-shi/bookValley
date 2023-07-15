@@ -1,3 +1,13 @@
+@font-face {
+    font-family: bookyFont;
+    src: url(assets/Charm-Bold.ttf)
+}
+
+@font-face {
+    font-family: regularFont;
+    src: url(assets/Merienda-VariableFont_wght.ttf)
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -10,24 +20,125 @@
     height: fit-content;
 }
 
-.navBar {
+.homePage .navBar {
     height: 60px;
 }
 
-.navBar div {
+.homePage .navBar div {
     display: inline;
+    width: 300px;
 }
 
-.navBar div img {
+.homePage .navBar div img {
     width: 40px;
     height: 40px;
     margin: 5px;
+    margin-left: 15px;
 }
 
-.navBar div span p {
+.homePage .navBar div .siteName {
+    width: 200px;
+    height: 200px;
+    display: inline;
+}
+
+.homePage .navBar div .siteName li {
+    display: block;
+    text-align: center;
+    line-height: 22px;
+    transform: translate(-50px, -45px);
+}
+
+.homePage .navBar div .siteName p {
     display: inline;
     font-weight: bold;
-    font-size: 1.5em;
-    font-family: 'Courier New', Courier, monospace;
-    color: rgb(216, 216, 216);
+    font-size: 1.4em;
+    font-family: bookyFont;
+    color: rgb(255, 255, 255);
+}
+
+.navBar .list {
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    margin-top: 20px;
+}
+
+.homePage .navBar .list li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.homePage .navBar .list li a {
+    text-decoration: none;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+    font-weight: bold;
+    font-family: regularFont;
+}
+
+.homePage .navBar .list li a:hover {
+    color: rgb(255, 255, 255);
+}
+
+.homePage .navBar .bookSearchBox {
+    margin-top: 2px;
+    position: absolute;
+    left: 75%;
+    width: 184px;
+}
+
+.homePage .navBar #bookSearchTxtBox {
+    width: 170px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgb(201, 201, 201);
+    font-weight: bold;
+    font-family: regularFont;
+    padding-left: 5px;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+}
+
+.homePage .navBar #bookSearchTxtBox:focus {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: white;
+}
+
+.homePage .navBar #bookSearchTxtBox:focus~#searchBoxBtn {
+    fill: white;
+}
+
+.homePage .navBar .bookSearchBox svg {
+    position: absolute;
+    left: 90%;
+    top: -1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.homePage .navBar #profileIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: -50px;
+    border: 2px solid rgb(201, 201, 201);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.homePage .navBar #profileIcon:hover {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.homePage .navBar #profileIcon svg {
+    position: absolute;
+    margin-left: -10px;
+    transition: .3s;
+}
+
+.homePage .navBar #profileIcon:hover svg {
+    fill: white;
 }
