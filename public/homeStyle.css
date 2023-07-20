@@ -150,11 +150,12 @@
 
 .homePage .header .explainationHeader {
     border: 1px solid white;
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 130px;
     position: absolute;
-    top: 250px;
+    top: 320px;
     left: 120px;
+    z-index: 10;
 }
 
 .homePage .header .backGroundImgHeader {
@@ -193,10 +194,21 @@
 }
 
 .homePage .header .backGroundImgHeader ul li:nth-child(1) {
-
+    margin-left: -500px;
 }
 
 .homePage .header .littleImageHeader ul li {
     border: 2px solid red;
     margin-bottom:100px;
+}
+
+.homePage .header .explainationHeader ul li{
+    list-style: none;
+    color: rgb(226, 226, 226);
+    margin-bottom: 50px;
+    border: 2px solid red;
+}
+.homePage .header .explainationHeader ul li p{
+    font-family: regularFont;
+    text-shadow: 0 7px 7px rgba(0, 0, 0, 0.8)
 }
