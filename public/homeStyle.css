@@ -144,71 +144,644 @@
 }
 
 .homePage .header {
-    height: 93vh;
+    height: 100vh;
     width: 100%;
+    opacity: 10;
+    animation: showHeader 1s both 0.4s;
+}
+
+@keyframes showHeader {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 
 .homePage .header .explainationHeader {
-    border: 1px solid white;
-    width: 400px;
+    width: 600px;
     height: 130px;
     position: absolute;
-    top: 320px;
-    left: 120px;
+    top: 400px;
+    overflow: hidden;
+    left: 40px;
     z-index: 10;
 }
 
 .homePage .header .backGroundImgHeader {
-    width: 700px;
+    width: 1000px;
     height: 600px;
     position: absolute;
     top: 80px;
-    left: 17%;
+    left: 15%;
 }
 
 .homePage .header .backGroundImgHeader ul {
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(255, 255, 255);
     overflow: hidden;
+}
+
+.homePage .header .backGroundImgHeader ul img {
+    filter: brightness(75%);
+}
+
+.homePage .header .littleImageHeader ul img {
+    filter: brightness(75%);
 }
 
 .homePage .header .littleImageHeader {
     width: 400px;
-    height: 300px;
+    height: 700px;
     position: absolute;
-    top: 300px;
+    top: 100px;
     left: 58%;
 }
 
 .homePage .header .littleImageHeader ul {
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(255, 255, 255);
+    overflow: hidden;
 }
 
 .homePage .header .backGroundImgHeader ul li {
     display: inline-block;
-    border: 2px solid red;
-    margin-right: 100px;
+    transition: 0.3s;
+    list-style: none;
+    margin-right: 70px;
 }
 
 .homePage .header .backGroundImgHeader ul li:nth-child(1) {
-    margin-left: -500px;
+    margin-left: 0px;
+    animation-name: identifier;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .backGroundImgHeader ul li:nth-child(2) {
+    animation-name: fade2;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .backGroundImgHeader ul li:nth-child(3) {
+    animation-name: fade3;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .backGroundImgHeader ul li:nth-child(4) {
+    animation-name: fade4;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
 }
 
 .homePage .header .littleImageHeader ul li {
-    border: 2px solid red;
-    margin-bottom:100px;
+    margin-bottom: 220px;
+    transition: 0.3s;
+    transform: translateY(160px);
+    list-style: none;
 }
 
-.homePage .header .explainationHeader ul li{
+.homePage .header .littleImageHeader ul li:nth-child(1) {
+    animation-name: identifier3;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .littleImageHeader ul li:nth-child(2) {
+    animation-name: littleImagefade2;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .littleImageHeader ul li:nth-child(3) {
+    animation-name: littleImagefade3;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .littleImageHeader ul li:nth-child(4) {
+    animation-name: littleImagefade4;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .explainationHeader ul li {
     list-style: none;
     color: rgb(226, 226, 226);
     margin-bottom: 50px;
-    border: 2px solid red;
+    transform: translateX(70px);
+    margin: 20px;
+    width: 330px;
+    transition: 0.3s;
+    display: inline-block;
+    transition: 0.3s;
 }
-.homePage .header .explainationHeader ul li p{
+
+.homePage .header .explainationHeader ul li:nth-child(1) {
+    margin-left: -1150;
+    animation-name: identifier2;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .explainationHeader ul li p {
     font-family: regularFont;
     text-shadow: 0 7px 7px rgba(0, 0, 0, 0.8)
+}
+
+.homePage .header .explainationHeader ul li:nth-child(2) {
+    animation-name: explainationfade2;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.homePage .header .explainationHeader ul li:nth-child(3) {
+    animation-name: explainationfade3;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+    opacity: 0;
+}
+
+.homePage .header .explainationHeader ul li:nth-child(4) {
+    animation-name: explainationfade4;
+    animation-duration: 30s;
+    animation-delay: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+@keyframes identifier {
+    0% {
+        margin-left: 0px;
+        opacity: 1;
+    }
+
+    5% {
+        margin-left: 0px;
+        opacity: 1;
+
+    }
+
+    10% {
+        margin-left: -420px;
+        opacity: 0;
+
+    }
+
+    30% {
+        margin-left: -420px;
+        opacity: 0;
+
+    }
+
+    35% {
+        margin-left: -920px;
+        opacity: 0;
+
+    }
+
+    65% {
+        margin-left: -920px;
+        opacity: 0;
+
+    }
+
+    70% {
+        margin-left: -1490px;
+        opacity: 0;
+
+    }
+
+    100% {
+        margin-left: -1490px;
+    }
+}
+
+@keyframes fade2 {
+    0% {
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0;
+    }
+
+    16% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    35% {
+        opacity: 0;
+    }
+
+    65% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade3 {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    54% {
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fade4 {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 0;
+    }
+
+    68% {
+        opacity: 0;
+    }
+
+    73% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes identifier2 {
+    0% {
+        margin-left: -1150px;
+        opacity: 0;
+    }
+
+    5% {
+        margin-left: -1150px;
+        opacity: 0;
+    }
+
+    10% {
+        margin-left: -780px;
+        opacity: 0;
+    }
+
+    30% {
+        margin-left: -780px;
+        opacity: 0;
+    }
+
+    35% {
+        margin-left: -400px;
+        opacity: 0;
+    }
+
+    65% {
+        margin-left: -400px;
+        opacity: 0;
+    }
+
+    70% {
+        margin-left: 0px;
+        opacity: 1;
+    }
+
+    100% {
+        margin-left: 0px;
+        opacity: 1;
+
+    }
+}
+
+
+@keyframes explainationfade2 {
+    0% {
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0;
+    }
+
+    16% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    64% {
+        opacity: 1;
+    }
+
+    68% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes explainationfade3 {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    65% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes explainationfade4 {
+    0% {
+        opacity: 1;
+    }
+
+    4% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 0;
+    }
+
+    68% {
+        opacity: 0;
+    }
+
+    73% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes identifier3 {
+    0% {
+        margin-top: -0px;
+        opacity: 1;
+    }
+
+    5% {
+        margin-top: -0px;
+        opacity: 1;
+    }
+
+    10% {
+        margin-top: -600px;
+        opacity: 0;
+    }
+
+    30% {
+        margin-top: -600px;
+        opacity: 0;
+    }
+
+    35% {
+        margin-top: -1100px;
+        opacity: 0;
+    }
+
+    65% {
+        margin-top: -1100px;
+        opacity: 0;
+    }
+
+    70% {
+        margin-top: -1710px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: -1710px;
+        opacity: 0;
+    }
+}
+
+@keyframes littleImagefade2 {
+    0% {
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0;
+    }
+
+    16% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    35% {
+        opacity: 0;
+    }
+
+    64% {
+        opacity: 0;
+    }
+
+    68% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes littleImagefade3 {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    33% {
+        opacity: 1;
+    }
+
+    65% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes littleImagefade4 {
+    0% {
+        opacity: 0;
+    }
+
+    4% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 0;
+    }
+
+    68% {
+        opacity: 0;
+    }
+
+    73% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
