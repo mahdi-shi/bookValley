@@ -819,3 +819,21 @@
 .homePage .section .homePageShelvesBooksListText{   
     transform: translateY(50px);
 }
+
+.homePage .section .recommendedBookListTitle{
+    margin-top: 140px;
+}
+
+.homePage .section .recommendedBookListTitle p{
+    color: white;
+    font-family: regularFont;
+    text-align: center;
+    font-size: 2em;
+    text-shadow: 4px 10px 10px rgba(0, 0, 0, 0.7);
+}
+
+.homePage .section .recommendedBookList{
+    height: 100vh;
+    background-color: rgb(47, 34, 51);
+    border-radius: 10px;
+    border: 2px solid rgb(35, 24, 39);}
