@@ -151,10 +151,11 @@
 }
 
 @keyframes showHeader {
-    from{
+    from {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
@@ -784,4 +785,37 @@
     100% {
         opacity: 1;
     }
+}
+
+.homePage .section {
+    width: 100.8%;
+    height: auto;
+}
+
+
+
+.homePage .section .homePageShelvesBooksListText p {
+    font-family: regularFont;
+    color: white;
+    font-size: 2em;
+    margin-left: 40%;
+    text-shadow: 4px 10px 10px rgba(0, 0, 0, 0.7);
+}
+
+.homePage .section .homePageShelvesBooksListText p span{
+    font-family: regularFont;
+    color: rgb(209, 209, 209);
+    font-size: .7em;
+}
+
+.homePage .section .homePageShelvesBooksList{
+    width: 90%;
+    height: 160px;
+    background-color: rgb(47, 34, 51);
+    border-radius: 10px;
+    border: 4px solid rgb(35, 24, 39);
+}
+
+.homePage .section .homePageShelvesBooksListText{   
+    transform: translateY(50px);
 }
