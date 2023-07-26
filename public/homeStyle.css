@@ -20,7 +20,7 @@ body{
 }
 
 .homePage {
-    background-color: #3F2E3E;
+    background-color: #2b2131;
     height: fit-content;
     scroll-behavior: smooth;
 }
@@ -160,7 +160,7 @@ body{
     width: 100%;
     margin-left: 10px;
     height: 140%;
-    background-image: linear-gradient(#111010, #3F2E3E);
+    background-image: linear-gradient(#080808, #2b2131);
     margin-top: -100px;
 }
 
@@ -970,7 +970,7 @@ body{
     width: 101%;
     height: 150%;
     margin-top: -250px;
-    background: linear-gradient(#3F2E3E, #000000);
+    background: linear-gradient(#2b2131, #000000);
 }
 
 .homePage .section .footer #goUpBtn {
