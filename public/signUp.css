@@ -166,7 +166,7 @@
     display: inline-block;
     margin-top: 60px;
     position: absolute;
-    left: 44%;
+    left: 41%;
     width: 44%;
 }
 
@@ -189,7 +189,7 @@
     margin-top: 200px;
 }
 
-.signUpPage .formBox::before{
+.signUpPage .formBox::before {
     content: '';
     position: absolute;
     width: 110%;
@@ -202,37 +202,71 @@
 }
 
 .signUpPage .formBox img:nth-child(2) {
-    margin-top: -530px;
+    margin-top: -550px;
     height: 350px;
     width: 300px;
-    margin-left: 400px;
+    filter: brightness(90%);
+    margin-left: 460px;
 }
 
 /*     start animating fire for candles       */
 
-@keyframes burn{
-    0%,100%{border-radius: 1.25% 61% 11.25% 61.25%; width: 5.5vmin;}
-    10%{border-radius: 1.25% 61.25% 12.25% 60.5%;}
-    20%{border-radius: 0% 41.25% 41.25% 61.75%;width: 5.75vmin;}
-    30%,90%{border-radius: 1.25% 41.25% 12.25% 60.5%;}
-    40%{border-radius: 0% 41.25% 41.25% 61.75%;width: 5vmin;}
-    50%{border-radius: 0.5% 61.75% 10.5% 62.5%;}
-    60%{border-radius: 1.25% 61.75% 11.25% 62%;}
-    70%{border-radius: 0.5% 61.75% 10.5% 62.5%;width: 5.75vmin;}
-    80%{border-radius: 1.25% 61.75% 11.25% 62%;}
+@keyframes burn {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 5.5vmin;
+    }
+
+    10% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    20% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5.75vmin;
+    }
+
+    30%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    40% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5vmin;
+    }
+
+    50% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    60% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    70% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 5.75vmin;
+    }
+
+    80% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
 }
 
-.signUpPage .bgCandle .fireOne{
+.signUpPage .bgCandle .fireOne {
     animation: burn 4s infinite;
     width: 15vmin;
     margin-left: -200px;
     position: absolute;
     aspect-ratio: 1;
-    background: 
+    background:
         radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
-        radial-gradient(farthest-side at 110% 120%, #251c27 ,rgb(114, 40, 17) , #cb6c3b88,#0000),
-        radial-gradient(at 100% 100%,#fc08,#cb6c3b,#eebd7600 60% ),
-        linear-gradient(135deg, #fff0 20%,#ff0);
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
     background-color: #ffe;
     border-radius: 2% 87% 45% 85%;
     box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
@@ -252,29 +286,62 @@
     top: 66px;
 }
 
-@keyframes burn2{
-    0%,100%{border-radius: 1.25% 61% 11.25% 61.25%; width: 5.5vmin;}
-    20%{border-radius: 1.25% 61.25% 12.25% 60.5%;}
-    10%{border-radius: 0% 41.25% 41.25% 61.75%;width: 5.75vmin;}
-    40%,90%{border-radius: 1.25% 41.25% 12.25% 60.5%;}
-    30%{border-radius: 0% 41.25% 41.25% 61.75%;width: 5vmin;}
-    60%{border-radius: 0.5% 61.75% 10.5% 62.5%;}
-    50%{border-radius: 1.25% 61.75% 11.25% 62%;}
-    80%{border-radius: 0.5% 61.75% 10.5% 62.5%;width: 5.75vmin;}
-    70%{border-radius: 1.25% 61.75% 11.25% 62%;}
+@keyframes burn2 {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 5.5vmin;
+    }
+
+    20% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    10% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5.75vmin;
+    }
+
+    40%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    30% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5vmin;
+    }
+
+    60% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    50% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    80% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 5.75vmin;
+    }
+
+    70% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
 }
 
-.signUpPage .bgCandle .fireTwo{
+.signUpPage .bgCandle .fireTwo {
     animation: burn2 4s infinite;
     width: 15vmin;
     margin-left: -200px;
     position: absolute;
     aspect-ratio: 1;
-    background: 
+    background:
         radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
-        radial-gradient(farthest-side at 110% 120%, #251c27 ,rgb(114, 40, 17) , #cb6c3b88,#0000),
-        radial-gradient(at 100% 100%,#fc08,#cb6c3b,#eebd7600 60% ),
-        linear-gradient(135deg, #fff0 20%,#ff0);
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
     background-color: #ffe;
     border-radius: 2% 87% 45% 85%;
     box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
@@ -294,29 +361,62 @@
     top: 98px;
 }
 
-@keyframes burn3{
-    0%,100%{border-radius: 1.25% 61% 11.25% 61.25%; width: 5.5vmin;}
-    80%{border-radius: 1.25% 61.25% 12.25% 60.5%;}
-    70%{border-radius: 0% 41.25% 41.25% 61.75%;width: 5.75vmin;}
-    60%,90%{border-radius: 1.25% 41.25% 12.25% 60.5%;}
-    50%{border-radius: 0% 41.25% 41.25% 61.75%;width: 5vmin;}
-    40%{border-radius: 0.5% 61.75% 10.5% 62.5%;}
-    30%{border-radius: 1.25% 61.75% 11.25% 62%;}
-    20%{border-radius: 0.5% 61.75% 10.5% 62.5%;width: 5.75vmin;}
-    70%{border-radius: 1.25% 61.75% 11.25% 62%;}
+@keyframes burn3 {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 5.5vmin;
+    }
+
+    80% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    70% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5.75vmin;
+    }
+
+    60%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    50% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5vmin;
+    }
+
+    40% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    30% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    20% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 5.75vmin;
+    }
+
+    70% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
 }
 
-.signUpPage .bgCandle .fireThree{
+.signUpPage .bgCandle .fireThree {
     animation: burn3 4s infinite;
     width: 15vmin;
     margin-left: -200px;
     position: absolute;
     aspect-ratio: 1;
-    background: 
+    background:
         radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
-        radial-gradient(farthest-side at 110% 120%, #251c27 ,rgb(114, 40, 17) , #cb6c3b88,#0000),
-        radial-gradient(at 100% 100%,#fc08,#cb6c3b,#eebd7600 60% ),
-        linear-gradient(135deg, #fff0 20%,#ff0);
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
     background-color: #ffe;
     border-radius: 2% 87% 45% 85%;
     box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
@@ -334,4 +434,89 @@
     position: absolute;
     left: 71%;
     top: 133px;
+}
+
+.signUpPage .formBox ul {
+    position: absolute;
+    top: 8%;
+    left: 63%;
+    z-index: 100;
+}
+
+.signUpPage .formBox ul li p {
+    font-family: regularFont;
+    display: inline-block;
+    font-size: 1.1em;
+}
+
+.signUpPage .formBox ul li {
+    list-style: none;
+}
+
+.signUpPage .formBox ul li:last-child {
+    margin-top: 10px;
+    font-size: 0.8em;
+    margin-left: 40px;
+}
+
+.signUpPage .formBox ul li:last-child p {
+    transform: translateX(-40px);
+}
+
+.signUpPage .formBox ul li:last-child div{
+    width: 30px;
+    height: 30px;
+    transform: translate(70px,-40px);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.signUpPage .formBox ul li:last-child div svg{
+    opacity: .2;
+    transition: 0.2s;
+}
+
+.signUpPage .formBox ul li input {
+    width: 100px;
+    margin-left: 10px;
+    transform: translateY(-2px);
+    font-family: regularFont;
+    font-size: 0.9em;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.8s;
+    padding: 2px;
+}
+
+.signUpPage .formBox ul li input:focus {
+    border: none;
+    outline: none;
+}
+
+.signUpPage .formBox .title{
+    color: rgb(48, 48, 48);
+    font-family: bookyFont;
+    position: absolute;
+    left: 78%;
+    top: -6px;
+}
+
+.signUpPage .formBox button{
+    color: rgb(48, 48, 48);
+    font-family: regularFont ;
+    position: absolute;
+    left: 88%;
+    background-color: transparent;
+    top: 256px;
+    font-size: 0.9em;
+    border-radius: 2px;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signUpPage .formBox button:hover{
+    color: black;
 }
