@@ -1,0 +1,523 @@
+@font-face {
+    font-family: bookyFont;
+    src: url(assets/Charm-Bold.ttf)
+}
+
+@font-face {
+    font-family: regularFont;
+    src: url(assets/Merienda-VariableFont_wght.ttf)
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.signUpPage {
+    background-color: #2b2131;
+    height: 100vh;
+}
+
+.signUpPage::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#2b2131, #000000);
+}
+
+.signUpPage .navBar {
+    height: 60px;
+    z-index: 20;
+}
+
+.signUpPage .navBar div {
+    display: inline;
+    width: 300px;
+}
+
+.signUpPage .navBar div img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    margin-left: 15px;
+}
+
+.signUpPage .navBar div .siteName {
+    width: 200px;
+    height: 200px;
+    display: inline;
+}
+
+.signUpPage .navBar div .siteName li {
+    display: block;
+    text-align: center;
+    line-height: 22px;
+    transform: translate(-50px, -45px);
+}
+
+.signUpPage .navBar div .siteName p {
+    display: inline;
+    font-weight: bold;
+    font-size: 1.4em;
+    font-family: bookyFont;
+    color: rgb(255, 255, 255);
+}
+
+.signUpPage .list {
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    margin-top: 20px;
+}
+
+.signUpPage .navBar .list li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.signUpPage .navBar .list li a {
+    text-decoration: none;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+    font-weight: bold;
+    font-family: regularFont;
+}
+
+.signUpPage .navBar .list li a:hover {
+    color: rgb(255, 255, 255);
+}
+
+.signUpPage .navBar .bookSearchBox {
+    margin-top: 2px;
+    position: absolute;
+    left: 75%;
+    width: 184px;
+}
+
+.signUpPage .navBar #bookSearchTxtBox {
+    width: 170px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgb(201, 201, 201);
+    font-weight: bold;
+    font-family: regularFont;
+    padding-left: 5px;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+}
+
+.signUpPage .navBar #bookSearchTxtBox:focus {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: white;
+}
+
+.signUpPage .navBar #bookSearchTxtBox:focus~#searchBoxBtn {
+    fill: white;
+}
+
+.signUpPage .navBar .bookSearchBox svg {
+    position: absolute;
+    left: 90%;
+    top: -1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.signUpPage .navBar #profileIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: -50px;
+    border: 2px solid rgb(201, 201, 201);
+    cursor: pointer;
+    transform: translateX(-20px);
+    transition: .3s;
+}
+
+.signUpPage .navBar #profileIcon:hover {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.signUpPage .navBar #profileIcon svg {
+    position: absolute;
+    margin-left: 2px;
+    transition: .3s;
+}
+
+.signUpPage .navBar #profileIcon:hover svg {
+    fill: white;
+}
+
+.signUpPage .formBox {
+    display: inline-block;
+    height: 500px;
+    width: 58%;
+    position: absolute;
+    top: 120px;
+}
+
+.signUpPage .bgCandle {
+    height: 500px;
+    display: inline-block;
+    margin-top: 60px;
+    position: absolute;
+    left: 18%;
+    width: 44%;
+}
+
+.signUpPage .formBox img {
+    width: 400px;
+    margin-left: 250px;
+    height: 500px;
+}
+
+.signUpPage .bgCandle img {
+    width: 230px;
+    height: 300px;
+    margin-top: 30px;
+    margin-left: 100px;
+}
+
+.signUpPage .formBox img:nth-child(1) {
+    height: 320px;
+    width: 800px;
+    margin-top: 200px;
+}
+
+.signUpPage .formBox::before {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 30%;
+    background: linear-gradient(#0b090e, #000000);
+    z-index: 10;
+    top: 75%;
+    opacity: .7;
+    left: 250px;
+}
+
+.signUpPage .formBox img:nth-child(2) {
+    margin-top: -550px;
+    height: 350px;
+    width: 300px;
+    filter: brightness(90%);
+    margin-left: 490px;
+}
+
+/*     start animating fire for candles       */
+
+@keyframes burn {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 5.5vmin;
+    }
+
+    10% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    20% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5.75vmin;
+    }
+
+    30%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    40% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5vmin;
+    }
+
+    50% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    60% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    70% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 5.75vmin;
+    }
+
+    80% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+}
+
+.signUpPage .bgCandle .fireOne {
+    animation: burn 4s infinite;
+    width: 15vmin;
+    margin-left: -200px;
+    position: absolute;
+    aspect-ratio: 1;
+    background:
+        radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
+    background-color: #ffe;
+    border-radius: 2% 87% 45% 85%;
+    box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
+        inset -1vmin -1vmin 5vmin -3vmin #00f7,
+        inset 0vmin -1vmin 5vmin -3vmin #00f8,
+        inset -1vmin -1vmin 2vmin -2vmin #251c27,
+        inset -1vmin -1vmin 3vmin -1vmin #251c27,
+        inset -1vmin -1vmin 2vmin #fc08,
+        -0.5vmin -0.5vmin 1vmin #ff08,
+        -1vmin -1vmin 2vmin #ce8c47,
+        -2vmin -2vmin 10vmin 1vmin #251c27,
+        -6vmin -6vmin 35vmin 3vmin #fa06;
+    filter: blur(0.2vmin);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 66%;
+    top: 66px;
+}
+
+@keyframes burn2 {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 5.5vmin;
+    }
+
+    20% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    10% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5.75vmin;
+    }
+
+    40%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    30% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5vmin;
+    }
+
+    60% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    50% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    80% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 5.75vmin;
+    }
+
+    70% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+}
+
+.signUpPage .bgCandle .fireTwo {
+    animation: burn2 4s infinite;
+    width: 15vmin;
+    margin-left: -200px;
+    position: absolute;
+    aspect-ratio: 1;
+    background:
+        radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
+    background-color: #ffe;
+    border-radius: 2% 87% 45% 85%;
+    box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
+        inset -1vmin -1vmin 5vmin -3vmin #00f7,
+        inset 0vmin -1vmin 5vmin -3vmin #00f8,
+        inset -1vmin -1vmin 2vmin -2vmin #251c27,
+        inset -1vmin -1vmin 3vmin -1vmin #251c27,
+        inset -1vmin -1vmin 2vmin #fc08,
+        -0.5vmin -0.5vmin 1vmin #ff08,
+        -1vmin -1vmin 2vmin #ce8c47,
+        -2vmin -2vmin 10vmin 1vmin #251c27,
+        -6vmin -6vmin 35vmin 3vmin #fa06;
+    filter: blur(0.2vmin);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 61.4%;
+    top: 98px;
+}
+
+@keyframes burn3 {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 5.5vmin;
+    }
+
+    80% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    70% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5.75vmin;
+    }
+
+    60%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    50% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 5vmin;
+    }
+
+    40% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    30% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    20% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 5.75vmin;
+    }
+
+    70% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+}
+
+.signUpPage .bgCandle .fireThree {
+    animation: burn3 4s infinite;
+    width: 15vmin;
+    margin-left: -200px;
+    position: absolute;
+    aspect-ratio: 1;
+    background:
+        radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
+    background-color: #ffe;
+    border-radius: 2% 87% 45% 85%;
+    box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
+        inset -1vmin -1vmin 5vmin -3vmin #00f7,
+        inset 0vmin -1vmin 5vmin -3vmin #00f8,
+        inset -1vmin -1vmin 2vmin -2vmin #251c27,
+        inset -1vmin -1vmin 3vmin -1vmin #251c27,
+        inset -1vmin -1vmin 2vmin #fc08,
+        -0.5vmin -0.5vmin 1vmin #ff08,
+        -1vmin -1vmin 2vmin #ce8c47,
+        -2vmin -2vmin 10vmin 1vmin #251c27,
+        -6vmin -6vmin 35vmin 3vmin #fa06;
+    filter: blur(0.2vmin);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 71%;
+    top: 133px;
+}
+
+.signUpPage .formBox ul {
+    position: absolute;
+    top: 8%;
+    left: 63%;
+    z-index: 100;
+}
+
+.signUpPage .formBox ul li p {
+    font-family: regularFont;
+    display: inline-block;
+    font-size: 1.1em;
+}
+
+.signUpPage .formBox ul li {
+    list-style: none;
+}
+
+.signUpPage .formBox ul li:last-child {
+    margin-top: 10px;
+    font-size: 0.8em;
+    margin-left: 40px;
+}
+
+.signUpPage .formBox ul li:last-child p {
+    transform: translateX(-40px);
+}
+
+.signUpPage .formBox ul li:last-child div{
+    width: 30px;
+    height: 30px;
+    transform: translate(70px,-40px);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.signUpPage .formBox ul li:last-child div svg{
+    opacity: .2;
+    transition: 0.2s;
+}
+
+.signUpPage .formBox ul li input {
+    width: 100px;
+    margin-left: 10px;
+    transform: translateY(-2px);
+    font-family: regularFont;
+    font-size: 0.9em;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.8s;
+    padding: 2px;
+}
+
+.signUpPage .formBox ul li input:focus {
+    border: none;
+    outline: none;
+}
+
+.signUpPage .formBox .title{
+    color: rgb(48, 48, 48);
+    font-family: bookyFont;
+    position: absolute;
+    left: 78%;
+    top: -6px;
+}
+
+.signUpPage .formBox button{
+    color: rgb(48, 48, 48);
+    font-family: regularFont ;
+    position: absolute;
+    left: 88%;
+    background-color: transparent;
+    top: 256px;
+    font-size: 0.9em;
+    border-radius: 2px;
+    border: none;
+    padding: 2px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.signUpPage .formBox button:hover{
+    color: black;
+}
