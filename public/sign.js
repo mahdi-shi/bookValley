@@ -65,7 +65,7 @@ signUpconstBtn.addEventListener('click',async () => {
 
             const response = await fetch("/UsersData",options)
             const dataResponse = await response.json();
-            console.log("dataResponse");
+            console.log(dataResponse);
         }
         else {
             messageBox.innerHTML = "something went wrong with your password or Email"
