@@ -23,7 +23,6 @@
   "homepage": "https://github.com/mahdi-shi/bookValley#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "nedb": "^1.8.0",
-    "nodemon": "^2.0.22"
+    "nedb": "^1.8.0"
   }
 }
