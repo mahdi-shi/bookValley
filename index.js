@@ -9,6 +9,8 @@ app.use(express.json({ limit: '1mb' }))
 const dataBase = new DataStore('database.db')
 dataBase.loadDatabase();
 
+//getting users data for sign up
+
 app.post("/UsersData", (req, res) => {
     console.log("i got the reques")
     dataBase.find({}, (error, Data) => {
@@ -32,6 +34,49 @@ app.post("/UsersData", (req, res) => {
         }
         else {
             dataBase.insert({ userName: req.body.userName, email: req.body.emailAddress, password: req.body.Password })
+            res.json({
+                status: "it's not there"
+            })
+        }
+    })
+})
+
+//getting user's data for sign in
+
+app.post("/signInUsersData", (req, res) => {
+    console.log("i got the reques too")
+
+    //checking that user's username is in dataBase or not
+
+    dataBase.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+        let userNameExsistingStatus = false;
+        let passwordMatchigStatus = false;
+
+        for (let i = 0; i < Data.length; i++) {
+            if (Data[i].userName == req.body.userName) {
+                userNameExsistingStatus = true;
+                if(Data[i].password == req.body.Password){
+                    passwordMatchigStatus = true;
+                    break;
+                }
+            }
+        }
+
+        if (userNameExsistingStatus == true && passwordMatchigStatus == true) {
+            res.json({
+                status: "it's there and password is correct"
+            })
+        }
+        else if(userNameExsistingStatus == true && passwordMatchigStatus == false){
+            res.json({
+                status: "it's there but password is incorrect"
+            })
+        }
+        else {
             res.json({
                 status: "it's not there"
             })

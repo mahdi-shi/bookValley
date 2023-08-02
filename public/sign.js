@@ -60,6 +60,7 @@ signUpconstBtn.addEventListener('click',async () => {
 
             const response = await fetch("/UsersData",options)
             const dataResponse = await response.json();
+            console.log(dataResponse);
 
             if(dataResponse.status == "it's there"){
                 messageBox.innerHTML = "This username or email is already signed up, please sign in"

@@ -153,6 +153,45 @@
     fill: white;
 }
 
+.signUpPage .navBar #messageBox {
+    position: absolute;
+    left: 17%;
+    margin-top: -120px;
+    color: white;
+    font-family: regularFont;
+    color: rgb(223, 222, 222);
+    transition: 0.3s;
+}
+
+.messageBoxFadeInOut {
+    animation-name: fadeMessageBox;
+    animation-timing-function: ease;
+    animation-duration: 5s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes fadeMessageBox {
+    0% {
+        margin-top: -120px;
+    }
+
+    10% {
+        margin-top: 70px;
+    }
+
+    50% {
+        margin-top: 70px;
+    }
+
+    90% {
+        margin-top: 70px;
+    }
+
+    100% {
+        margin-top: -120px;
+    }
+}
+
 .signUpPage .formBox {
     display: inline-block;
     height: 500px;
@@ -463,15 +502,15 @@
     transform: translateX(-40px);
 }
 
-.signUpPage .formBox ul li:last-child div{
+.signUpPage .formBox ul li:last-child div {
     width: 30px;
     height: 30px;
-    transform: translate(70px,-40px);
+    transform: translate(70px, -40px);
     border-radius: 3px;
     cursor: pointer;
 }
 
-.signUpPage .formBox ul li:last-child div svg{
+.signUpPage .formBox ul li:last-child div svg {
     opacity: .2;
     transition: 0.2s;
 }
@@ -494,7 +533,7 @@
     outline: none;
 }
 
-.signUpPage .formBox .title{
+.signUpPage .formBox .title {
     color: rgb(48, 48, 48);
     font-family: bookyFont;
     position: absolute;
@@ -502,9 +541,9 @@
     top: -6px;
 }
 
-.signUpPage .formBox button{
+.signUpPage .formBox button {
     color: rgb(48, 48, 48);
-    font-family: regularFont ;
+    font-family: regularFont;
     position: absolute;
     left: 88%;
     background-color: transparent;
@@ -518,6 +557,26 @@
     transition: 0.3s;
 }
 
-.signUpPage .formBox button:hover{
+.signUpPage .formBox button:hover {
+    color: black;
+}
+
+.signUpPage .formBox .singUpPageLink {
+    z-index: 1000;
+}
+
+.signUpPage .formBox .singUpPageLink a {
+    position: absolute;
+    left: 67%;
+    color: #433546;
+    font-family: regularFont;
+    text-decoration: none;
+    top: 53%;
+    font-size: 0.8em;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.signUpPage .formBox .singUpPageLink a:hover {
     color: black;
 }

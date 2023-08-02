@@ -560,3 +560,19 @@
 .signUpPage .formBox button:hover {
     color: black;
 }
+
+.signUpPage .formBox .singUpPageLink a {
+    position: absolute;
+    left: 67%;
+    color: #433546;
+    font-family: regularFont;
+    text-decoration: none;
+    top: 53%;
+    font-size: 0.8em;
+    transition: 0.3s;
+    z-index: 1000;
+}
+
+.signUpPage .formBox .singUpPageLink a:hover {
+    color: black;
+}
