@@ -27,16 +27,14 @@ app.post("/UsersData", (req, res) => {
 
         if (userNameExsistingStatus == false) {
             res.json({
-                status: " it's there"
+                status: "it's there"
             })
-            console.log("it's there");
         }
         else {
             dataBase.insert({ userName: req.body.userName, email: req.body.emailAddress, password: req.body.Password })
             res.json({
                 status: "it's not there"
             })
-            console.log("it's not there");
         }
     })
 })

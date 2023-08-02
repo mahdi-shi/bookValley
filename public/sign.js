@@ -46,11 +46,6 @@ signUpconstBtn.addEventListener('click',async () => {
         let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
 
         if (email.value.match(emailPattern) && password.value == rePassword.value) {
-            messageBox.innerHTML = "Your signed up"
-            messageBox.classList.add("messageBoxFadeInOut");
-            setTimeout(() => {
-                messageBox.classList.remove("messageBoxFadeInOut");
-            }, 5000)
 
             //sending data to server
 
@@ -65,7 +60,21 @@ signUpconstBtn.addEventListener('click',async () => {
 
             const response = await fetch("/UsersData",options)
             const dataResponse = await response.json();
-            console.log(dataResponse);
+
+            if(dataResponse.status == "it's there"){
+                messageBox.innerHTML = "This username or email is already signed up, please sign in"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)    
+            }
+            else{
+                messageBox.innerHTML = "Now you're signed up"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)
+            }
         }
         else {
             messageBox.innerHTML = "something went wrong with your password or Email"
