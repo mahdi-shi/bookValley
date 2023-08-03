@@ -23,7 +23,7 @@ const rePassword = document.querySelector("#rePassTxtBox");
 const signUpconstBtn = document.querySelector("#signUpSendBtn")
 const messageBox = document.querySelector("#messageBox");
 
-signUpconstBtn.addEventListener('click',async () => {
+signUpconstBtn.addEventListener('click', async () => {
 
     //checking that eny filed is not empty
 
@@ -49,27 +49,27 @@ signUpconstBtn.addEventListener('click',async () => {
 
             //sending data to server
 
-            const data = {userName,emailAddress,Password}
+            const data = { userName, emailAddress, Password }
             const options = {
-                method : "POST",
-                headers : {
-                    'Content-Type' : 'application/json'
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                body : JSON.stringify(data) 
+                body: JSON.stringify(data)
             };
 
-            const response = await fetch("/UsersData",options)
+            const response = await fetch("/UsersData", options)
             const dataResponse = await response.json();
             console.log(dataResponse);
 
-            if(dataResponse.status == "it's there"){
+            if (dataResponse.status == "it's there") {
                 messageBox.innerHTML = "This username or email is already signed up, please sign in"
                 messageBox.classList.add("messageBoxFadeInOut");
                 setTimeout(() => {
                     messageBox.classList.remove("messageBoxFadeInOut");
-                }, 5000)    
+                }, 5000)
             }
-            else{
+            else {
                 messageBox.innerHTML = "Now you're signed up"
                 messageBox.classList.add("messageBoxFadeInOut");
                 setTimeout(() => {
@@ -86,4 +86,268 @@ signUpconstBtn.addEventListener('click',async () => {
         }
     }
 
+})
+
+rePassword.addEventListener("keydown",async (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        //checking that eny filed is not empty
+
+        let userName = Uname.value;
+        let emailAddress = email.value;
+        let Password = password.value;
+        let RePassword = rePassword.value
+
+        if (userName == "" || emailAddress == "" || Password == "" || RePassword == "") {
+            messageBox.innerHTML = "Please fill in all fields"
+            messageBox.classList.add("messageBoxFadeInOut");
+            setTimeout(() => {
+                messageBox.classList.remove("messageBoxFadeInOut");
+            }, 5000)
+        }
+        else {
+
+            //checking that the email field is a currect format of email
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+
+            if (email.value.match(emailPattern) && password.value == rePassword.value) {
+
+                //sending data to server
+
+                const data = { userName, emailAddress, Password }
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                const response = await fetch("/UsersData", options)
+                const dataResponse = await response.json();
+                console.log(dataResponse);
+
+                if (dataResponse.status == "it's there") {
+                    messageBox.innerHTML = "This username or email is already signed up, please sign in"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+                else {
+                    messageBox.innerHTML = "Now you're signed up"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+            }
+            else {
+                messageBox.innerHTML = "something went wrong with your password or Email"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)
+            }
+        }
+    }
+})
+Uname.addEventListener("keydown",async (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        //checking that eny filed is not empty
+
+        let userName = Uname.value;
+        let emailAddress = email.value;
+        let Password = password.value;
+        let RePassword = rePassword.value
+
+        if (userName == "" || emailAddress == "" || Password == "" || RePassword == "") {
+            messageBox.innerHTML = "Please fill in all fields"
+            messageBox.classList.add("messageBoxFadeInOut");
+            setTimeout(() => {
+                messageBox.classList.remove("messageBoxFadeInOut");
+            }, 5000)
+        }
+        else {
+
+            //checking that the email field is a currect format of email
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+
+            if (email.value.match(emailPattern) && password.value == rePassword.value) {
+
+                //sending data to server
+
+                const data = { userName, emailAddress, Password }
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                const response = await fetch("/UsersData", options)
+                const dataResponse = await response.json();
+                console.log(dataResponse);
+
+                if (dataResponse.status == "it's there") {
+                    messageBox.innerHTML = "This username or email is already signed up, please sign in"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+                else {
+                    messageBox.innerHTML = "Now you're signed up"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+            }
+            else {
+                messageBox.innerHTML = "something went wrong with your password or Email"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)
+            }
+        }
+    }
+})
+
+
+email.addEventListener("keydown",async (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        //checking that eny filed is not empty
+
+        let userName = Uname.value;
+        let emailAddress = email.value;
+        let Password = password.value;
+        let RePassword = rePassword.value
+
+        if (userName == "" || emailAddress == "" || Password == "" || RePassword == "") {
+            messageBox.innerHTML = "Please fill in all fields"
+            messageBox.classList.add("messageBoxFadeInOut");
+            setTimeout(() => {
+                messageBox.classList.remove("messageBoxFadeInOut");
+            }, 5000)
+        }
+        else {
+
+            //checking that the email field is a currect format of email
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+
+            if (email.value.match(emailPattern) && password.value == rePassword.value) {
+
+                //sending data to server
+
+                const data = { userName, emailAddress, Password }
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                const response = await fetch("/UsersData", options)
+                const dataResponse = await response.json();
+                console.log(dataResponse);
+
+                if (dataResponse.status == "it's there") {
+                    messageBox.innerHTML = "This username or email is already signed up, please sign in"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+                else {
+                    messageBox.innerHTML = "Now you're signed up"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+            }
+            else {
+                messageBox.innerHTML = "something went wrong with your password or Email"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)
+            }
+        }
+    }
+})
+
+password.addEventListener("keydown",async (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        //checking that eny filed is not empty
+
+        let userName = Uname.value;
+        let emailAddress = email.value;
+        let Password = password.value;
+        let RePassword = rePassword.value
+
+        if (userName == "" || emailAddress == "" || Password == "" || RePassword == "") {
+            messageBox.innerHTML = "Please fill in all fields"
+            messageBox.classList.add("messageBoxFadeInOut");
+            setTimeout(() => {
+                messageBox.classList.remove("messageBoxFadeInOut");
+            }, 5000)
+        }
+        else {
+
+            //checking that the email field is a currect format of email
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+
+            if (email.value.match(emailPattern) && password.value == rePassword.value) {
+
+                //sending data to server
+
+                const data = { userName, emailAddress, Password }
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                const response = await fetch("/UsersData", options)
+                const dataResponse = await response.json();
+                console.log(dataResponse);
+
+                if (dataResponse.status == "it's there") {
+                    messageBox.innerHTML = "This username or email is already signed up, please sign in"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+                else {
+                    messageBox.innerHTML = "Now you're signed up"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+            }
+            else {
+                messageBox.innerHTML = "something went wrong with your password or Email"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)
+            }
+        }
+    }
 })
