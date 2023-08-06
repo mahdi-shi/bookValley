@@ -1,19 +1,3 @@
-// checkBox style
-
-let signInChk = document.querySelector("#signInChk");
-let checkBoxStyleStatus = false;
-
-signInChk.addEventListener("click", () => {
-    if (checkBoxStyleStatus == true) {
-        signInChk.style.opacity = 0.3;
-        checkBoxStyleStatus = false;
-    }
-    else {
-        signInChk.style.opacity = 1;
-        checkBoxStyleStatus = true;
-    }
-})
-
 //sending user's data to server for sign in
 
 const singInUnameEmail = document.querySelector("#signInUserNameOrEmailTxtBox");
@@ -190,3 +174,46 @@ signInpassword.addEventListener('keydown', async (e) => {
         }
     }
 })
+
+// remember me button event for create a cookie for user and save his data to browser
+
+let signInChk = document.querySelector("#signInChk");
+let checkBoxStyleStatus = false;
+
+signInChk.addEventListener("click", () => {
+    if (signInpassword.value == "" && singInUnameEmail.value == "") {
+        messageBox.innerHTML = "Please fill in all fields"
+        messageBox.classList.add("messageBoxFadeInOut");
+        setTimeout(() => {
+            messageBox.classList.remove("messageBoxFadeInOut");
+        }, 5000)
+    }
+    else{
+        if (checkBoxStyleStatus == true) {
+            signInChk.style.opacity = 0.3;
+            checkBoxStyleStatus = false;
+            localStorage.removeItem("username");
+            localStorage.removeItem("password");
+
+        }
+        else {
+            signInChk.style.opacity = 1;
+            checkBoxStyleStatus = true;
+            localStorage.setItem("username", singInUnameEmail.value);
+            localStorage.setItem("password", signInpassword.value);
+        }
+    }
+})
+
+document.body.onload = () => {
+    let ckeckLocalStorage = localStorage.getItem("username");
+    let ckeckLocalStorage2 = localStorage.getItem("password");
+
+    if (ckeckLocalStorage == null && ckeckLocalStorage2 == null || ckeckLocalStorage == "" && ckeckLocalStorage2 == "") {
+        console.log("there is no cookie");
+    }
+    else {
+        singInUnameEmail.value = localStorage.getItem("username");
+        signInpassword.value = localStorage.getItem("password");
+    }
+}

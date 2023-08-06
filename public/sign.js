@@ -1,19 +1,3 @@
-// checkBox style
-
-let signInChk = document.querySelector("#signInChk");
-let checkBoxStyleStatus = false;
-
-signInChk.addEventListener("click", () => {
-    if (checkBoxStyleStatus == true) {
-        signInChk.style.opacity = 0.3;
-        checkBoxStyleStatus = false;
-    }
-    else {
-        signInChk.style.opacity = 1;
-        checkBoxStyleStatus = true;
-    }
-})
-
 //sending user's data to server for sign up
 
 const Uname = document.querySelector("#UnameTxtBox");
@@ -351,3 +335,59 @@ password.addEventListener("keydown",async (e) => {
         }
     }
 })
+
+// remember me button event for create a cookie for user and save his data to browser
+
+let signInChk = document.querySelector("#signInChk");
+let checkBoxStyleStatus = false;
+
+signInChk.addEventListener("click", () => {
+    if (Uname.value == "" && email.value == "" && password.value == "" && rePassword.value == "") {
+        messageBox.innerHTML = "Please fill in all fields"
+        messageBox.classList.add("messageBoxFadeInOut");
+        setTimeout(() => {
+            messageBox.classList.remove("messageBoxFadeInOut");
+        }, 5000)
+    }
+    else{
+        if (checkBoxStyleStatus == true) {
+            signInChk.style.opacity = 0.3;
+            checkBoxStyleStatus = false;
+            localStorage.removeItem("email");
+            localStorage.removeItem("username");
+            localStorage.removeItem("password");
+            localStorage.removeItem("rePassword");
+
+        }
+        else {
+            signInChk.style.opacity = 1;
+            checkBoxStyleStatus = true;
+            localStorage.setItem("email", email.value);
+            localStorage.setItem("username", Uname.value);
+            localStorage.setItem("password", password.value);
+            localStorage.setItem("rePassword", rePassword.value);
+        }
+    }
+})
+
+document.body.onload = () => {
+    let ckeckLocalStorage = localStorage.getItem("email");
+    let ckeckLocalStorage2 = localStorage.getItem("username");
+    let ckeckLocalStorage3 = localStorage.getItem("password");
+    let ckeckLocalStorage4 = localStorage.getItem("rePassword");
+
+    signInChk.style.opacity = 0.3;
+    checkBoxStyleStatus = false;
+
+    if (ckeckLocalStorage == "" && ckeckLocalStorage2 == "" && ckeckLocalStorage3 == "" && ckeckLocalStorage4 == "") {
+        console.log("there is no data in localStorage");
+    }
+    else {
+        email.value = ckeckLocalStorage;
+        Uname.value = ckeckLocalStorage2;
+        password.value = ckeckLocalStorage3;
+        rePassword.value = ckeckLocalStorage4;
+        signInChk.style.opacity = 0.3;
+        checkBoxStyleStatus = false;
+    }
+}
