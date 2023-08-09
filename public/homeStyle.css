@@ -20,7 +20,7 @@ body{
 }
 
 .homePage {
-    background-color: #2b2131;
+    background-color: #242131;
     height: fit-content;
     scroll-behavior: smooth;
 }
@@ -160,7 +160,7 @@ body{
     width: 100%;
     margin-left: 10px;
     height: 140%;
-    background-image: linear-gradient(#080808, #2b2131);
+    background-image: linear-gradient(#080808, #242131);
     margin-top: -100px;
 }
 
@@ -827,9 +827,9 @@ body{
 .homePage .section .homePageShelvesBooksList {
     width: 90%;
     height: 160px;
-    background-color: rgb(47, 34, 51);
+    background-color: #29253d;
     border-radius: 10px;
-    border: 4px solid rgb(35, 24, 39);
+    border: 4px solid rgb(48, 36, 68);
 }
 
 .homePage .section .homePageShelvesBooksListText {
@@ -851,9 +851,9 @@ body{
 
 .homePage .section .recommendedBookList {
     height: 100vh;
-    background-color: rgb(47, 34, 51);
+    background-color: #29253d;
     border-radius: 10px;
-    border: 2px solid rgb(35, 24, 39);
+    border: 4px solid rgb(48, 36, 68);
 }
 
 .homePage .section .homePageGenersTitle p {
@@ -970,7 +970,7 @@ body{
     width: 101%;
     height: 150%;
     margin-top: -250px;
-    background: linear-gradient(#2b2131, #000000);
+    background: linear-gradient(#242131, #000000);
 }
 
 .homePage .section .footer #goUpBtn {
