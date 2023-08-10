@@ -1,0 +1,279 @@
+@font-face {
+    font-family: bookyFont;
+    src: url(assets/Charm-Bold.ttf)
+}
+
+@font-face {
+    font-family: regularFont;
+    src: url(assets/Merienda-VariableFont_wght.ttf)
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+.ProfPage {
+    background-color: #242131;
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.ProfPage .navBar {
+    height: 60px;
+    z-index: 20;
+}
+
+.ProfPage .navBar div {
+    display: inline;
+    width: 300px;
+}
+
+.ProfPage .navBar div img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    margin-left: 15px;
+}
+
+.ProfPage .navBar div .siteName {
+    width: 200px;
+    height: 200px;
+    display: inline;
+}
+
+.ProfPage .navBar div .siteName li {
+    display: block;
+    text-align: center;
+    line-height: 22px;
+    transform: translate(-50px, -45px);
+}
+
+.ProfPage .navBar div .siteName p {
+    display: inline;
+    font-weight: bold;
+    font-size: 1.4em;
+    font-family: bookyFont;
+    color: rgb(255, 255, 255);
+}
+
+.ProfPage .navBar .list {
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    margin-top: 20px;
+}
+
+.ProfPage .navBar .list li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.ProfPage .navBar .list li a {
+    text-decoration: none;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+    font-weight: bold;
+    font-family: regularFont;
+}
+
+.ProfPage .navBar .list li a:hover {
+    color: rgb(255, 255, 255);
+}
+
+.ProfPage .navBar .bookSearchBox {
+    margin-top: 2px;
+    position: absolute;
+    left: 75%;
+    width: 184px;
+}
+
+.ProfPage .navBar #bookSearchTxtBox {
+    width: 170px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgb(201, 201, 201);
+    font-weight: bold;
+    font-family: regularFont;
+    padding-left: 5px;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+}
+
+.ProfPage .navBar #bookSearchTxtBox:focus {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: white;
+}
+
+.ProfPage .navBar #bookSearchTxtBox:focus~#searchBoxBtn {
+    fill: white;
+}
+
+.ProfPage .navBar .bookSearchBox svg {
+    position: absolute;
+    left: 90%;
+    top: -1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.ProfPage .navBar #profileIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: -50px;
+    border: 2px solid rgb(201, 201, 201);
+    cursor: pointer;
+    transition: .3s;
+    left: 97%;
+    top: 60px;
+    position: absolute;
+}
+
+.ProfPage .navBar #profileIcon:hover {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.ProfPage .navBar #profileIcon svg {
+    position: absolute;
+    margin-left: -10px;
+    transition: .3s;
+}
+
+.ProfPage .navBar #profileIcon:hover svg {
+    fill: white;
+}
+
+.ProfPage .navBar #profileIcon #profIconPicture {
+    position: absolute;
+    left: -15px;
+    top: -5px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    filter: brightness(100%);
+    display: none;
+}
+
+.ProfPage .profilePictureBox {
+    position: absolute;
+    width: 290px;
+    height: 280px;
+    left: 7%;
+    user-select: none;
+    top: 120px;
+}
+
+.profPage .profilePictureBox img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    filter: brightness(90%);
+}
+
+.profPage .profilePictureBox #profilePicture {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, rgb(170, 159, 136), rgb(192, 181, 165));
+    position: absolute;
+    left: 50%;
+    user-select: none;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: inset 15px 15px 20px rgba(0, 0, 0, 0.3),
+        inset -3px -3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profPage .profilePictureBox #profilePicture svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    fill: rgb(107, 95, 74);
+    fill: rgb(112, 101, 82);
+}
+
+.profPage .profilePictureBox #profilePicture input {
+    position: absolute;
+    top: 90px;
+    left: 840px;
+    opacity: 0;
+    transform: scale(8);
+    z-index: 1000;
+}
+
+.profPage .profilePictureBox #profilePicture input::-webkit-file-upload-button {
+    cursor: pointer;
+}
+
+.profPage .profilePictureBox #profilePicture #imgProf {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: none;
+    filter: brightness(100%);
+}
+
+.profPage .profilePictureBox #profilePicture #imgProfDirty {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: none;
+    filter: brightness(100%);
+    z-index: 100;
+    border: 3px solid rgb(112, 101, 82);
+}
+
+.profPage #usernameTxt{
+    position: absolute;
+    left: 8%;
+    top: 70%;
+    font-family: regularFont;
+    color: rgb(224, 224, 224);
+    font-size: 1.4em;
+}
+
+.profPage #idTxt{
+    position: absolute;
+    left: 8%;
+    top: 77%;
+    font-family: regularFont;
+    color: rgb(224, 224, 224);
+    font-size: 1.4em;
+}
+
+.profPage #profEditBtn{
+    position: absolute;
+    left: 8%;
+    top: 89%;
+    width: 110px;
+    background-color: #242131;
+    height: 40px;
+    border: 2px solid rgb(192, 181, 165);
+    font-family: regularFont;
+    border-radius: 5px;
+    color: rgb(230, 230, 230);
+    transition: 0.3s;
+}
+
+.profPage #profEditBtn:hover{
+    background-color: rgb(192, 181, 165);
+    color: #242131;
+}

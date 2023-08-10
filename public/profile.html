@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/book-2-48.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="profile.css">
+    <title>BookValley | Profile</title>
+</head>
+
+<body>
+    <div class="container-fruid ProfPage">
+
+        <!-- navbar -->
+
+        <div class="row col-12 align-self-start navBar">
+            <div><img src="assets/book-2-48.png" alt="loading...">
+                <ul class="siteName">
+                    <li>
+                        <p id="this">Book</p>
+                    </li>
+                    <li>
+                        <p>Valley</p>
+                    </li>
+                </ul>
+            </div>
+            <ul class="list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Geners</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="#">Challenge</a></li>
+                <li><a href="#">About us</a></li>
+            </ul>
+            <div class="bookSearchBox">
+                <input id="bookSearchTxtBox" type="text" placeholder="find your book...">
+                <svg id="searchBoxBtn" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                    fill="rgb(201, 201, 201)" class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </div>
+            <div id="profileIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="rgb(201, 201, 201)"
+                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                </svg>
+                <img src="assets/library.png" id="profIconPicture" alt="oops">
+            </div>
+        </div>
+
+        <div class="profilePictureBox">
+            <img src="assets/imgPaper.png" alt="loading">
+            <div id="profilePicture">
+                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="black" class="bi bi-image"
+                    viewBox="0 0 16 16">
+                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                    <path
+                        d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
+                </svg>
+                <input type="file" id="profImageInputbox" accept="image/jpeg ,image/jpg ,image/png" name="file">
+                <img id="imgProf" alt="loading">
+                <img id="imgProfDirty" src="assets/—Pngtree—black creative hand painted mottled_5441645.png" alt="ahhh">
+            </div>
+        </div>
+        <p id="usernameTxt">User-name : </p>
+        <p id="idTxt">Id :</p>
+        <button id="profEditBtn">Edit</button>
+    </div>
+</body>
+<script src="profile.js"></script>
+
+</html>
