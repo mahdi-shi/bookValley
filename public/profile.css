@@ -59,6 +59,7 @@ body {
     display: inline;
     font-weight: bold;
     font-size: 1.4em;
+    user-select: none;
     font-family: bookyFont;
     color: rgb(255, 255, 255);
 }
@@ -82,6 +83,7 @@ body {
     transition: .3s;
     font-weight: bold;
     font-family: regularFont;
+    user-select: none;
 }
 
 .ProfPage .navBar .list li a:hover {
@@ -105,6 +107,7 @@ body {
     font-family: regularFont;
     padding-left: 5px;
     color: rgb(201, 201, 201);
+    user-select: none;
     transition: .3s;
 }
 
@@ -241,7 +244,7 @@ body {
     border: 3px solid rgb(112, 101, 82);
 }
 
-.profPage #usernameTxt{
+.profPage #usernameTxt {
     position: absolute;
     left: 8%;
     top: 70%;
@@ -250,7 +253,7 @@ body {
     font-size: 1.4em;
 }
 
-.profPage #idTxt{
+.profPage #idTxt {
     position: absolute;
     left: 8%;
     top: 77%;
@@ -259,7 +262,7 @@ body {
     font-size: 1.4em;
 }
 
-.profPage #profEditBtn{
+.profPage #profEditBtn {
     position: absolute;
     left: 8%;
     top: 89%;
@@ -273,7 +276,222 @@ body {
     transition: 0.3s;
 }
 
-.profPage #profEditBtn:hover{
+.profPage #profEditBtn:hover {
     background-color: rgb(192, 181, 165);
     color: #242131;
+}
+
+.profPage .backgroundPic1{
+    width: 600px;
+    height: 400px;
+    filter: brightness(60%);
+    position: absolute;
+    left: 51%;
+    top: 32%;
+}
+
+.profPage .backgroundPic2{
+    width: 200px;
+    height: 200px;
+    filter: brightness(80%);
+    position: absolute;
+    left: 77%;
+    top: 27%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profPage .backgroundPic2:hover{
+    filter: brightness(70%);
+}
+
+.profPage .backgroundPic3{
+    width: 130px;
+    height: 150px;
+    filter: brightness(90%);
+    position: absolute;
+    left: 55%;
+    top: 32%;
+}
+
+@keyframes burn {
+
+    0%,
+    100% {
+        border-radius: 1.25% 61% 11.25% 61.25%;
+        width: 4vmin;
+    }
+
+    10% {
+        border-radius: 1.25% 61.25% 12.25% 60.5%;
+    }
+
+    20% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 4vmin;
+    }
+
+    30%,
+    90% {
+        border-radius: 1.25% 41.25% 12.25% 60.5%;
+    }
+
+    40% {
+        border-radius: 0% 41.25% 41.25% 61.75%;
+        width: 4vmin;
+    }
+
+    50% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+    }
+
+    60% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+
+    70% {
+        border-radius: 0.5% 61.75% 10.5% 62.5%;
+        width: 4vmin;
+    }
+
+    80% {
+        border-radius: 1.25% 61.75% 11.25% 62%;
+    }
+}
+
+.profPage .candleFire {
+    animation: burn 4s infinite;
+    width: 15vmin;
+    margin-left: -200px;
+    position: absolute;
+    aspect-ratio: 1;
+    background:
+        radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
+        radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
+        radial-gradient(at 100% 100%, #fc08, #cb6c3b, #eebd7600 60%),
+        linear-gradient(135deg, #fff0 20%, #ff0);
+    background-color: #ffe;
+    border-radius: 2% 87% 45% 85%;
+    box-shadow: inset 2vmin 2vmin 2vmin -1.5vmin #f808,
+        inset -1vmin -1vmin 5vmin -3vmin #00f7,
+        inset 0vmin -1vmin 5vmin -3vmin #00f8,
+        inset -1vmin -1vmin 2vmin -2vmin #251c27,
+        inset -1vmin -1vmin 3vmin -1vmin #251c27,
+        inset -1vmin -1vmin 2vmin #fc08,
+        -0.5vmin -0.5vmin 1vmin #ff08,
+        -1vmin -1vmin 2vmin #ce8c47,
+        -2vmin -2vmin 10vmin 1vmin #251c27,
+        -6vmin -6vmin 35vmin 3vmin #fa06;
+    filter: blur(0.2vmin);
+    transform: rotate(45deg);
+    position: absolute;
+    left: 73.3%;
+    top: 35.5%;
+}
+
+.profPage .backgroundPic4{
+    width: 160px;
+    height: 70px;
+    filter: brightness(90%);
+    position: absolute;
+    left: 63%;
+    top: 47%;
+    transform-style: preserve-3d;
+    transform-origin: top;
+    transform: skew(40deg, -5deg);
+    cursor: pointer;   
+    transition: 0.2s;
+}
+
+.profPage #bookChallengeTxt{
+    font-family: regularFont;
+    color: black;
+    position: absolute;
+    left: 66.5%;
+    top: 49.5%;
+    transform-style: preserve-3d;
+    transform-origin: top;
+    user-select: none;
+    transform: skew(40deg, -5deg);
+    font-size: .8em;
+    text-align: center;
+    cursor: pointer;
+    filter: brightness(100%);    
+}
+
+.profPage .shelvesBox{
+    width: 240px;
+    height: 210px;
+    position: absolute;
+    left: 30%;
+    top: 430px;
+}
+
+.profPage .shelvesBox li{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-family: regularFont;
+    padding-top: 5px;
+    background: linear-gradient(to bottom right, rgb(170, 159, 136), rgb(192, 181, 165));
+    text-align: center;
+    border-bottom: 2px solid rgb(126, 119, 105);
+    cursor: pointer;
+    box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.profPage .shelvesBox li:last-child{
+    background-color: transparent;
+    opacity: 0.6;
+}
+
+.profPage .shelvesBox li:last-child svg{
+    opacity: 1;
+    left: 43%;
+    margin-top: -3px;
+    text-align: center;
+}
+
+.profPage .shelvesBox li:last-child:hover svg{
+    opacity: 1;
+    left: 43%;
+    margin-top: -3px;
+    text-align: center;   
+}
+
+.profPage .shelvesBox li:last-child:hover{
+    margin-left: 20px;
+}
+
+.profPage .shelvesBox li svg{
+    position: absolute;
+    left: 6%;
+    opacity: 0;
+    transition: 0.2s;
+    margin-top: 3px;    
+}
+
+.profPage .shelvesBox li:hover svg{
+    position: absolute;
+    left: 6%;
+    opacity: 1;
+    transition: 0.2s;
+    margin-top: 3px;    
+}
+
+
+.profPage .shelvesBox li:hover{
+    margin-left: -20px;
+}
+
+.profPage .shelvesTitle{
+    font-family: regularFont;
+    color: rgb(228, 228, 228);
+    font-size: 1.5em;
+    position: absolute;
+    left: 31%;
+    top: 360px;
 }

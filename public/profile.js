@@ -12,3 +12,21 @@ profImageInputbox.addEventListener("change",() =>{
     profIconPicture.src = URL.createObjectURL(profImageInputbox.files[0]);
     profIconPicture.style.display = "block";
 })
+
+//styling a paper in page 
+
+const bookChallengeTxt = document.querySelector("#bookChallengeTxt");
+const backgroundPic4 = document.querySelector(".backgroundPic4");
+
+bookChallengeTxt.addEventListener("mousemove",() => {
+    backgroundPic4.style.filter = "brightness("+80+"%)"
+})
+bookChallengeTxt.addEventListener("mouseout",() => {
+    backgroundPic4.style.filter = "brightness("+90+"%)"
+})
+backgroundPic4.addEventListener("mousemove",() => {
+    backgroundPic4.style.filter = "brightness("+80+"%)"
+})
+backgroundPic4.addEventListener("mouseout",() => {
+    backgroundPic4.style.filter = "brightness("+90+"%)"
+})
