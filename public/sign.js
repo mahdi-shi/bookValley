@@ -6,6 +6,7 @@ const password = document.querySelector("#passTxtBox");
 const rePassword = document.querySelector("#rePassTxtBox");
 const signUpconstBtn = document.querySelector("#signUpSendBtn")
 const messageBox = document.querySelector("#messageBox");
+const signStatus = false;
 
 signUpconstBtn.addEventListener('click', async () => {
 
@@ -59,6 +60,7 @@ signUpconstBtn.addEventListener('click', async () => {
                 setTimeout(() => {
                     messageBox.classList.remove("messageBoxFadeInOut");
                 }, 5000)
+                signStatus = true;
             }
         }
         else {
@@ -121,6 +123,7 @@ rePassword.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
+                    signStatus = true;
                     messageBox.classList.add("messageBoxFadeInOut");
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
@@ -186,6 +189,7 @@ Uname.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
+                    signStatus = true;
                     messageBox.classList.add("messageBoxFadeInOut");
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
@@ -253,6 +257,7 @@ email.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
+                    signStatus = true;
                     messageBox.classList.add("messageBoxFadeInOut");
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
@@ -319,6 +324,7 @@ password.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
+                    signStatus = true;
                     messageBox.classList.add("messageBoxFadeInOut");
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");

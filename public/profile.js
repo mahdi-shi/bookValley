@@ -31,8 +31,19 @@ backgroundPic4.addEventListener("mouseout",() => {
     backgroundPic4.style.filter = "brightness("+90+"%)"
 })
 
-//loading page event like cheking that user have an account or not , if yes so ...
+//click event for gramophone for sing
 
-function accountChecking (){
-    
-}
+const gramophone = document.querySelector(".backgroundPic2");
+const gramophoneAudio = document.querySelector("#gramophoneAudio");
+let gramophoneStatus = false;
+
+gramophone.addEventListener("click",() => {
+    if(gramophoneStatus == false){
+        gramophoneAudio.play();
+        gramophoneStatus = true
+    }
+    else{
+        gramophoneAudio.pause();
+        gramophoneStatus = false;
+    }
+})

@@ -164,6 +164,7 @@ body {
     border-radius: 50%;
     filter: brightness(100%);
     display: none;
+    user-select: none;
 }
 
 .ProfPage .profilePictureBox {
@@ -178,12 +179,14 @@ body {
 .profPage .profilePictureBox img {
     position: relative;
     width: 100%;
+    user-select: none;
     height: 100%;
     filter: brightness(90%);
 }
 
 .profPage .profilePictureBox #profilePicture {
-    width: 80%;
+    width: 80%;    
+    user-select: none;
     height: 80%;
     border-radius: 50%;
     background: linear-gradient(to bottom right, rgb(170, 159, 136), rgb(192, 181, 165));
@@ -202,6 +205,7 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
+    user-select: none;
     transform: translate(-50%, -50%);
     fill: rgb(107, 95, 74);
     fill: rgb(112, 101, 82);
@@ -224,6 +228,7 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+    user-select: none;
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -238,6 +243,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    user-select: none;
     display: none;
     filter: brightness(100%);
     z-index: 100;
@@ -247,6 +253,7 @@ body {
 .profPage #usernameTxt {
     position: absolute;
     left: 8%;
+    user-select: none;
     top: 70%;
     font-family: regularFont;
     color: rgb(224, 224, 224);
@@ -257,6 +264,7 @@ body {
     position: absolute;
     left: 8%;
     top: 77%;
+    user-select: none;
     font-family: regularFont;
     color: rgb(224, 224, 224);
     font-size: 1.4em;
@@ -265,6 +273,7 @@ body {
 .profPage #profEditBtn {
     position: absolute;
     left: 8%;
+    user-select: none;
     top: 89%;
     width: 110px;
     background-color: #242131;
@@ -283,6 +292,7 @@ body {
 
 .profPage .backgroundPic1{
     width: 600px;
+    user-select: none;
     height: 400px;
     filter: brightness(60%);
     position: absolute;
@@ -296,6 +306,7 @@ body {
     filter: brightness(80%);
     position: absolute;
     left: 77%;
+    user-select: none;
     top: 27%;
     cursor: pointer;
     transition: 0.2s;
@@ -312,6 +323,7 @@ body {
     position: absolute;
     left: 55%;
     top: 32%;
+    user-select: none;
 }
 
 @keyframes burn {
@@ -364,7 +376,8 @@ body {
     width: 15vmin;
     margin-left: -200px;
     position: absolute;
-    aspect-ratio: 1;
+    aspect-ratio: 1;    
+    user-select: none;
     background:
         radial-gradient(100% 100% at 90% 90%, #251c27, #251c2733 20%, #251c2700 50%),
         radial-gradient(farthest-side at 110% 120%, #251c27, rgb(114, 40, 17), #cb6c3b88, #0000),
@@ -395,6 +408,7 @@ body {
     filter: brightness(90%);
     position: absolute;
     left: 63%;
+    user-select: none;
     top: 47%;
     transform-style: preserve-3d;
     transform-origin: top;
@@ -414,6 +428,7 @@ body {
     user-select: none;
     transform: skew(40deg, -5deg);
     font-size: .8em;
+    user-select: none;
     text-align: center;
     cursor: pointer;
     filter: brightness(100%);    
@@ -421,6 +436,7 @@ body {
 
 .profPage .shelvesBox{
     width: 240px;
+    user-select: none;
     height: 210px;
     position: absolute;
     left: 30%;
@@ -430,6 +446,7 @@ body {
 .profPage .shelvesBox li{
     position: relative;
     width: 100%;
+    user-select: none;
     height: 40px;
     font-family: regularFont;
     padding-top: 5px;
@@ -453,6 +470,7 @@ body {
     left: 43%;
     margin-top: -3px;
     text-align: center;
+    user-select: none;
 }
 
 .profPage .shelvesBox li:last-child:hover svg{
@@ -472,6 +490,7 @@ body {
     opacity: 0;
     transition: 0.2s;
     margin-top: 3px;    
+    user-select: none;
 }
 
 .profPage .shelvesBox li:hover svg{
@@ -502,6 +521,7 @@ body {
     height: 88vh;
     margin-top: 10px;
     background-color: #242131;
+    display: none;
 }
 
 .profPage #checkingUsersAccountPage p{
@@ -510,6 +530,50 @@ body {
     font-weight: bold;
     font-size: 1.4em;
     position: absolute;
-    left: 30%;
-    top: 40%;
+    left: 40%;
+    top: 30%;
+    margin-top: 100px;
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: 1.2s;
+    animation-fill-mode: both;
 } 
+
+.profPage #checkingUsersAccountPage a{
+    text-decoration: none;
+    font-family: regularFont;
+    color: #b6b6b6;
+    font-weight: bold;
+    font-size: 1.4em;
+    position: absolute;
+    left: 48%;
+    top: 60%;
+    transition: 0.2s;
+    margin-top: 100px;
+    opacity: 0;
+    animation-name: fadeUp;
+    animation-duration: 1.2s;
+    animation-fill-mode: both;
+}
+
+.profPage #checkingUsersAccountPage a:hover{
+    color: #ececec;
+}
+
+@keyframes fadeUp {
+    0%{
+        opacity: 0;
+        margin-top: 100px;
+
+    }
+    100%{
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+.profPage #gramophoneAudio{
+    z-index: 100;
+    margin-left: 300px;
+    opacity: 0;
+}
