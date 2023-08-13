@@ -30,3 +30,9 @@ backgroundPic4.addEventListener("mousemove",() => {
 backgroundPic4.addEventListener("mouseout",() => {
     backgroundPic4.style.filter = "brightness("+90+"%)"
 })
+
+//loading page event like cheking that user have an account or not , if yes so ...
+
+function accountChecking (){
+    
+}

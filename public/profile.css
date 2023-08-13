@@ -495,3 +495,21 @@ body {
     left: 31%;
     top: 360px;
 }
+
+.profPage #checkingUsersAccountPage{
+    position: absolute;
+    width: 100%;
+    height: 88vh;
+    margin-top: 10px;
+    background-color: #242131;
+}
+
+.profPage #checkingUsersAccountPage p{
+    font-family: regularFont;
+    color: #ececec;
+    font-weight: bold;
+    font-size: 1.4em;
+    position: absolute;
+    left: 30%;
+    top: 40%;
+} 
