@@ -60,7 +60,9 @@ signUpconstBtn.addEventListener('click', async () => {
                 setTimeout(() => {
                     messageBox.classList.remove("messageBoxFadeInOut");
                 }, 5000)
+                window.location.assign("profile.html")
                 signStatus = true;
+                console.log(signStatus);
             }
         }
         else {
@@ -74,7 +76,7 @@ signUpconstBtn.addEventListener('click', async () => {
 
 })
 
-rePassword.addEventListener("keydown",async (e) => {
+rePassword.addEventListener("keydown", async (e) => {
     const keyName = e.key;
     if (keyName == "Enter") {
         //checking that eny filed is not empty
@@ -123,11 +125,14 @@ rePassword.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
-                    signStatus = true;
+                    window.location.assign("profile.html")
                     messageBox.classList.add("messageBoxFadeInOut");
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
                     }, 5000)
+                    signStatus = true;
+                    console.log(signStatus);
+
                 }
             }
             else {
@@ -140,7 +145,7 @@ rePassword.addEventListener("keydown",async (e) => {
         }
     }
 })
-Uname.addEventListener("keydown",async (e) => {
+Uname.addEventListener("keydown", async (e) => {
     const keyName = e.key;
     if (keyName == "Enter") {
         //checking that eny filed is not empty
@@ -189,79 +194,14 @@ Uname.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
+                    window.location.assign("profile.html")
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
                     signStatus = true;
-                    messageBox.classList.add("messageBoxFadeInOut");
-                    setTimeout(() => {
-                        messageBox.classList.remove("messageBoxFadeInOut");
-                    }, 5000)
-                }
-            }
-            else {
-                messageBox.innerHTML = "something went wrong with your password or Email"
-                messageBox.classList.add("messageBoxFadeInOut");
-                setTimeout(() => {
-                    messageBox.classList.remove("messageBoxFadeInOut");
-                }, 5000)
-            }
-        }
-    }
-})
+                    console.log(signStatus);
 
-
-email.addEventListener("keydown",async (e) => {
-    const keyName = e.key;
-    if (keyName == "Enter") {
-        //checking that eny filed is not empty
-
-        let userName = Uname.value;
-        let emailAddress = email.value;
-        let Password = password.value;
-        let RePassword = rePassword.value
-
-        if (userName == "" || emailAddress == "" || Password == "" || RePassword == "") {
-            messageBox.innerHTML = "Please fill in all fields"
-            messageBox.classList.add("messageBoxFadeInOut");
-            setTimeout(() => {
-                messageBox.classList.remove("messageBoxFadeInOut");
-            }, 5000)
-        }
-        else {
-
-            //checking that the email field is a currect format of email
-
-            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
-
-            if (email.value.match(emailPattern) && password.value == rePassword.value) {
-
-                //sending data to server
-
-                const data = { userName, emailAddress, Password }
-                const options = {
-                    method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-
-                const response = await fetch("/UsersData", options)
-                const dataResponse = await response.json();
-                console.log(dataResponse);
-
-                if (dataResponse.status == "it's there") {
-                    messageBox.innerHTML = "This username or email is already signed up, please sign in"
-                    messageBox.classList.add("messageBoxFadeInOut");
-                    setTimeout(() => {
-                        messageBox.classList.remove("messageBoxFadeInOut");
-                    }, 5000)
-                }
-                else {
-                    messageBox.innerHTML = "Now you're signed up"
-                    signStatus = true;
-                    messageBox.classList.add("messageBoxFadeInOut");
-                    setTimeout(() => {
-                        messageBox.classList.remove("messageBoxFadeInOut");
-                    }, 5000)
                 }
             }
             else {
@@ -275,7 +215,8 @@ email.addEventListener("keydown",async (e) => {
     }
 })
 
-password.addEventListener("keydown",async (e) => {
+
+email.addEventListener("keydown", async (e) => {
     const keyName = e.key;
     if (keyName == "Enter") {
         //checking that eny filed is not empty
@@ -324,11 +265,83 @@ password.addEventListener("keydown",async (e) => {
                 }
                 else {
                     messageBox.innerHTML = "Now you're signed up"
-                    signStatus = true;
+                    window.location.assign("profile.html")
                     messageBox.classList.add("messageBoxFadeInOut");
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
                     }, 5000)
+                    signStatus = true;
+                    console.log(signStatus);
+
+                }
+            }
+            else {
+                messageBox.innerHTML = "something went wrong with your password or Email"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000)
+            }
+        }
+    }
+})
+
+password.addEventListener("keydown", async (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        //checking that eny filed is not empty
+
+        let userName = Uname.value;
+        let emailAddress = email.value;
+        let Password = password.value;
+        let RePassword = rePassword.value
+
+        if (userName == "" || emailAddress == "" || Password == "" || RePassword == "") {
+            messageBox.innerHTML = "Please fill in all fields"
+            messageBox.classList.add("messageBoxFadeInOut");
+            setTimeout(() => {
+                messageBox.classList.remove("messageBoxFadeInOut");
+            }, 5000)
+        }
+        else {
+
+            //checking that the email field is a currect format of email
+
+            let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/
+
+            if (email.value.match(emailPattern) && password.value == rePassword.value) {
+
+                //sending data to server
+
+                const data = { userName, emailAddress, Password }
+                const options = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+                const response = await fetch("/UsersData", options)
+                const dataResponse = await response.json();
+                console.log(dataResponse);
+
+                if (dataResponse.status == "it's there") {
+                    messageBox.innerHTML = "This username or email is already signed up, please sign in"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                }
+                else {
+                    messageBox.innerHTML = "Now you're signed up"
+                    window.location.assign("profile.html")
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000)
+                    signStatus = true;
+                    console.log(signStatus);
                 }
             }
             else {
@@ -355,7 +368,7 @@ signInChk.addEventListener("click", () => {
             messageBox.classList.remove("messageBoxFadeInOut");
         }, 5000)
     }
-    else{
+    else {
         if (checkBoxStyleStatus == true) {
             signInChk.style.opacity = 0.3;
             checkBoxStyleStatus = false;

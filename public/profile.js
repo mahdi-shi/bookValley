@@ -47,3 +47,9 @@ gramophone.addEventListener("click",() => {
         gramophoneStatus = false;
     }
 })
+
+// reload event for checking user have an account or not , if yes so ....
+
+document.body.onload = () => {
+    are();
+}

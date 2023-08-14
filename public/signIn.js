@@ -42,6 +42,7 @@ signUpconstBtn.addEventListener('click', async () => {
             setTimeout(() => {
                 messageBox.classList.remove("messageBoxFadeInOut");
             }, 5000)
+            window.location.assign("profile.html")
         }
         else if (dataResponse.status == "it's there but password is incorrect") {
             messageBox.innerHTML = "The password is incorrect"
@@ -99,6 +100,7 @@ singInUnameEmail.addEventListener('keydown', async (e) => {
                 setTimeout(() => {
                     messageBox.classList.remove("messageBoxFadeInOut");
                 }, 5000)
+                window.location.assign("profile.html")
             }
             else if (dataResponse.status == "it's there but password is incorrect") {
                 messageBox.innerHTML = "The password is incorrect"
@@ -156,6 +158,7 @@ signInpassword.addEventListener('keydown', async (e) => {
                 setTimeout(() => {
                     messageBox.classList.remove("messageBoxFadeInOut");
                 }, 5000)
+                window.location.assign("profile.html")
             }
             else if (dataResponse.status == "it's there but password is incorrect") {
                 messageBox.innerHTML = "The password is incorrect"
