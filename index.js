@@ -83,3 +83,19 @@ app.post("/signInUsersData", (req, res) => {
         }
     })
 })
+
+app.get("/dataForProfile", (req, res) => {
+    const datas = [];
+
+    dataBase.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            datas[i] = Data[i];
+        }
+        res.json(datas);
+    })
+})

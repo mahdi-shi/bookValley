@@ -61,8 +61,7 @@ signUpconstBtn.addEventListener('click', async () => {
                     messageBox.classList.remove("messageBoxFadeInOut");
                 }, 5000)
                 window.location.assign("profile.html")
-                signStatus = true;
-                console.log(signStatus);
+                localStorage.setItem("userTarget", userName)
             }
         }
         else {
@@ -131,8 +130,7 @@ rePassword.addEventListener("keydown", async (e) => {
                         messageBox.classList.remove("messageBoxFadeInOut");
                     }, 5000)
                     signStatus = true;
-                    console.log(signStatus);
-
+                    localStorage.setItem("userTarget", userName)
                 }
             }
             else {
@@ -201,7 +199,7 @@ Uname.addEventListener("keydown", async (e) => {
                     }, 5000)
                     signStatus = true;
                     console.log(signStatus);
-
+                    localStorage.setItem("userTarget", userName)
                 }
             }
             else {
@@ -272,7 +270,7 @@ email.addEventListener("keydown", async (e) => {
                     }, 5000)
                     signStatus = true;
                     console.log(signStatus);
-
+                    localStorage.setItem("userTarget", userName)
                 }
             }
             else {
@@ -341,7 +339,7 @@ password.addEventListener("keydown", async (e) => {
                         messageBox.classList.remove("messageBoxFadeInOut");
                     }, 5000)
                     signStatus = true;
-                    console.log(signStatus);
+                    localStorage.setItem("userTarget", userName)
                 }
             }
             else {
