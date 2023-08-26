@@ -62,6 +62,7 @@ signUpconstBtn.addEventListener('click', async () => {
                 }, 5000)
                 window.location.assign("profile.html")
                 localStorage.setItem("userTarget", userName)
+                console.log("ok");
             }
         }
         else {

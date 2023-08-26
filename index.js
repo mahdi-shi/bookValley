@@ -59,7 +59,7 @@ app.post("/signInUsersData", (req, res) => {
         for (let i = 0; i < Data.length; i++) {
             if (Data[i].userName == req.body.userName) {
                 userNameExsistingStatus = true;
-                if(Data[i].password == req.body.Password){
+                if (Data[i].password == req.body.Password) {
                     passwordMatchigStatus = true;
                     break;
                 }
@@ -71,7 +71,7 @@ app.post("/signInUsersData", (req, res) => {
                 status: "it's there and password is correct"
             })
         }
-        else if(userNameExsistingStatus == true && passwordMatchigStatus == false){
+        else if (userNameExsistingStatus == true && passwordMatchigStatus == false) {
             res.json({
                 status: "it's there but password is incorrect"
             })
@@ -84,8 +84,8 @@ app.post("/signInUsersData", (req, res) => {
     })
 })
 
-app.get("/dataForProfile", (req, res) => {
-    const datas = [];
+app.post("/dataForProfile", (req, res) => {
+    let targetUser = []
 
     dataBase.find({}, (error, Data) => {
         if (error) {
@@ -94,8 +94,37 @@ app.get("/dataForProfile", (req, res) => {
         }
 
         for (let i = 0; i < Data.length; i++) {
-            datas[i] = Data[i];
+            if (Data[i].userName == req.body.userName) {
+                targetUser = Data[i];
+                break;
+            }
         }
-        res.json(datas);
+        console.log(targetUser);
+        res.json(targetUser);
+    })
+})
+
+app.post("/dataForProfile", (req, res) => {
+    let targetUser = []
+
+    dataBase.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            if (Data[i].userName == req.body.userName) {
+                targetUser = Data[i];
+                break;
+            }
+        }
+        console.log(targetUser);
+        res.json(targetUser);
+    })
+})
+
+app.post("/saveProfilePic", (req, res) => {
+    dataBase.update({ userName: req.body.username }, { $set: { image: req.body.image } }, { multi: true }, function (err, numReplaced) {
     })
 })
