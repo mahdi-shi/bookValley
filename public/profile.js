@@ -81,7 +81,6 @@ document.body.onload = async () => {
     }
     else {
         checkingUsersAccountPage.style.display = "none";
-        //usernameTxt.textContent = "User-name : " +
         const data = { userName }
         const options = {
             method: "POST",
@@ -100,7 +99,9 @@ document.body.onload = async () => {
         imageProfDirty.style.display = "block";
         profIconPicture.style.display = "block";
         if (dataResponse.image == null) {
-            return false;
+            imageProf.style.display = "none";
+            imageProfDirty.style.display = "none";
+            profIconPicture.style.display = "none";
         }
         else {
             imageProf.style.display = "block";
@@ -112,5 +113,76 @@ document.body.onload = async () => {
     }
 }
 
+//edit profile stuff
+
+const pictureEditInput = document.querySelector("#pictureEditInput");
+const pictureEditlbl = document.querySelector("#pictureEditlbl");
+
+pictureEditInput.addEventListener('change', (e) => {
+    pictureEditlbl.innerHTML = e.target.files[0].name;
+    console.log(e.target.files[0].name);
+    let reader = new FileReader();
+    reader.addEventListener("load", async () => {
+        console.log(reader.result);
+        imageProf.src = reader.result;
+        profIconPicture.src = reader.result;
+    });
+    reader.readAsDataURL(pictureEditInput.files[0]);
+})
+
+//showing editBox
+
+const editBox = document.querySelector("#editBox");
+const coverPage = document.querySelector(".coverPage");
+
 document.querySelector("#profEditBtn").addEventListener("click", async () => {
+    coverPage.style.display = "block";
+    editBox.style.display = "block";
+    setTimeout(() => {
+        coverPage.style.opacity = ".5";
+        editBox.style.opacity = "1"
+    }, 100)
+})
+
+coverPage.addEventListener("click", async () => {
+    coverPage.style.opacity = "0";
+    editBox.style.opacity = "0"
+    setTimeout(() => {
+        coverPage.style.display = "none";
+        editBox.style.display = "none";
+    }, 300)
+})
+
+//change the data that user edited
+
+var editBoxDoneBtn = document.querySelector("#editBoxDoneBtn");
+var deleteAccountTxt = document.querySelector("#deleteAccountTxt");
+var usernameEditInput = document.querySelector("#usernameEditInput");
+var messageText = document.querySelector("#messageText");
+var userStatus = localStorage.getItem("userTarget");
+
+editBoxDoneBtn.addEventListener("click", async () => {
+    if (usernameEditInput.value == "" && pictureEditInput.value == "") {
+        messageText.innerHTML == "please Fill in the fields"
+        messageText.classList.add("msgBoxfadeUpDown");
+        setTimeout(() => {
+            messageText.classList.remove("msgBoxfadeUpDown");
+        }, 5500)
+    }
+    else {        
+        const username = localStorage.getItem("userTarget");
+        const image = imageProf.src;
+        const newUsername = usernameEditInput.value; 
+        const data = { username, image, newUsername};
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        localStorage
+        const response = await fetch("/editProfileData", options)
+        const dataResponse = await response.json();
+    }
 })

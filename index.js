@@ -128,3 +128,7 @@ app.post("/saveProfilePic", (req, res) => {
     dataBase.update({ userName: req.body.username }, { $set: { image: req.body.image } }, { multi: true }, function (err, numReplaced) {
     })
 })
+
+app.post("/editProfileData", (req, res) => {
+    console.log(req.body.image)
+})

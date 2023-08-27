@@ -587,7 +587,9 @@ body {
     height: 100%;
     background-color: #242131;
     z-index: 9000;
-    opacity: .5;
+    opacity: 0;
+    transition: 0.3s;
+    display: none;
 }
 
 .profPage #editBox {
@@ -602,6 +604,9 @@ body {
     border: 2px solid rgb(85, 76, 102);
     z-index: 9999;
     overflow: hidden;
+    opacity: 0;
+    display: none;
+    transition: 0.3s;
 }
 
 .profPage #editBox p {
@@ -653,6 +658,7 @@ body {
     border-bottom: 2px solid rgb(121, 121, 121);
     color: rgb(175, 175, 175);
     font-family: regularFont;
+    opacity: 0;
 }
 
 .profPage #pictureEdit {
@@ -660,7 +666,6 @@ body {
     height: 30px;
     margin-top: -59px;
     margin-left: 130px;
-    overflow: hidden;
 }
 
 .profPage #pictureEdit input{
@@ -675,6 +680,11 @@ body {
     font-family: regularFont;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.profPage #pictureEdit label:hover {
+    color: rgb(209, 209, 209);
 }
 
 .profPage #editBox button{
@@ -685,7 +695,7 @@ body {
     border: 2px solid rgb(127, 119, 143);
     transition: .2s;    
     font-family: regularFont;
-    color: rgb(109, 101, 124);
+    color: rgb(147, 139, 163);
     width: 100px;
     height: 40px;
     font-weight: bold;
@@ -706,4 +716,48 @@ body {
     font-family: regularFont;
     font-weight: bold;
     margin-left: 50px;
+    width: 130px;
+    transition: 0.3s;
+}
+
+.profPage #editBox #deleteAccountTxt:hover{
+    color: rgb(209, 209, 209);
+}
+
+.profPage #messageText{
+    position: absolute;
+    top: -30px;
+    left: 200px;
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    color: #e6e6e6;
+    font-size: 1.1em;
+    opacity: 0;
+    z-index: 999999;
+}
+
+.msgBoxfadeUpDown{
+    animation-name: msgBoxfadeUpDown;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes msgBoxfadeUpDown {
+    0%{
+        opacity: 0;
+        top:-30px
+    }
+    15%{
+        opacity: 1;
+        top:60px
+    }
+    80%{
+        opacity: 1;
+        top:60px
+    }
+    100%{
+        opacity: 0;
+        top:-30px    
+    }
 }
