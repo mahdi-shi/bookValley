@@ -4,6 +4,8 @@ const profImageInputbox = document.querySelector("#profImageInputbox");
 const imageProf = document.querySelector("#imgProf");
 const imageProfDirty = document.querySelector("#imgProfDirty");
 const profIconPicture = document.querySelector("#profIconPicture")
+const profilePictureSvg = document.querySelector("#profilePictureSvg");
+const profileIconSvg = document.querySelector("#profileIconSvg");
 
 profImageInputbox.addEventListener("change", (e) => {
     imageProf.style.display = "block";
@@ -31,6 +33,9 @@ profImageInputbox.addEventListener("change", (e) => {
         const dataResponse = await response.json();
     });
     reader.readAsDataURL(profImageInputbox.files[0]);
+    profilePictureSvg.style.display = 'none';
+    profileIconSvg.style.display = "none";
+
 })
 
 //styling a paper in page 
@@ -102,6 +107,8 @@ document.body.onload = async () => {
             imageProf.style.display = "none";
             imageProfDirty.style.display = "none";
             profIconPicture.style.display = "none";
+            profilePictureSvg.style.display = 'block';
+            profileIconSvg.style.display = "block";
         }
         else {
             imageProf.style.display = "block";
@@ -109,6 +116,8 @@ document.body.onload = async () => {
             profIconPicture.style.display = "block";
             imageProf.src = dataResponse.image;
             profIconPicture.src = dataResponse.image;
+            profilePictureSvg.style.display = 'none';
+            profileIconSvg.style.display = "none";
         }
     }
 }
@@ -123,11 +132,16 @@ pictureEditInput.addEventListener('change', (e) => {
     console.log(e.target.files[0].name);
     let reader = new FileReader();
     reader.addEventListener("load", async () => {
-        console.log(reader.result);
+        imageProf.style.display = "block";
+        imageProfDirty.style.display = "block";
+        profIconPicture.style.display = "block";
         imageProf.src = reader.result;
         profIconPicture.src = reader.result;
     });
     reader.readAsDataURL(pictureEditInput.files[0]);
+
+    profilePictureSvg.style.display = 'none';
+    profileIconSvg.style.display = "none";
 })
 
 //showing editBox
@@ -169,11 +183,11 @@ editBoxDoneBtn.addEventListener("click", async () => {
             messageText.classList.remove("msgBoxfadeUpDown");
         }, 5500)
     }
-    else {        
+    else if (usernameEditInput.value == "" && pictureEditInput.value != "") {
         const username = localStorage.getItem("userTarget");
         const image = imageProf.src;
-        const newUsername = usernameEditInput.value; 
-        const data = { username, image, newUsername};
+        const newUsername = localStorage.getItem("userTarget");
+        const data = { username, image, newUsername };
         const options = {
             method: "POST",
             headers: {
@@ -181,8 +195,54 @@ editBoxDoneBtn.addEventListener("click", async () => {
             },
             body: JSON.stringify(data)
         };
-        localStorage
+        localStorage.setItem("userTarget", newUsername)
         const response = await fetch("/editProfileData", options)
         const dataResponse = await response.json();
+        console.log(dataResponse);
+
+        usernameTxt.innerHTML = "User-name : " + dataResponse.userName;
+        idTxt.innerHTML = "Id : " + dataResponse._id;
+
+        coverPage.style.opacity = "0";
+        editBox.style.opacity = "0"
+        setTimeout(() => {
+            coverPage.style.display = "none";
+            editBox.style.display = "none";
+        }, 300)
+
+        usernameEditInput.value = "";
+        pictureEditlbl.innerHTML = "";
+    }
+    else {
+        const username = localStorage.getItem("userTarget");
+        const image = imageProf.src;
+        const newUsername = usernameEditInput.value;
+        const data = { username, image, newUsername };
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        localStorage.setItem("userTarget", newUsername)
+        const response = await fetch("/editProfileData", options)
+        const dataResponse = await response.json();
+        console.log(dataResponse);
+
+        usernameTxt.innerHTML = "User-name : " + dataResponse.userName;
+        idTxt.innerHTML = "Id : " + dataResponse._id;
+
+        coverPage.style.opacity = "0";
+        editBox.style.opacity = "0"
+        setTimeout(() => {
+            coverPage.style.display = "none";
+            editBox.style.display = "none";
+        }, 300)
+
+        usernameEditInput.value = "";
+        pictureEditlbl.innerHTML = "Select";
+        profilePictureSvg.style.display = 'none';
+        profileIconSvg.style.display = "none";
     }
 })

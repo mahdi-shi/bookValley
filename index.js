@@ -130,5 +130,22 @@ app.post("/saveProfilePic", (req, res) => {
 })
 
 app.post("/editProfileData", (req, res) => {
-    console.log(req.body.image)
+    dataBase.update({ userName: req.body.username }, { $set: { userName: req.body.newUsername, image: req.body.image } }, {}, function () {
+    })
+
+    let targetUser;
+    dataBase.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            if (Data[i].userName == req.body.newUsername) {
+                targetUser = Data[i];
+                break;
+            }
+        }
+        res.json(targetUser);
+    })
 })
