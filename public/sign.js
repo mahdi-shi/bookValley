@@ -388,7 +388,7 @@ signInChk.addEventListener("click", () => {
     }
 })
 
-document.body.onload = () => {
+document.body.onload = async() => {
     let ckeckLocalStorage = localStorage.getItem("email");
     let ckeckLocalStorage2 = localStorage.getItem("username");
     let ckeckLocalStorage3 = localStorage.getItem("password");
@@ -408,4 +408,42 @@ document.body.onload = () => {
         signInChk.style.opacity = 0.3;
         checkBoxStyleStatus = false;
     }
+
+    const profileIcon = document.querySelector("#profileIcon");
+    const profileIconSvg = document.querySelector("#profileIconSvg");
+
+    profileIcon.addEventListener("click", () => {
+        window.location.assign("profile.html");
+    })
+
+    const userName = localStorage.getItem("userTarget");
+
+    if (userName == null) {
+        return false;
+    }
+    else {
+        const data = { userName }
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch("/dataForProfile", options)
+        const dataResponse = await response.json();
+
+        profIconPicture.style.display = "block";
+        if (dataResponse.image == null) {
+            profIconPicture.style.display = "none";
+            profileIconSvg.style.display = "block";
+        }
+        else {
+            profIconPicture.style.display = "block";
+            profIconPicture.src = dataResponse.image;
+            profileIconSvg.style.display = "none";
+        }
+    }
+
 }
