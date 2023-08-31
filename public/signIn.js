@@ -233,8 +233,8 @@ document.body.onload = async () => {
     const userName = localStorage.getItem("userTarget");
 
     if (userName == null) {
-        return false;
-    }
+        profIconPicture.style.display = "none";
+        profileIconSvg.style.display = "block";    }
     else {
         const data = { userName }
         const options = {

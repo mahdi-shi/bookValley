@@ -388,7 +388,7 @@ signInChk.addEventListener("click", () => {
     }
 })
 
-document.body.onload = async() => {
+document.body.onload = async () => {
     let ckeckLocalStorage = localStorage.getItem("email");
     let ckeckLocalStorage2 = localStorage.getItem("username");
     let ckeckLocalStorage3 = localStorage.getItem("password");
@@ -419,7 +419,8 @@ document.body.onload = async() => {
     const userName = localStorage.getItem("userTarget");
 
     if (userName == null) {
-        return false;
+        profIconPicture.style.display = "none";
+        profileIconSvg.style.display = "block";
     }
     else {
         const data = { userName }

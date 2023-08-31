@@ -542,9 +542,9 @@ body {
 .profPage #checkingUsersAccountPage {
     position: absolute;
     width: 100%;
-    height: 100vh;
-    margin-top: -120px;
-    background-color: #242131;
+    height: 90vh;
+    margin-top: -50px;
+    background-image: linear-gradient(#0c0c0c, #242131);
     display: block;
     opacity: 1;
     z-index: 9999999;

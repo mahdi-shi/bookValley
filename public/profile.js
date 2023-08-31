@@ -251,22 +251,10 @@ editBoxDoneBtn.addEventListener("click", async () => {
 
 const checkingUsersAccountPage = document.querySelector("#checkingUsersAccountPage");
 
-
 deleteAccountTxt.addEventListener("click", async () => {
     const username = localStorage.getItem("userTarget");
     const data = { username };
     localStorage.removeItem("userTarget");
-    const options = {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    };
-    const response = await fetch("/removeUser", options)
-    const dataResponse = await response.json();
-    console.log(dataResponse);
-
     checkingUsersAccountPage.style.display = "block"
 
     coverPage.style.opacity = "0";
@@ -278,5 +266,16 @@ deleteAccountTxt.addEventListener("click", async () => {
 
     usernameEditInput.value = "";
     pictureEditlbl.innerHTML = "Select";
-    profilePictureSvg.style.display = 'none';
-    profileIconSvg.style.display = "none";})
+    profilePictureSvg.style.display = "block";
+    profileIconSvg.style.display = "block";
+
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    const response = await fetch("/removeUser", options)
+    const dataResponse = await response.json();
+    console.log(dataResponse);})
