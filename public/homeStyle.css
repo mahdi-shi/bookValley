@@ -27,7 +27,9 @@ body{
 
 .homePage .navBar {
     height: 60px;
+    transition: 0.3s;
     z-index: 20;
+    position: fixed;
 }
 
 .homePage .navBar div {

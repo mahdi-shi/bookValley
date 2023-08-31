@@ -223,6 +223,16 @@
             }
         }
     }
+    const navBar = document.querySelector(".navBar")
+    document.onscroll = () => {
+        if (scrollY > 600) {
+            navBar.style.backgroundColor = "#242131"
+        }
+        else{
+            navBar.style.backgroundColor = "transparent"
+
+        }
+    }
 
 </script>
 
