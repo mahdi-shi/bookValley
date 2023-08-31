@@ -43,8 +43,8 @@
                 </svg>
             </div>
             <div id="profileIcon">
-                <svg id="profileIconSvg" xmlns="http://www.w3.org/2000/svg" width="37" height="37" fill="rgb(201, 201, 201)"
-                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                <svg id="profileIconSvg" xmlns="http://www.w3.org/2000/svg" width="37" height="37"
+                    fill="rgb(201, 201, 201)" class="bi bi-person-fill" viewBox="0 0 16 16">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                 </svg>
                 <img id="profIconPicture" alt="oops">
@@ -196,7 +196,8 @@
         const userName = localStorage.getItem("userTarget");
 
         if (userName == null) {
-            return false;
+            profIconPicture.style.display = "none";
+            profileIconSvg.style.display = "block";
         }
         else {
             const data = { userName }
@@ -211,7 +212,6 @@
             const response = await fetch("/dataForProfile", options)
             const dataResponse = await response.json();
 
-            profIconPicture.style.display = "block";
             if (dataResponse.image == null) {
                 profIconPicture.style.display = "none";
                 profileIconSvg.style.display = "block";
@@ -220,6 +220,7 @@
                 profIconPicture.style.display = "block";
                 profIconPicture.src = dataResponse.image;
                 profileIconSvg.style.display = "none";
+                profIconPicture.style.display = "none";
             }
         }
     }

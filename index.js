@@ -149,3 +149,9 @@ app.post("/editProfileData", (req, res) => {
         res.json(targetUser);
     })
 })
+
+app.post("/removeUser", (req, res) => {
+    dataBase.remove({userName: req.body.username }, {}, (err, numRemoved) => {
+
+    })
+})
