@@ -189,9 +189,9 @@ body{
 
 .homePage .header .explainationHeader {
     width: 600px;
-    height: 130px;
+    height: 280px;
     position: absolute;
-    top: 400px;
+    top: 300px;
     overflow: hidden;
     left: 40px;
     z-index: 10;
@@ -342,9 +342,19 @@ body{
     animation-play-state: running;
 }
 
+.homePage .header .explainationHeader ul li h2 {
+    font-family: regularFont;
+    text-shadow: 0 7px 7px rgba(0, 0, 0, 0.8);
+    font-weight: bold;
+    color: white;
+    margin-top: 40px;
+}
+
 .homePage .header .explainationHeader ul li p {
     font-family: regularFont;
-    text-shadow: 0 7px 7px rgba(0, 0, 0, 0.8)
+    text-shadow: 0 7px 7px rgba(0, 0, 0, 0.8);
+    color : rgb(194, 194, 194);
+    margin-top: 40px;
 }
 
 .homePage .header .explainationHeader ul li:nth-child(2) {
