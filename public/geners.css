@@ -27,7 +27,7 @@ body {
 
 .genersPage .navBar {
     height: 60px;
-    z-index: 20;
+    z-index: 200000000000;
 }
 
 .genersPage .navBar div {
@@ -163,6 +163,7 @@ body {
 .genersPage .rightSide {
     width: 500px;
     height: 90vh;
+    overflow: hidden;
 }
 
 .genersPage .rightSide h2 {
@@ -202,16 +203,41 @@ body {
     }
 }
 
-.genersPage .rightSide .column {
-    height: 84vh;
+.genersPage .rightSide .columnBox {
+    width: 500px;
+    height: 90vh;
+    position: absolute;
+    left: 63%;
+    overflow: auto;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar {
+    width: 10px;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.genersPage .rightSide .columnBox .column {
+    height: 184vh;
     width: 4px;
     background-color: aliceblue;
     position: absolute;
-    top: 100px;
-    left: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+
 }
 
-.genersPage .rightSide .column .top {
+.genersPage .rightSide .columnBox .column .top {
     position: absolute;
     width: 26px;
     height: 6px;
@@ -220,13 +246,23 @@ body {
     background-color: aliceblue;
 }
 
-.genersPage .rightSide .column ul {
+.genersPage .rightSide .columnBox .column .buttom {
+    position: absolute;
+    width: 26px;
+    height: 6px;
+    border-radius: 2px;
+    margin-left: -11px;
+    top: 100%;
+    background-color: aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul {
     position: absolute;
     margin-left: -40px;
     margin-top: 60px;
 }
 
-.genersPage .rightSide .column ul li {
+.genersPage .rightSide .columnBox .column ul li {
     width: 20px;
     height: 20px;
     margin-bottom: 60px;
@@ -236,13 +272,14 @@ body {
     list-style: none;
     cursor: pointer;
     transition: .2s;
+    user-select: none;
 }
 
-.genersPage .rightSide .column ul li:hover {
+.genersPage .rightSide .columnBox .column ul li:hover {
     background-color: aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(1)::before {
+.genersPage .rightSide .columnBox .column ul li:nth-child(1)::before {
     content: "";
     position: absolute;
     width: 40px;
@@ -252,7 +289,7 @@ body {
     margin-top: 4px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(2)::before {
+.genersPage .rightSide .columnBox .column ul li:nth-child(2)::before {
     content: "";
     position: absolute;
     width: 40px;
@@ -262,7 +299,7 @@ body {
     margin-top: 5px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(3)::before {
+.genersPage .rightSide .columnBox .column ul li:nth-child(3)::before {
     content: "";
     position: absolute;
     width: 40px;
@@ -272,7 +309,7 @@ body {
     margin-top: 4px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(3)::after {
+.genersPage .rightSide .columnBox .column ul li:nth-child(3)::after {
     content: "";
     position: absolute;
     width: 40px;
@@ -282,7 +319,7 @@ body {
     margin-top: -23px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(4)::before {
+.genersPage .rightSide .columnBox .column ul li:nth-child(4)::before {
     content: "";
     position: absolute;
     width: 40px;
@@ -292,7 +329,7 @@ body {
     margin-top: 5px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(5)::before {
+.genersPage .rightSide .columnBox .column ul li:nth-child(5)::before {
     content: "";
     position: absolute;
     width: 40px;
@@ -302,7 +339,7 @@ body {
     margin-top: 4px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(6)::before {
+.genersPage .rightSide .columnBox .column ul li:nth-child(6)::before {
     content: "";
     position: absolute;
     width: 40px;
@@ -312,7 +349,7 @@ body {
     margin-top: 5px;
 }
 
-.genersPage .rightSide .column ul li:nth-child(6)::after {
+.genersPage .rightSide .columnBox .column ul li:nth-child(6)::after {
     content: "";
     position: absolute;
     width: 38px;
@@ -322,14 +359,123 @@ body {
     margin-top: -23px;
 }
 
-.genersPage .rightSide .column ul li div{
+.genersPage .rightSide .columnBox .column ul li:nth-child(7)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8)::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(9)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10)::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 6px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(11)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(12)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(13)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+.genersPage .rightSide .columnBox .column ul li:nth-child(13)::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(14)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li div {
     position: relative;
     width: 200px;
     height: 40px;
     border-radius: 3px;
     margin-top: -13px;
     border: 3px solid aliceblue;
-    color:aliceblue;
+    color: aliceblue;
     font-family: regularFont;
     font-weight: bold;
     padding-left: 68px;
@@ -337,12 +483,12 @@ body {
     transition: 0.3s;
 }
 
-.genersPage .rightSide .column ul li div:hover{
-    background-color:aliceblue ;
+.genersPage .rightSide .columnBox .column ul li div:hover {
+    background-color: aliceblue;
     color: #242131;
 }
 
-.genersPage .rightSide .column ul li:nth-child(1) div{
+.genersPage .rightSide .columnBox .column ul li:nth-child(1) div {
     position: relative;
     width: 130px;
     height: 40px;
@@ -353,7 +499,7 @@ body {
     border: 3px solid aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(2) div{
+.genersPage .rightSide .columnBox .column ul li:nth-child(2) div {
     position: relative;
     width: 100px;
     height: 40px;
@@ -364,7 +510,7 @@ body {
     border: 3px solid aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(3) div:nth-child(1){
+.genersPage .rightSide .columnBox .column ul li:nth-child(3) div:nth-child(1) {
     position: relative;
     width: 120px;
     height: 40px;
@@ -375,7 +521,7 @@ body {
     border: 3px solid aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(3) div:nth-child(2){
+.genersPage .rightSide .columnBox .column ul li:nth-child(3) div:nth-child(2) {
     position: relative;
     width: 160px;
     height: 40px;
@@ -386,7 +532,7 @@ body {
     border: 3px solid aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(4) div{
+.genersPage .rightSide .columnBox .column ul li:nth-child(4) div {
     position: relative;
     width: 130px;
     height: 40px;
@@ -397,7 +543,7 @@ body {
     border: 3px solid aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(5) div{
+.genersPage .rightSide .columnBox .column ul li:nth-child(5) div {
     position: relative;
     width: 120px;
     height: 40px;
@@ -408,7 +554,7 @@ body {
     border: 3px solid aliceblue;
 }
 
-.genersPage .rightSide .column ul li:nth-child(6) div:nth-child(1){
+.genersPage .rightSide .columnBox .column ul li:nth-child(6) div:nth-child(1) {
     position: relative;
     width: 130px;
     height: 40px;
@@ -418,7 +564,8 @@ body {
     padding-left: 33px;
     border: 3px solid aliceblue;
 }
-.genersPage .rightSide .column ul li:nth-child(6) div:nth-child(2){
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(6) div:nth-child(2) {
     position: relative;
     width: 140px;
     height: 40px;
@@ -427,4 +574,167 @@ body {
     margin-left: -175px;
     padding-left: 30px;
     border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(7) div {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -158px;
+    padding-left: 34px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8) div:nth-child(1) {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 34px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8) div:nth-child(2) {
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -175px;
+    padding-left: 40px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(9) div {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 25px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10) div:nth-child(1) {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10) div:nth-child(2) {
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -175px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(11) div {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -165px;
+    padding-left: 33px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(12) div {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -185px;
+    padding-left: 26px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(13) div:nth-child(1) {
+    position: relative;
+    width: 110px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(13) div:nth-child(2) {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -188px;
+    padding-left: 31px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(14) div {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 35px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .generBooksPnl{
+    position: absolute;
+    left: 0%;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background-color:  #242131;
+    transition: 0.5s;
+    overflow: auto;
+}
+
+.genersPage .generBooksPnl .backgroundCover{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(#080808, #242131);
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.genersPage .generBooksPnl .firstList{
+    position: absolute;
+    top: 360px;
+    left: 40px;
+    height: 240px;
+    width: 95%;
+    border:2px solid #1a1d29;
+    z-index: 100;
+}
+
+.genersPage .generBooksPnl .firstList li{
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    background-color: #202131;
+    margin-left: 40px;
 }
