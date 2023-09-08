@@ -1,0 +1,839 @@
+@font-face {
+    font-family: bookyFont;
+    src: url(assets/Charm-Bold.ttf)
+}
+
+@font-face {
+    font-family: regularFont;
+    src: url(assets/Merienda-VariableFont_wght.ttf)
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+.genersPage {
+    background-image: linear-gradient(#242131, #080808,#09090c);
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.genersPage .navBar {
+    height: 60px;
+    z-index: 200000000000;
+    transition: 0.3s;
+}
+
+.genersPage .navBar div {
+    display: inline;
+    width: 300px;
+}
+
+.genersPage .navBar div img {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    margin-left: 15px;
+}
+
+.genersPage .navBar div .siteName {
+    width: 200px;
+    height: 200px;
+    display: inline;
+}
+
+.genersPage .navBar div .siteName li {
+    display: block;
+    text-align: center;
+    line-height: 22px;
+    transform: translate(-50px, -45px);
+}
+
+.genersPage .navBar div .siteName p {
+    display: inline;
+    font-weight: bold;
+    font-size: 1.4em;
+    font-family: bookyFont;
+    color: rgb(255, 255, 255);
+}
+
+.navBar .list {
+    width: 500px;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    margin-top: 20px;
+}
+
+.genersPage .navBar .list li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.genersPage .navBar .list li a {
+    text-decoration: none;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+    font-weight: bold;
+    font-family: regularFont;
+}
+
+.genersPage .navBar .list li a:hover {
+    color: rgb(255, 255, 255);
+}
+
+.genersPage .navBar .bookSearchBox {
+    margin-top: 2px;
+    position: absolute;
+    left: 75%;
+    width: 184px;
+}
+
+.genersPage .navBar #bookSearchTxtBox {
+    width: 170px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgb(201, 201, 201);
+    font-weight: bold;
+    font-family: regularFont;
+    padding-left: 5px;
+    color: rgb(201, 201, 201);
+    transition: .3s;
+}
+
+.genersPage .navBar #bookSearchTxtBox:focus {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: white;
+}
+
+.genersPage .navBar #bookSearchTxtBox:focus~#searchBoxBtn {
+    fill: white;
+}
+
+.genersPage .navBar .bookSearchBox svg {
+    position: absolute;
+    left: 90%;
+    top: -1px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.genersPage .navBar #profileIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: -50px;
+    border: 2px solid rgb(201, 201, 201);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.genersPage .navBar #profileIcon:hover {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.genersPage .navBar #profileIcon svg {
+    position: absolute;
+    margin-left: -7px;
+    transition: .3s;
+    margin-top: 2px;
+}
+
+.genersPage .navBar #profileIcon #profIconPicture {
+    border-radius: 50%;
+    filter: brightness(100%);
+    margin-left: -11px;
+    width: 44px;
+    height: 44px;
+    margin-top: -2px;
+    user-select: none;
+}
+
+.genersPage .navBar #profileIcon:hover svg {
+    fill: white;
+}
+
+.genersPage .rightSide {
+    width: 500px;
+    height: 90vh;
+    overflow: hidden;
+}
+
+.genersPage .rightSide h2 {
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    position: absolute;
+    left: 12%;
+    opacity: 0;
+    user-select: none;
+    top: 260px;
+    animation: fadeUpGenerExplain 1s forwards ease-out
+}
+
+.genersPage .rightSide p {
+    color: rgb(163, 163, 163);
+    font-family: regularFont;
+    font-weight: bold;
+    position: absolute;
+    left: 12%;
+    opacity: 0;
+    top: 360px;
+    user-select: none;
+    line-height: 27px;
+    animation: fadeUpGenerExplain 1s forwards .5s ease-out;
+}
+
+@keyframes fadeUpGenerExplain {
+    0% {
+        opacity: 0;
+        margin-top: 50px;
+    }
+
+    100% {
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+.genersPage .rightSide .columnBox {
+    width: 500px;
+    height: 90vh;
+    position: absolute;
+    left: 63%;
+    overflow: auto;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar {
+    width: 10px;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.genersPage .rightSide .columnBox::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.genersPage .rightSide .columnBox .column {
+    height: 184vh;
+    width: 4px;
+    background-color: aliceblue;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.genersPage .rightSide .columnBox .column .top {
+    position: absolute;
+    width: 26px;
+    height: 6px;
+    border-radius: 2px;
+    margin-left: -11px;
+    background-color: aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column .buttom {
+    position: absolute;
+    width: 26px;
+    height: 6px;
+    border-radius: 2px;
+    margin-left: -11px;
+    top: 100%;
+    background-color: aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul {
+    position: absolute;
+    margin-left: -40px;
+    margin-top: 60px;
+}
+
+.genersPage .rightSide .columnBox .column ul li {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 60px;
+    border-radius: 50%;
+    border: 3px solid aliceblue;
+    background-color: #242131;
+    list-style: none;
+    cursor: pointer;
+    transition: .2s;
+    user-select: none;
+}
+
+.genersPage .rightSide .columnBox .column ul li:hover {
+    background-color: aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -40px;
+    margin-top: 4px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -40px;
+    margin-top: 4px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(3)::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(5)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -40px;
+    margin-top: 4px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(6)::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(6)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(7)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8)::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(9)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10)::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 6px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(11)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(12)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(13)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: -38px;
+    margin-top: -23px;
+}
+.genersPage .rightSide .columnBox .column ul li:nth-child(13)::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: 5px;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(14)::after {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 4px;
+    background-color: aliceblue;
+    margin-left: 17px;
+    margin-top: -23px;
+}
+
+.genersPage .rightSide .columnBox .column ul li div {
+    position: relative;
+    width: 200px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    border: 3px solid aliceblue;
+    color: aliceblue;
+    font-family: regularFont;
+    font-weight: bold;
+    padding-left: 68px;
+    padding-top: 3px;
+    transition: 0.3s;
+}
+
+.genersPage .rightSide .columnBox .column ul li div:hover {
+    background-color: aliceblue;
+    color: #242131;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(1) div {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -170px;
+    padding-left: 34px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(2) div {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 24px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(3) div:nth-child(1) {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -160px;
+    padding-left: 25px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(3) div:nth-child(2) {
+    position: relative;
+    width: 160px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: 55px;
+    padding-left: 38px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(4) div {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(5) div {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -160px;
+    padding-left: 34px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(6) div:nth-child(1) {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 33px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(6) div:nth-child(2) {
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -175px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(7) div {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -158px;
+    padding-left: 34px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8) div:nth-child(1) {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 34px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(8) div:nth-child(2) {
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -175px;
+    padding-left: 40px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(9) div {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 25px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10) div:nth-child(1) {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(10) div:nth-child(2) {
+    position: relative;
+    width: 140px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -175px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(11) div {
+    position: relative;
+    width: 130px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -165px;
+    padding-left: 33px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(12) div {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: -185px;
+    padding-left: 50px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(13) div:nth-child(1) {
+    position: relative;
+    width: 110px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 30px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(13) div:nth-child(2) {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -40px;
+    margin-left: -188px;
+    padding-left: 31px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .rightSide .columnBox .column ul li:nth-child(14) div {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    margin-top: -13px;
+    margin-left: 55px;
+    padding-left: 35px;
+    border: 3px solid aliceblue;
+}
+
+.genersPage .generBooksPnl{
+    position: absolute;
+    left: -100%;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: #242131;
+    transition: 0.5s;
+    overflow: auto;
+}
+
+.genersPage .generBooksPnl .backgroundCover{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(#080808, #242131);
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.genersPage .generBooksPnl .firstList{
+    position: absolute;
+    top: 358px;
+    left: 40px;
+    width: 95%;
+    height: 290px;
+    z-index: 100;
+    margin-top: -130px
+}
+
+.genersPage .generBooksPnl .firstList li{
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 120px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    transition: 0.6s;
+}
+
+.genersPage .generBooksPnl .firstList li:hover{
+    transform: skewY(5deg) rotateY(15deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+
+}
+
+.genersPage .generBooksPnl .firstList li .books{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #2e3047;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode:forwards ;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes loadingBooks {
+    0%{background-color: #2e3047;}
+    30%{background-color: #2e3047;}
+    50%{background-color: #3c3e57;}
+    80%{background-color: #2e3047;}
+    100%{background-color: #2e3047;}
+}
+
+.genersPage .generBooksPnl svg{
+    z-index: 99999;
+    position: fixed;
+    left: 94.5%;
+    cursor: pointer;
+    top: 100px;
+    transition: 0.3s;
+}
+
+.genersPage .generBooksPnl svg:hover{
+    fill: #62647a;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar {
+    width: 10px;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.genersPage .generBooksPnl #subjectHeader{
+    font-family: regularFont;
+    font-weight: bold;
+    position: absolute;
+    left: 16%;
+    top: 200px;
+    z-index: 10000;
+    color: aliceblue;
+    font-size: 2.4em;    
+}
+
+.genersPage .generBooksPnl .firstList li .bookCover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: brightness(100%);
+    transition: 1s;
+}
+
+.genersPage .generBooksPnl .firstList li .bookTitle{
+    position: relative;
+    top: 107%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+}
