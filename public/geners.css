@@ -20,7 +20,7 @@ body {
 }
 
 .genersPage {
-    background-image: linear-gradient(#242131, #080808);
+    background-image: linear-gradient(#242131, #080808,#09090c);
     height: 100vh;
     scroll-behavior: smooth;
 }
@@ -28,6 +28,7 @@ body {
 .genersPage .navBar {
     height: 60px;
     z-index: 200000000000;
+    transition: 0.3s;
 }
 
 .genersPage .navBar div {
@@ -660,7 +661,7 @@ body {
     border-radius: 3px;
     margin-top: -13px;
     margin-left: -185px;
-    padding-left: 26px;
+    padding-left: 50px;
     border: 3px solid aliceblue;
 }
 
@@ -699,12 +700,12 @@ body {
 
 .genersPage .generBooksPnl{
     position: absolute;
-    left: 0%;
+    left: -100%;
     top: 0px;
     width: 100%;
     height: 100%;
-    opacity: 1;
-    background-color:  #242131;
+    opacity: 0;
+    background-color: #242131;
     transition: 0.5s;
     overflow: auto;
 }
@@ -722,12 +723,12 @@ body {
 
 .genersPage .generBooksPnl .firstList{
     position: absolute;
-    top: 360px;
+    top: 358px;
     left: 40px;
-    height: 240px;
     width: 95%;
-    border:2px solid #1a1d29;
+    height: 290px;
     z-index: 100;
+    margin-top: -130px
 }
 
 .genersPage .generBooksPnl .firstList li{
@@ -735,6 +736,104 @@ body {
     display: inline-block;
     height: 100%;
     width: 200px;
-    background-color: #202131;
-    margin-left: 40px;
+    margin-left: 34px;
+    margin-top: 120px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    transition: 0.6s;
+}
+
+.genersPage .generBooksPnl .firstList li:hover{
+    transform: skewY(5deg) rotateY(15deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+
+}
+
+.genersPage .generBooksPnl .firstList li .books{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #2e3047;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode:forwards ;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes loadingBooks {
+    0%{background-color: #2e3047;}
+    30%{background-color: #2e3047;}
+    50%{background-color: #3c3e57;}
+    80%{background-color: #2e3047;}
+    100%{background-color: #2e3047;}
+}
+
+.genersPage .generBooksPnl svg{
+    z-index: 99999;
+    position: fixed;
+    left: 94.5%;
+    cursor: pointer;
+    top: 100px;
+    transition: 0.3s;
+}
+
+.genersPage .generBooksPnl svg:hover{
+    fill: #62647a;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar {
+    width: 10px;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.genersPage .generBooksPnl::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.genersPage .generBooksPnl #subjectHeader{
+    font-family: regularFont;
+    font-weight: bold;
+    position: absolute;
+    left: 16%;
+    top: 200px;
+    z-index: 10000;
+    color: aliceblue;
+    font-size: 2.4em;    
+}
+
+.genersPage .generBooksPnl .firstList li .bookCover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: brightness(100%);
+    transition: 1s;
+}
+
+.genersPage .generBooksPnl .firstList li .bookTitle{
+    position: relative;
+    top: 107%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
 }
