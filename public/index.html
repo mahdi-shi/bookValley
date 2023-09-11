@@ -108,6 +108,17 @@
             <div class="backGroundHeader"></div>
         </div>
         <div class="section row">
+            <div class="searchPnl">
+                <svg id="searchPnlCloseBtn" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#8c85ad"
+                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                </svg>
+
+                <ul class="firstList">
+
+                </ul>
+            </div>
             <div class="col-5 homePageShelvesBooksListText justify-content-center align-items-center my-5">
                 <p class="my-5">Your Shelve's books,<br><span>if you have yet</span></p>
             </div>
@@ -232,11 +243,56 @@
         if (scrollY > 600) {
             navBar.style.backgroundColor = "#242131"
         }
-        else{
+        else {
             navBar.style.backgroundColor = "transparent"
 
         }
     }
+
+    //searching stuff
+
+    const searchPnl = document.querySelector(".searchPnl");
+    const searchPnlCloseBtn = document.querySelector("#searchPnlCloseBtn");
+    const bookSearchTxtBox = document.querySelector("#bookSearchTxtBox");
+    const firstList = document.querySelector(".firstList");
+
+    searchBoxBtn.addEventListener("click", async () => {
+        searchPnl.style.marginTop = "-100vh";
+        searchPnl.style.opacity = "0.95";
+
+        const response = await fetch("https://openlibrary.org/search.json?q=" + bookSearchTxtBox.value)
+        const data = await response.json();
+
+        for (let i = 0; i < data.docs.length; i++) {
+
+            console.log(data.docs[i].title);
+
+            let li = document.createElement("li");
+            let div = document.createElement("div");
+            let p = document.createElement("p");
+            let img = document.createElement("img");
+
+            let titlePara = document.createTextNode(data.docs[i].title);
+            p.appendChild(titlePara);
+            p.classList.add("bookTitle");
+            img.classList.add("bookCover");
+            img.src = "https://covers.openlibrary.org/b/id/"+data.docs[i].cover_i+"-M.jpg";
+
+            div.classList.add("books");
+            div.appendChild(p);
+            div.appendChild(img);
+            div.style = "--i:"+i;
+            li.classList.add("li");
+            li.appendChild(div);
+            firstList.appendChild(li)
+
+        }
+    })
+
+    searchPnlCloseBtn.addEventListener("click", () => {
+        searchPnl.style.marginTop = "-200vh";
+        searchPnl.style.opacity = "0";
+    })
 
 </script>
 

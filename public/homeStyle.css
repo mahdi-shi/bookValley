@@ -15,7 +15,7 @@
     font-family: sans-serif;
 }
 
-body{
+body {
     scroll-behavior: smooth;
 }
 
@@ -28,8 +28,9 @@ body{
 .homePage .navBar {
     height: 60px;
     transition: 0.3s;
-    z-index: 20;
+    z-index: 25;
     position: fixed;
+    width: 100.8%;
 }
 
 .homePage .navBar div {
@@ -135,6 +136,7 @@ body{
     border: 2px solid rgb(201, 201, 201);
     cursor: pointer;
     transition: .3s;
+    transform: translateX(-10px);
 }
 
 .homePage .navBar #profileIcon:hover {
@@ -148,7 +150,7 @@ body{
     margin-top: 2px;
 }
 
-.homePage .navBar #profileIcon #profIconPicture{
+.homePage .navBar #profileIcon #profIconPicture {
     border-radius: 50%;
     filter: brightness(100%);
     margin-left: -11px;
@@ -353,7 +355,7 @@ body{
 .homePage .header .explainationHeader ul li p {
     font-family: regularFont;
     text-shadow: 0 7px 7px rgba(0, 0, 0, 0.8);
-    color : rgb(194, 194, 194);
+    color: rgb(194, 194, 194);
     margin-top: 40px;
 }
 
@@ -1005,21 +1007,21 @@ body{
     border-radius: 10px;
 }
 
-.homePage .section .footer #goUpBtn a{
+.homePage .section .footer #goUpBtn a {
     text-decoration: none;
 }
 
-.homePage .section .footer #goUpBtn a svg{
+.homePage .section .footer #goUpBtn a svg {
     fill: rgb(70, 70, 70);
     transition: 0.3s;
-}   
+}
 
-.homePage .section .footer #goUpBtn:hover svg{
-   fill: rgb(170, 170, 170);
+.homePage .section .footer #goUpBtn:hover svg {
+    fill: rgb(170, 170, 170);
     border-radius: 5px;
 }
 
-.homePage .section .footer .footerLogo{
+.homePage .section .footer .footerLogo {
     width: 50px;
     height: 50px;
     position: absolute;
@@ -1029,7 +1031,7 @@ body{
     filter: brightness(80%);
 }
 
-.homePage .section .footer .quill{
+.homePage .section .footer .quill {
     width: 170px;
     height: 170px;
     position: absolute;
@@ -1039,13 +1041,13 @@ body{
     filter: brightness(80%);
 }
 
-.homePage .section .footer ul{
+.homePage .section .footer ul {
     position: absolute;
     left: 7%;
     margin-top: -88px;
 }
 
-.homePage .section .footer ul li{
+.homePage .section .footer ul li {
     list-style: none;
     font-family: bookyFont;
     font-size: 1.2em;
@@ -1054,24 +1056,24 @@ body{
     color: rgb(173, 173, 173);
 }
 
-.homePage .section .footer .footerLsOne{
+.homePage .section .footer .footerLsOne {
     position: absolute;
-    left:64%;
+    left: 64%;
     margin-top: -168px;
 }
 
-.homePage .section .footer .footerLsTwo{
+.homePage .section .footer .footerLsTwo {
     position: absolute;
-    left:74%;
+    left: 74%;
     margin-top: -168px;
 }
 
-.homePage .section .footer .footerLsOne li{
+.homePage .section .footer .footerLsOne li {
     list-style: none;
     margin-top: 15px;
 }
 
-.homePage .section .footer .footerLsOne li a{
+.homePage .section .footer .footerLsOne li a {
     text-decoration: none;
     color: rgb(197, 197, 197);
     font-family: regularFont;
@@ -1079,16 +1081,16 @@ body{
     font-size: 1.2em;
 }
 
-.homePage .section .footer .footerLsOne li a:hover{
+.homePage .section .footer .footerLsOne li a:hover {
     color: white;
 }
 
-.homePage .section .footer .footerLsTwo li{
+.homePage .section .footer .footerLsTwo li {
     list-style: none;
     margin-top: 15px;
 }
 
-.homePage .section .footer .footerLsTwo li a{
+.homePage .section .footer .footerLsTwo li a {
     text-decoration: none;
     transition: 0.3s;
     color: rgb(197, 197, 197);
@@ -1096,29 +1098,176 @@ body{
     font-size: 1.2em;
 }
 
-.homePage .section .footer .footerLsTwo li a:hover{
+.homePage .section .footer .footerLsTwo li a:hover {
     color: white;
 }
 
 
-.homePage .section .footer .footerLsFirst{
+.homePage .section .footer .footerLsFirst {
     position: absolute;
-    left:53%;
+    left: 53%;
     margin-top: -168px;
 }
-.homePage .section .footer .footerLsFirst li{
+
+.homePage .section .footer .footerLsFirst li {
     list-style: none;
     margin-top: 15px;
 }
 
-.homePage .section .footer .footerLsFirst li a{
+.homePage .section .footer .footerLsFirst li a {
     text-decoration: none;
     color: rgb(197, 197, 197);
     font-family: regularFont;
     transition: 0.3s;
     font-size: 1.2em;
 }
-.homePage .section .footer .footerLsFirst li a:hover{
+
+body .section .footer .footerLsFirst li a:hover {
     color: rgb(255, 255, 255);
+}
 
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.homePage .section .searchPnl {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    margin-left: 10px;
+    background-color: #363249;
+    margin-top: -200vh;
+    z-index: 20;
+    opacity: 0;
+    transition: 0.3s;
+    overflow: auto;
+}
+
+.homePage .section .searchPnl #searchPnlCloseBtn{
+    position: absolute;
+    left: 96%;
+    top: 100px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 99999999;
+}
+
+.homePage .section .searchPnl #searchPnlCloseBtn:hover{
+    fill:#c2bcdd;
+}
+
+.homePage .section .searchPnl .firstList{
+    position: absolute;
+    top: 358px;
+    left: 40px;
+    width: 95%;
+    height: 290px;
+    z-index: 100;
+    margin-top: -260px
+}
+
+.homePage .section .searchPnl .firstList li{
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 90px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    transition: 0.6s;
+}
+
+.homePage .section .searchPnl .firstList li:hover{
+    transform: skewY(5deg) rotateY(15deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+
+}
+
+.homePage .section .searchPnl .firstList li .books{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #2e3047;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode:forwards ;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes loadingBooks {
+    0%{background-color: #2e3047;}
+    30%{background-color: #2e3047;}
+    50%{background-color: #3c3e57;}
+    80%{background-color: #2e3047;}
+    100%{background-color: #2e3047;}
+}
+
+.homePage .section .searchPnl::-webkit-scrollbar {
+    width: 10px;
+}
+
+.homePage .section .searchPnl::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.homePage .section .searchPnl::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.homePage .section .searchPnl::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.bookCover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    filter: brightness(100%);
+    transition: 1s;
+}
+
+.bookTitle{
+    position: relative;
+    top: 107%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+}
+.li{
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 120px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    transition: 0.6s;
 }
