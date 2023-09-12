@@ -122,7 +122,7 @@ body {
 
 .homePage .navBar .bookSearchBox svg {
     position: absolute;
-    left: 90%;
+    left: 96%;
     top: -1px;
     cursor: pointer;
     transition: .3s;
@@ -1156,7 +1156,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .homePage .section .searchPnl #searchPnlCloseBtn{
-    position: absolute;
+    position: fixed;
     left: 96%;
     top: 100px;
     cursor: pointer;
@@ -1184,7 +1184,7 @@ body::-webkit-scrollbar-thumb:hover {
     height: 100%;
     width: 200px;
     margin-left: 34px;
-    margin-top: 90px;
+    margin-top: 110px;
     position: relative;
     box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
     transition: 0.6s;
@@ -1270,4 +1270,43 @@ body::-webkit-scrollbar-thumb:hover {
     position: relative;
     box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
     transition: 0.6s;
+}
+
+.homePage .navBar #messageBox {
+    position: absolute;
+    left: 17%;
+    margin-top: -120px;
+    color: white;
+    font-family: regularFont;
+    color: rgb(223, 222, 222);
+    transition: 0.3s;
+}
+
+.messageBoxFadeInOut {
+    animation-name: fadeMessageBox;
+    animation-timing-function: ease;
+    animation-duration: 5s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes fadeMessageBox {
+    0% {
+        margin-top: -120px;
+    }
+
+    10% {
+        margin-top: 70px;
+    }
+
+    50% {
+        margin-top: 70px;
+    }
+
+    90% {
+        margin-top: 70px;
+    }
+
+    100% {
+        margin-top: -120px;
+    }
 }
