@@ -66,3 +66,146 @@ for (let i = 0; i < subjects.length; i++) {
         }
     })
 }
+
+    //searching stuff
+
+    const searchPnl = document.querySelector(".searchPnl");
+    const searchPnlCloseBtn = document.querySelector("#searchPnlCloseBtn");
+    const bookSearchTxtBox = document.querySelector("#bookSearchTxtBox");
+    const secondetList = document.querySelector(".secondetList");
+    const messageBox = document.querySelector("#messageBox");
+
+    searchBoxBtn.addEventListener("click", async () => {
+
+        if (bookSearchTxtBox.value == "") {
+            messageBox.style.top = "7%"
+            setTimeout(() => {
+                messageBox.style.top = "-10%"
+            }, 4000);
+        }
+        else {
+            searchPnl.style.marginTop = "-9vh";
+            searchPnl.style.opacity = "0.95";
+
+            const response = await fetch("https://openlibrary.org/search.json?q=" + bookSearchTxtBox.value)
+            const data = await response.json();
+
+            const books = document.querySelectorAll(".li");
+
+            if (books.length > 0) {
+                for (let i = 0; i < books.length; i++) {
+                    books[i].remove();
+                }
+            }
+
+            for (let i = 0; i < data.docs.length; i++) {
+
+                console.log(data.docs[i].title);
+
+                let li = document.createElement("li");
+                let div = document.createElement("div");
+                let p = document.createElement("p");
+                let img = document.createElement("img");
+
+                let titlePara = document.createTextNode(data.docs[i].title);
+                p.appendChild(titlePara);
+                p.classList.add("bookTitle");
+                img.classList.add("bookCover");
+                if (data.docs[i].cover_i == null) {
+                    img.src = "assets/images (1).jfif";
+                }
+                else {
+                    img.src = "https://covers.openlibrary.org/b/id/" + data.docs[i].cover_i + "-M.jpg";
+                }
+
+                div.classList.add("books");
+                div.appendChild(p);
+                div.appendChild(img);
+                div.style = "--i:" + i;
+                li.classList.add("li");
+                li.appendChild(div);
+                secondetList.appendChild(li)
+
+            }
+        }
+    })
+
+    bookSearchTxtBox.addEventListener("keydown", async (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        if (bookSearchTxtBox.value == "") {
+            messageBox.style.top = "7%"
+            setTimeout(() => {
+                messageBox.style.top = "-10%"
+            }, 4000);
+        }
+        else {
+            searchPnl.style.marginTop = "-9vh";
+            searchPnl.style.opacity = "0.95";
+
+            const response = await fetch("https://openlibrary.org/search.json?q=" + bookSearchTxtBox.value)
+            const data = await response.json();
+
+            const books = document.querySelectorAll(".li");
+
+            if (books.length > 0) {
+                for (let i = 0; i < books.length; i++) {
+                    books[i].remove();
+                }
+            }
+
+            for (let i = 0; i < data.docs.length; i++) {
+
+                console.log(data.docs[i].title);
+
+                let li = document.createElement("li");
+                let div = document.createElement("div");
+                let p = document.createElement("p");
+                let img = document.createElement("img");
+
+                let titlePara = document.createTextNode(data.docs[i].title);
+                p.appendChild(titlePara);
+                p.classList.add("bookTitle");
+                img.classList.add("bookCover");
+                if (data.docs[i].cover_i == null) {
+                    img.src = "assets/images (1).jfif";
+                }
+                else {
+                    img.src = "https://covers.openlibrary.org/b/id/" + data.docs[i].cover_i + "-M.jpg";
+                }
+
+                div.classList.add("books");
+                div.appendChild(p);
+                div.appendChild(img);
+                div.style = "--i:" + i;
+                li.classList.add("li");
+                li.appendChild(div);
+                secondetList.appendChild(li)
+
+            }
+        }
+    }
+})
+
+    searchPnlCloseBtn.addEventListener("click", () => {
+        searchPnl.style.marginTop = "-200vh";
+        searchPnl.style.opacity = "0";
+        bookSearchTxtBox.value = "";
+        const books = document.querySelectorAll(".li");
+        if (books.length > 0) {
+            for (let i = 0; i < books.length; i++) {
+                books[i].remove();
+            }
+        }
+
+    })
+
+    searchPnl.onscroll = () => {
+
+        if (searchPnl.scrollTop > 100) {
+            navBar.style.backgroundColor = "#242131";
+        }
+        if (searchPnl.scrollTop < 100) {
+            navBar.style.backgroundColor = "transparent";
+        }
+    }
