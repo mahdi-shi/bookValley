@@ -30,7 +30,7 @@
 
 .signUpPage .navBar {
     height: 60px;
-    z-index: 20;
+    z-index: 125;
 }
 
 .signUpPage .navBar div {
@@ -586,4 +586,157 @@
 
 .signUpPage .formBox .singUpPageLink a:hover {
     color: black;
+}
+
+.signUpPage .searchPnl {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    margin-left: 0px;
+    background-color: #363249;
+    margin-top: -200vh;
+    z-index: 120;
+    opacity: 0;
+    transition: 0.3s;
+    overflow: auto;
+}
+
+.signUpPage .searchPnl #searchPnlCloseBtn {
+    position: fixed;
+    left: 96%;
+    top: 100px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 99999999;
+}
+
+.signUpPage .searchPnl #searchPnlCloseBtn:hover {
+    fill: #c2bcdd;
+}
+
+.signUpPage .searchPnl .secondetList {
+    position: absolute;
+    top: 358px;
+    left: 40px;
+    width: 95%;
+    height: 290px;
+    z-index: 100;
+    margin-top: -260px
+}
+
+.signUpPage .searchPnl .secondetList li {
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 110px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+}
+
+.signUpPage .searchPnl .secondetList li:hover {
+    transform: skewY(5deg) rotateY(15deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+
+}
+
+.signUpPage .searchPnl .secondetList li .books {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #2e3047;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes loadingBooks {
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
+}
+
+.signUpPage .searchPnl::-webkit-scrollbar {
+    width: 10px;
+}
+
+.signUpPage .searchPnl::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.signUpPage .searchPnl::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.signUpPage .searchPnl::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.bookCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    filter: brightness(100%);
+    transition: 1s;
+}
+
+.bookTitle {
+    position: relative;
+    top: 100%;
+    width: 200px;
+    overflow: hidden;
+    margin-top: 12px;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.li {
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 90px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+}
+
+.messageBoxFadeInOut {
+    animation-name: fadeMessageBox;
+    animation-timing-function: ease;
+    animation-duration: 5s;
+    animation-fill-mode: backwards;
 }

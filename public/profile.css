@@ -547,7 +547,7 @@ body {
     background-image: linear-gradient(#0c0c0c, #242131);
     display: block;
     opacity: 1;
-    z-index: 9999999;
+    z-index: 20;
 }
 
 .profPage #checkingUsersAccountPage p {
@@ -594,7 +594,7 @@ body {
     }
 
     100% {
-        opacity: 0;
+        opacity: 1;
         margin-top: 0px;
     }
 }
