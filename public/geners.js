@@ -265,6 +265,8 @@ document.body.onload = async () => {
     }
 }
 
+const bookPannel = document.querySelector(".bookPannel");
+
 profileIcon.addEventListener("click",() => {
     window.location.assign("profile.html");
 })
