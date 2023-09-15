@@ -264,3 +264,7 @@ document.body.onload = async () => {
         profileIconSvg.style.display = "none";
     }
 }
+
+profileIcon.addEventListener("click",() => {
+    window.location.assign("profile.html");
+})
