@@ -260,13 +260,66 @@ document.body.onload = async () => {
     else {
         profIconPicture.style.display = "block";
         profIconPicture.src = dataResponse.image;
-        profilePictureSvg.style.display = 'none';
         profileIconSvg.style.display = "none";
     }
 }
 
 const bookPannel = document.querySelector(".bookPannel");
+const addBookBtn = document.querySelector("#addBookBtn");
+const bookPannelCloseBtnSvg = document.querySelector("#bookPannelCloseBtnSvg");
 
 profileIcon.addEventListener("click",() => {
     window.location.assign("profile.html");
 })
+
+bookPannel.onscroll = () => {
+    if (bookPannel.scrollTop > 140) {
+        navBar.style.backgroundColor = "#242131";
+        navBar.style.boxShadow = "0 5px 15px rgba(0,0,0,0.4)"
+        bookPannelCloseBtnSvg.style.fill = "rgb(130, 130, 167)";
+    }
+    if (bookPannel.scrollTop < 140) {
+        navBar.style.backgroundColor = "transparent";
+        navBar.style.boxShadow = "none"
+        bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
+    }
+}
+
+//like and dislike stuff 
+
+const like = document.querySelectorAll(".like");
+const dislike  = document.querySelectorAll(".disLike");
+let likeStatus = false;
+let dislikeStatus = false;
+
+/*for(let i = 0;i < like.length;i++){
+    like[i].addEventListener("click",() => {
+
+        if(!likeStatus){
+            like[i].src = "assets/likeFull.png";
+            likeStatus = true;
+        }
+        else{
+            like[i].src = "assets/likeEmpty.png";
+            likeStatus = false;
+        }
+    
+        dislike[i].src = "assets/likeEmpty.png"
+        dislikeStatus = false;
+    })
+    
+    dislike.addEventListener("click",() => {
+    
+        if(!dislikeStatus){
+            dislike[i].src = "assets/likeFull.png";
+            dislikeStatus = true;
+        }
+        else{
+            dislike[i].src = "assets/likeEmpty.png";
+            dislikeStatus = false
+        }
+    
+        like[i].src = "assets/likeEmpty.png"
+        likeStatus = false;
+    })
+}*/

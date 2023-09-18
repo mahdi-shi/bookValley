@@ -66,20 +66,227 @@
                 <img class="backgroundBookImg" src="assets/shadow-sherlock.jpg" alt="loading">
                 <div class="backgroundBookImgCover"></div>
                 <img class="bookImg" src="assets/images (3).jfif" alt="loading">
-
+                <div id="bookPannelCloseBtn">
+                    <svg id="bookPannelCloseBtnSvg" xmlns="http://www.w3.org/2000/svg" width="56" height="56"
+                        fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                </div>
                 <ul>
                     <li>
                         <h2 class="bookName">Sherlock Holmes His Last Bow</h2>
                     </li>
                     <li>
-                        <p class="auotorName">Arthur Conan</p>
+                        <p class="autorName">Arthur Conan</p>
                     </li>
                 </ul>
-                <button id="addBookBtn">Add to Shelf <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                        class="bi bi-plus" viewBox="0 0 16 16">
+                <button id="addBookBtn">Add to Shelf <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                         <path
                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                    </svg></button>
+                    </svg>
+                </button>
+
+                <ul class="bookRate">
+                    <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg></li>
+                    <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg></li>
+                    <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg></li>
+                    <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg></li>
+                    <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                            class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg></li>
+                </ul>
+
+                <div class="aboutBook">
+                    <h3>About the book</h3>
+                    <p id="aboutBook">Below you will find a selection of sample .txt document files for you to download.
+                        On the right there are some details about the file such as its size so you can best decide which
+                        one will fit your needsBelow you will find a selection of sample .txt document files for you to
+                        download.</p>
+                </div>
+                <div class="aboutAuthor">
+                    <h3>About the author</h3>
+                    <p id="aboutAuthor">Below you will find a selection of sample .txt document files for you to
+                        download. On the right there are some details about the file such as its size so you can best
+                        decide which one will fit your needsBelow you will find a selection of sample .txt document
+                        files for you to download.</p>
+                    <button id="otherAuthorWorkBtn">More</button>
+                </div>
+
+                <div class="otherBooksLikeThis">
+                    <h3>Other works like this one</h3>
+                    <div class="pushToLeft"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                            fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                        </svg></div>
+                    <div class="booksLikeThis">
+                        <div class="bookLikeThis" style="--i:1">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:2">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:3">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:4">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:5">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:6">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:7">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:8">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:9">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:10">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:11">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:12">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:13">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:14">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                        <div class="bookLikeThis" style="--i:15">
+                            <img src="" class="bookLikeThisImg" alt="loading">
+                            <p class="bookLikeThisTitle">bookName</p>
+                        </div>
+                    </div>
+                    <div class="pushToRight"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                            fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg></div>
+                </div>
+
+                <div class="commentsBox">
+                    <h3>Comments</h3>
+
+                    <ul class="comments">
+                        <li class="comment">
+                            <div class="commentProfIcon">
+                                <img src="" class="commentProfIconImg" alt="loading">
+                            </div>
+                            <p class="commentProfName">User name</p>
+                            <img src="assets/likeEmpty.png" class="like" alt="loading">
+                            <img src="assets/likeEmpty.png" class="disLike" alt="loading">
+                            <p class="commentTxt">Below you will find a selection of sample .txt document files for you
+                                to download.
+                                On the right there are some details about the file such as its size so you can best
+                                decide which</p>
+                        </li>
+                        <li class="comment">
+                            <div class="commentProfIcon">
+                                <img src="" class="commentProfIconImg" alt="loading">
+                            </div>
+                            <p class="commentProfName">User name</p>
+                            <img src="assets/likeEmpty.png" class="like" alt="loading">
+                            <img src="assets/likeEmpty.png" class="disLike" alt="loading">
+                            <p class="commentTxt">Below you will find a selection of sample .txt document files for you
+                                to download.
+                                On the right there are some details about the file such as its size so you can best
+                                decide which</p>
+                        </li>
+                        <li class="comment">
+                            <div class="commentProfIcon">
+                                <img src="" class="commentProfIconImg" alt="loading">
+                            </div>
+                            <p class="commentProfName">User name</p>
+                            <img src="assets/likeEmpty.png" class="like" alt="loading">
+                            <img src="assets/likeEmpty.png" class="disLike" alt="loading">
+                            <p class="commentTxt">Below you will find a selection of sample .txt document files for you
+                                to download.
+                                On the right there are some details about the file such as its size so you can best
+                                decide which</p>
+                        </li>
+                        <li class="comment">
+                            <div class="commentProfIcon">
+                                <img src="" class="commentProfIconImg" alt="loading">
+                            </div>
+                            <p class="commentProfName">User name</p>
+                            <img src="assets/likeEmpty.png" class="like" alt="loading">
+                            <img src="assets/likeEmpty.png" class="disLike" alt="loading">
+                            <p class="commentTxt">Below you will find a selection of sample .txt document files for you
+                                to download.
+                                On the right there are some details about the file such as its size so you can best
+                                decide which</p>
+                        </li>
+                        <li class="comment">
+                            <div class="commentProfIcon">
+                                <img src="" class="commentProfIconImg" alt="loading">
+                            </div>
+                            <p class="commentProfName">User name</p>
+                            <img src="assets/likeEmpty.png" class="like" alt="loading">
+                            <img src="assets/likeEmpty.png" class="disLike" alt="loading">
+                            <p class="commentTxt">Below you will find a selection of sample .txt document files for you
+                                to download.
+                                On the right there are some details about the file such as its size so you can best
+                                decide which</p>
+                        </li>
+                        <li class="addCommentBox">
+                            <h3>Add a comment</h3>
+                            <textarea id="commentTxtBox" placeholder="Your opinion" rows="4" cols="20"></textarea>
+                            <button id="insertCommentBtn">Comment</button>
+                            <div class="rating">
+                                <input type="radio" name="star" id="star1"><label class="star" for="star1"></label>
+                                <input type="radio" name="star" id="star2"><label class="star" for="star2"></label>
+                                <input type="radio" name="star" id="star3"><label class="star" for="star3"></label>
+                                <input type="radio" name="star" id="star4"><label class="star" for="star4"></label>
+                                <input type="radio" name="star" id="star5"><label class="star" for="star5"></label>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
 
             <h2 class="generSelectParagraph">Select your gener</h2>
