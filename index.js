@@ -7,7 +7,10 @@ app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }))
 
 const dataBase = new DataStore('database.db')
+const dataBase2 = new DataStore('database2.db');
+
 dataBase.loadDatabase();
+dataBase2.loadDatabase();
 
 //getting users data for sign up
 
@@ -155,3 +158,5 @@ app.post("/removeUser", (req, res) => {
 
     })
 })
+
+// saving comments data to a new dataBase

@@ -136,7 +136,7 @@ body {
     height: 50px;
     border-radius: 50%;
     margin-top: -45px;
-    transform: translateX(-10px);
+    transform: translateX(0px);
     border: 2px solid rgb(201, 201, 201);
     cursor: pointer;
     transition: .3s;
@@ -165,6 +165,26 @@ body {
 
 .genersPage .navBar #profileIcon:hover svg {
     fill: white;
+}
+
+.genersPage .navBar  #bookPannelCloseBtn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    left: 94%;
+    top: 140px;
+    z-index: 999999999;
+    display: none;
+}
+
+.genersPage .navBar #bookPannelCloseBtn svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: 0.4s;
 }
 
 .genersPage .rightSide {
@@ -861,6 +881,22 @@ body {
     margin-left: 20px;
 }
 
+.genersPage .generBooksPnl .firstList li .bookCode {
+    position: relative;
+    top: 5%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 0;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
 .genersPage .rightSide .searchPnl {
     position: fixed;
     width: 100%;
@@ -1053,11 +1089,14 @@ body {
     position: absolute;
     width: 100%;
     margin-top: -60px;
-    height: 99.8%;
+    height: 100%;
     background-color: #242131;
-    z-index: 9999;
+    z-index: 100001;
     overflow-y: auto;
     display: block;
+    transition: 0.6s;
+    opacity: 0;
+    transform: translateX(-100%);
 }
 
 .genersPage .rightSide .bookPannel::-webkit-scrollbar {
@@ -1079,10 +1118,11 @@ body {
 .genersPage .rightSide .bookPannel .backgroundBookImg {
     position: absolute;
     width: 100%;
-    height: 550px;
+    height: 650px;
     margin-top: -60px;
-    filter: brightness(40%);
+    filter: brightness(20%);
     user-select: none;
+    transition: 0.8s;
 }
 
 .genersPage .rightSide .bookPannel .backgroundBookImgCover {
@@ -1090,7 +1130,7 @@ body {
     width: 100%;
     height: 200px;
     background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0), #242131);
-    top: 290px;
+    top: 390px;
 }
 
 .genersPage .rightSide .bookPannel .BookImg {
@@ -1103,17 +1143,19 @@ body {
     z-index: 20;
     margin-left: 80px;
     box-shadow: 20px 25px 25px rgba(0, 0, 0, 0.4);
+    transition: 0.8s;
+    opacity: 0;
 }
 
 .genersPage .rightSide .bookPannel ul {
     position: absolute;
-    left: 60%;
+    left: 58%;
     top: 280px;
 }
 
 .genersPage .rightSide .bookPannel ul li {
     margin-top: 20px;
-    width: 340px;
+    width: 400px;
     list-style: none;
 }
 
@@ -1125,6 +1167,7 @@ body {
     opacity: 1;
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
     user-select: none;
+    transition: 0.8s;
 }
 
 .genersPage .rightSide .bookPannel ul li p {
@@ -1136,6 +1179,7 @@ body {
     text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
     margin-left: 10px;
     user-select: none;
+    transition: 0.8s;
 }
 
 .genersPage .rightSide .bookPannel #addBookBtn {
@@ -1160,7 +1204,7 @@ body {
 
 .genersPage .rightSide .bookPannel .aboutBook {
     position: absolute;
-    width: 700px;
+    width: 77%;
     height: 300px;
     top: 105vh;
     margin-left: 80px;
@@ -1238,22 +1282,22 @@ body {
 }
 
 .genersPage .rightSide .bookPannel .otherBooksLikeThis .booksLikeThis {
-    height: 80%;
+    height: 100%;
     width: 90%;
     position: absolute;
-    margin-top: 2px;
+    margin-top: -20px;
     margin-left: 6.5%;
     overflow: hidden;
 }
 
 .genersPage .rightSide .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis {
-    height: 77%;
+    height: 63%;
     width: 200px;
     background-color: #2e3047;
     position: relative;
     margin-left: 30px;
     display: inline-block;
-    margin-top: 40px;
+    margin-top: 60px;
     cursor: pointer;
     animation-name: loadingBooks;
     animation-duration: 2s;
@@ -1261,7 +1305,14 @@ body {
     animation-iteration-count: infinite;
     animation-delay: calc(0.1s * var(--i));
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
 }
+
+.genersPage .rightSide .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis:hover{
+    transform: skewY(5deg) rotateY(15deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+ }
 
 .genersPage .rightSide .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis .bookLikeThisImg {
     position: absolute;
@@ -1302,26 +1353,28 @@ body {
 
 .genersPage .rightSide .bookPannel .otherBooksLikeThis .pushToRight {
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 66px;
+    height: 66px;
     border-radius: 50%;
     background-color: #2e3047;
     left: 92%;
-    top: 41%;
+    top: 44%;
     z-index: 10;
     cursor: pointer;
-    opacity: 0;
+    transition: 0.4s;
+    opacity: 1;
 }
 
 .genersPage .rightSide .bookPannel .otherBooksLikeThis .pushToLeft {
     position: absolute;
-    width: 70px;
-    height: 70px;
+    width: 66px;
+    height: 66px;
     border-radius: 50%;
     background-color: #2e3047;
     left: 4.4%;
-    top: 41%;
+    top: 44%;
     z-index: 10;
+    transition: 0.4s;
     opacity: 0;
     cursor: pointer;
 }
@@ -1332,6 +1385,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     fill: rgb(92, 92, 116);
+    transition: .4s;
+}
+
+.genersPage .rightSide .bookPannel .otherBooksLikeThis .pushToRight:hover svg{
+    fill: rgb(152, 152, 180);
+}
+
+.genersPage .rightSide .bookPannel .otherBooksLikeThis .pushToLeft:hover svg{
+    fill: rgb(152, 152, 180);
 }
 
 .genersPage .rightSide .bookPannel .otherBooksLikeThis .pushToLeft svg {
@@ -1340,29 +1402,12 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     fill: rgb(92, 92, 116);
-}
-
-.genersPage .rightSide .bookPannel #bookPannelCloseBtn {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    left: 94%;
-    top: 140px;
-}
-
-.genersPage .rightSide .bookPannel #bookPannelCloseBtn svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    transition: 0.4s;
+    transition: .4s;
 }
 
 .genersPage .rightSide .bookPannel .commentsBox {
     position: absolute;
-    top: 265vh;
+    top: 239vh;
     width: 100%;
     height: fit-content;
     display: block;
@@ -1373,6 +1418,8 @@ body {
     font-weight: bold;
     font-size: 2em;
     margin-left: 6%;
+    margin-top: 200px;
+    transform: translateY(600px);
     color: rgb(235, 235, 235);
 }
 
@@ -1392,6 +1439,12 @@ body {
     background-color: rgb(57, 56, 83);
     margin-top: 50px;
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    display: block;
+}
+
+.genersPage .rightSide .bookPannel .commentsBox .comments .comment:nth-child(2) {
+    margin-top: 220px;
 }
 
 .genersPage .rightSide .bookPannel .commentsBox .comments .comment .commentProfIcon {
@@ -1408,7 +1461,6 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    display: none;
 }
 
 .genersPage .rightSide .bookPannel .commentsBox .comments .comment .commentProfName {
@@ -1429,6 +1481,7 @@ body {
     margin-top: 49px;
     color: rgb(169, 166, 202);
     padding-right: 10px;
+    width:88%;
 }
 
 .genersPage .rightSide .bookPannel .commentsBox .comments .comment .like {
@@ -1452,15 +1505,18 @@ body {
     display: block;
     position: relative;
     width: 700px;
-    margin-top: 120px;
+    margin-top: 200px;
     height: 400px;
 }
 
-.genersPage .rightSide .bookPannel .commentsBox .comments .addCommentBox h3 {
+.genersPage .rightSide .bookPannel .commentsBox .comments .addCommentBox .addCommentTitle{
     font-family: regularFont;
     font-size: 2em;
     font-weight: bold;
     margin-left: -60px;
+    position: absolute;
+    top: -800px;
+    transform: translateY(530px);
 }
 
 .genersPage .rightSide .bookPannel .commentsBox .comments .addCommentBox #commentTxtBox {
