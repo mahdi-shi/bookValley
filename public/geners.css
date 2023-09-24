@@ -1440,7 +1440,7 @@ body {
     margin-top: 50px;
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    display: block;
+    display: flex;
 }
 
 .genersPage .rightSide .bookPannel .commentsBox .comments .comment:nth-child(2) {
@@ -1473,8 +1473,19 @@ body {
     color: rgb(255, 255, 255);
 }
 
-.genersPage .rightSide .bookPannel .commentsBox .comments .comment .commentTxt {
+.closeCommentButton{
     position: absolute;
+    left: 92%;
+    top: 8%;
+    font-weight: bold;
+    font-size: 1em;
+    color: #abadce;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.genersPage .rightSide .bookPannel .commentsBox .comments .comment .commentTxt {
+    position: relative;
     font-family: regularFont;
     font-size: .9em;
     margin-left: 10%;
@@ -1482,6 +1493,7 @@ body {
     color: rgb(169, 166, 202);
     padding-right: 10px;
     width:88%;
+    display: block;
 }
 
 .genersPage .rightSide .bookPannel .commentsBox .comments .comment .like {

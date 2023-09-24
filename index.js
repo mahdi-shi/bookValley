@@ -154,9 +154,52 @@ app.post("/editProfileData", (req, res) => {
 })
 
 app.post("/removeUser", (req, res) => {
-    dataBase.remove({userName: req.body.username }, {}, (err, numRemoved) => {
+    dataBase.remove({ userName: req.body.username }, {}, (err, numRemoved) => {
 
     })
 })
 
 // saving comments data to a new dataBase
+
+app.post("/commentsData", (req, res) => {
+    console.log("i got the reques ha ha ha ")
+    dataBase2.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        dataBase2.insert({ Name: req.body.name, Comment: req.body.comment, bookCode : req.body.witchBook , commentPicture: req.body.commentPic })
+        res.json({
+            status: "200"
+        });
+
+    })
+})
+
+// showing all comment in pages
+
+app.post("/dataForBookComments", (req, res) => {
+    let targetComments = []
+
+    dataBase2.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            if (Data[i].bookCode == req.body.witchBook) {
+                targetComments.push(Data[i]);
+            }
+        }
+        console.log(targetComments);
+        res.json(targetComments);
+    })
+})
+
+app.post("/removeComment", (req, res) => {
+    dataBase2.remove({ Comment: req.body.tempComment }, {}, (err, numRemoved) => {
+
+    })
+})

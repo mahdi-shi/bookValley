@@ -94,6 +94,7 @@ const aboutAuthor = document.querySelector("#aboutAuthor");
 const bookLikeThisTitle = document.querySelectorAll(".bookLikeThisTitle")
 const bookLikeThisImg = document.querySelectorAll(".bookLikeThisImg");
 const bookLikeThisCode = document.querySelectorAll(".bookLikeThisCode");
+let witchBookCode;
 
 for (let i = 0; i < books.length; i++) {
     books[i].addEventListener("click", async () => {
@@ -111,6 +112,77 @@ for (let i = 0; i < books.length; i++) {
             navBar.style.boxShadow = "none"
             bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
             bookPannelCloseBtn.style.display = "block"
+
+            witchBookCode = bookCode[i].innerHTML;
+            const witchBook = witchBookCode;
+            const data2 = { witchBook }
+            const options2 = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data2)
+            };
+
+            const CommentRespones = await fetch("/dataForBookComments", options2);
+            const CommentResponesData = await CommentRespones.json();
+            console.log(CommentResponesData);
+
+            if (CommentResponesData.length != null) {
+                for (let i = 0; i < CommentResponesData.length; i++) {
+                    let li = document.createElement("li");
+                    let div = document.createElement("div");
+                    let p1 = document.createElement("p");
+                    let p2 = document.createElement("p");
+                    let img = document.createElement("img");
+
+                    li.classList.add("comment");
+                    div.classList.add("commentProfIcon");
+                    let para1Text = document.createTextNode(CommentResponesData[i].Name);
+                    let para2Text = document.createTextNode(CommentResponesData[i].Comment);
+                    p1.appendChild(para1Text);
+                    p2.appendChild(para2Text);
+                    p1.classList.add("commentProfName");
+                    p2.classList.add("commentTxt");
+                    img.classList.add("commentProfIconimg");
+                    div.appendChild(img);
+                    li.appendChild(div);
+                    li.appendChild(p1);
+                    li.appendChild(p2);
+                    let p3 = document.createElement("p");
+                    let p3Text = document.createTextNode("x");
+                    p3.appendChild(p3Text);
+                    p3.classList.add("closeCommentButton");
+
+                    if (localStorage.getItem("userTarget") == CommentResponesData[i].Name) {
+                        li.appendChild(p3);
+                        p3.addEventListener("click",async () => {
+                            li.remove();
+                            const tempComment = CommentResponesData[i].Comment;
+                            const data3 = { tempComment }
+                            const options3 = {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data3)
+                            };
+
+                            const CommentRespones2 = await fetch("/removeComment", options3);
+                            const CommentResponesData2 = await CommentRespones2.json();
+                        })
+                    }
+
+                    if (CommentResponesData[i].commentPicture == null) {
+                        img.src = "";
+                    }
+                    else {
+                        img.src = CommentResponesData[i].commentPicture;
+                    }
+                    comments.appendChild(li);
+                }
+            }
+
 
             bookName.innerHTML = data.title;
             try {
@@ -186,6 +258,7 @@ for (let i = 0; i < books.length; i++) {
                     bookLikeThisImg[i].style.opacity = 1;
                 }
             }
+
         }
     })
 }
@@ -466,6 +539,11 @@ bookPannelCloseBtnSvg.addEventListener("click", () => {
     pushToRight.style.opacity = 1;
     pushToRight.style.display = "block";
 
+    const comments = document.querySelectorAll(".comment");
+    for (let i = 0; i < comments.length; i++) {
+        comments[i].remove();
+    }
+
     bookPannel.scrollTo(0, 0);
 })
 
@@ -607,64 +685,77 @@ const comments = document.querySelector(".comments");
 const commentTxtBox = document.querySelector('#commentTxtBox');
 
 addCommentBox.addEventListener("click", async () => {
-    let li = document.createElement("li");
-    let div = document.createElement("div");
-    let p1 = document.createElement("p");
-    let p2 = document.createElement("p");
-    let img = document.createElement("img");
-
-
-    const userName = localStorage.getItem("userTarget");
-    const data = { userName }
-    const options = {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    };
-
-    const response = await fetch("/dataForProfile", options)
-    const dataResponse = await response.json();
-
-    li.classList.add("comment");
-    div.classList.add("commentProfIcon");
-    let para1Text = document.createTextNode(dataResponse.userName);
-    let para2Text = document.createTextNode(commentTxtBox.value);
-    p1.appendChild(para1Text);
-    p2.appendChild(para2Text);
-    p1.classList.add("commentProfName");
-    p2.classList.add("commentTxt");
-    img.classList.add("commentProfIconimg");
-    div.appendChild(img);
-    li.appendChild(div);
-    li.appendChild(p1);
-    li.appendChild(p2);
-    
-
-    if (dataResponse.image == null) {
-        img.src = "";
+    if (commentTxtBox.value == "" || commentTxtBox.value == null) {
+        return false;
     }
     else {
-        img.src = dataResponse.image;
+        let li = document.createElement("li");
+        let div = document.createElement("div");
+        let p1 = document.createElement("p");
+        let p2 = document.createElement("p");
+        let img = document.createElement("img");
+        let p3 = document.createElement("p");
+
+        const userName = localStorage.getItem("userTarget");
+        const data = { userName }
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch("/dataForProfile", options)
+        const dataResponse = await response.json();
+
+        let p3Text = document.createTextNode("x");
+        p3.appendChild(p3Text);
+        p3.classList.add("closeCommentButton");
+        li.classList.add("comment");
+        div.classList.add("commentProfIcon");
+        let para1Text = document.createTextNode(dataResponse.userName);
+        let para2Text = document.createTextNode(commentTxtBox.value);
+        p1.appendChild(para1Text);
+        p2.appendChild(para2Text);
+        p1.classList.add("commentProfName");
+        p2.classList.add("commentTxt");
+        img.classList.add("commentProfIconimg");
+        div.appendChild(img);
+        li.appendChild(p3);
+        li.appendChild(div);
+        li.appendChild(p1);
+        li.appendChild(p2);
+
+        p3.addEventListener("click", () => {
+            li.remove();
+        })
+
+        if (dataResponse.image == null) {
+            img.src = "";
+        }
+        else {
+            img.src = dataResponse.image;
+        }
+        comments.appendChild(li);
+
+        commentTxtBox.value = "";
+
+        const name = p1.innerHTML;
+        const comment = p2.innerHTML;
+        const commentPic = img.src;
+        const witchBook = witchBookCode;
+
+        const data2 = { name, comment, witchBook, commentPic }
+        const options2 = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data2)
+        };
+
+        const response2 = await fetch("/commentsData", options2)
+        const dataResponse2 = await response2.json();
     }
-    comments.appendChild(li);
-
-    commentTxtBox.value;
-
-    const name = p1.innerHTML;
-    const comment = p2.innerHTML;
-    const commentPic = img.src;
-
-    const data2 = { name,comment,commentPic }
-    const options2 = {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data2)
-    };
-
-    const response2 = await fetch("/commentsData", options2)
-    const dataResponse2 = await response2.json();
 })
