@@ -94,6 +94,7 @@ const aboutAuthor = document.querySelector("#aboutAuthor");
 const bookLikeThisTitle = document.querySelectorAll(".bookLikeThisTitle")
 const bookLikeThisImg = document.querySelectorAll(".bookLikeThisImg");
 const bookLikeThisCode = document.querySelectorAll(".bookLikeThisCode");
+const bookRateStar2 = document.querySelectorAll(".bookRateStar2");
 let witchBookCode;
 
 for (let i = 0; i < books.length; i++) {
@@ -105,6 +106,61 @@ for (let i = 0; i < books.length; i++) {
         else {
             const response = await fetch("https://openlibrary.org" + bookCode[i].innerHTML + ".json");
             const data = await response.json();
+
+            const responseRate = await fetch("https://openlibrary.org" + bookCode[i].innerHTML + "/ratings.json");
+            const dataRate = await responseRate.json();
+
+            if (dataRate >= 4) {
+                bookRateStar2[4].style.opacity = "1";
+                bookRateStar2[3].style.opacity = "1";
+                bookRateStar2[2].style.opacity = "1";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate.summary.average < 4 && dataRate.summary.average >= 3) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "1";
+                bookRateStar2[2].style.opacity = "1";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate.summary.average < 3 && dataRate.summary.average >= 2) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "1";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate.summary.average < 2 && dataRate.summary.average >= 1) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate.summary.average < 1 && dataRate.summary.average > 0) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "0";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate.summary.average == null) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "0";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if(dataRate.summary.average == 0){
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "0";
+                bookRateStar2[0].style.opacity = "0";
+            }
+
+            console.log(dataRate);
 
             bookPannel.style.opacity = "1"
             bookPannel.style.transform = "translate(0%)"
@@ -156,7 +212,7 @@ for (let i = 0; i < books.length; i++) {
 
                     if (localStorage.getItem("userTarget") == CommentResponesData[i].Name) {
                         li.appendChild(p3);
-                        p3.addEventListener("click",async () => {
+                        p3.addEventListener("click", async () => {
                             li.remove();
                             const tempComment = CommentResponesData[i].Comment;
                             const data3 = { tempComment }
@@ -244,6 +300,8 @@ for (let i = 0; i < books.length; i++) {
             const bookSubjectResponse = await fetch("https://openlibrary.org/search.json?q=" + data.title.toLowerCase());
             const bookSubjectsData = await bookSubjectResponse.json();
             console.log(bookSubjectsData);
+
+            
 
             for (let i = 0; i < bookLikeThisTitle.length; i++) {
                 bookLikeThisTitle[i].innerHTML = bookSubjectsData.docs[i].title;
@@ -595,6 +653,61 @@ for (let i = 0; i < bookLikeThis.length; i++) {
         else {
             const response = await fetch("https://openlibrary.org" + bookLikeThisCode[i].innerHTML + ".json");
             const data = await response.json();
+
+            const responseRate2 = await fetch("https://openlibrary.org" + bookLikeThisCode[i].innerHTML + "/ratings.json");
+            const dataRate2 = await responseRate2.json();
+
+            if (dataRate2 >= 4) {
+                bookRateStar2[4].style.opacity = "1";
+                bookRateStar2[3].style.opacity = "1";
+                bookRateStar2[2].style.opacity = "1";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate2.summary.average < 4 && dataRate2.summary.average >= 3) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "1";
+                bookRateStar2[2].style.opacity = "1";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate2.summary.average < 3 && dataRate2.summary.average >= 2) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "1";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate2.summary.average < 2 && dataRate2.summary.average >= 1) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "1";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate2.summary.average < 1 && dataRate2.summary.average > 0) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "0";
+                bookRateStar2[0].style.opacity = "1";
+            }
+            else if (dataRate2.summary.average == null) {
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "0";
+                bookRateStar2[0].style.opacity = "0";
+            }
+            else if(dataRate2.summary.average == 0){
+                bookRateStar2[4].style.opacity = "0";
+                bookRateStar2[3].style.opacity = "0";
+                bookRateStar2[2].style.opacity = "0";
+                bookRateStar2[1].style.opacity = "0";
+                bookRateStar2[0].style.opacity = "0";
+            }
+
+            console.log(dataRate2);
 
             navBar.style.backgroundColor = "transparent";
             navBar.style.boxShadow = "none"
