@@ -8,6 +8,11 @@
     src: url(assets/Merienda-VariableFont_wght.ttf)
 }
 
+@font-face {
+    font-family: fontAwesome;
+    src: url(assets/font-awesome-4.7.0/fonts/FontAwesome.otf)
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -162,6 +167,26 @@ body {
 
 .homePage .navBar #profileIcon:hover svg {
     fill: white;
+}
+
+.homePage .navBar #bookPannelCloseBtn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    left: 94%;
+    top: 140px;
+    z-index: 999999999;
+    display: none;
+}
+
+.homePage .navBar #bookPannelCloseBtn svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: 0.4s;
 }
 
 .homePage .header {
@@ -1155,7 +1180,7 @@ body::-webkit-scrollbar-thumb:hover {
     overflow: auto;
 }
 
-.homePage .section .searchPnl #searchPnlCloseBtn{
+.homePage .section .searchPnl #searchPnlCloseBtn {
     position: fixed;
     left: 96%;
     top: 100px;
@@ -1164,11 +1189,11 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: 99999999;
 }
 
-.homePage .section .searchPnl #searchPnlCloseBtn:hover{
-    fill:#c2bcdd;
+.homePage .section .searchPnl #searchPnlCloseBtn:hover {
+    fill: #c2bcdd;
 }
 
-.homePage .section .searchPnl .firstList{
+.homePage .section .searchPnl .firstList {
     position: absolute;
     top: 358px;
     left: 40px;
@@ -1178,7 +1203,7 @@ body::-webkit-scrollbar-thumb:hover {
     margin-top: -260px
 }
 
-.homePage .section .searchPnl .firstList li{
+.homePage .section .searchPnl .firstList li {
     list-style: none;
     display: inline-block;
     height: 100%;
@@ -1186,18 +1211,18 @@ body::-webkit-scrollbar-thumb:hover {
     margin-left: 34px;
     margin-top: 110px;
     position: relative;
-    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
     transition: 0.6s;
 }
 
-.homePage .section .searchPnl .firstList li:hover{
+.homePage .section .searchPnl .firstList li:hover {
     transform: skewY(5deg) rotateY(15deg);
     transform-style: preserve-3d;
     filter: brightness(110%);
 
 }
 
-.homePage .section .searchPnl .firstList li .books{
+.homePage .section .searchPnl .firstList li .books {
     position: absolute;
     left: 0;
     top: 0;
@@ -1207,17 +1232,31 @@ body::-webkit-scrollbar-thumb:hover {
     background-color: #2e3047;
     animation-name: loadingBooks;
     animation-duration: 2s;
-    animation-fill-mode:forwards ;
+    animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-delay: calc(0.1s * var(--i));
 }
 
 @keyframes loadingBooks {
-    0%{background-color: #2e3047;}
-    30%{background-color: #2e3047;}
-    50%{background-color: #3c3e57;}
-    80%{background-color: #2e3047;}
-    100%{background-color: #2e3047;}
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
 }
 
 .homePage .section .searchPnl::-webkit-scrollbar {
@@ -1236,7 +1275,7 @@ body::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
-.bookCover{
+.bookCover {
     position: absolute;
     top: 0;
     left: 0;
@@ -1247,7 +1286,7 @@ body::-webkit-scrollbar-thumb:hover {
     transition: 1s;
 }
 
-.bookTitle{
+.bookTitle {
     position: relative;
     top: 107%;
     width: 200px;
@@ -1260,7 +1299,23 @@ body::-webkit-scrollbar-thumb:hover {
     text-align: center;
     font-size: 1.1em;
 }
-.li{
+
+.bookCode {
+    position: relative;
+    top: 50%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    opacity: 0;
+}
+
+.li {
     list-style: none;
     display: inline-block;
     height: 100%;
@@ -1268,7 +1323,7 @@ body::-webkit-scrollbar-thumb:hover {
     margin-left: 34px;
     margin-top: 120px;
     position: relative;
-    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
     transition: 0.6s;
 }
 
@@ -1309,4 +1364,574 @@ body::-webkit-scrollbar-thumb:hover {
     100% {
         margin-top: -120px;
     }
+}
+
+/* about any book pannel */
+
+.homePage .section .bookPannel {
+    position: fixed;
+    width: 100%;
+    margin-top: -10px;
+    height: 108vh;
+    background-color: #242131;
+    z-index: 23;
+    overflow-y: auto;
+    display: block;
+    transition: 0.6s;
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.homePage .section .bookPannel::-webkit-scrollbar {
+    width: 10px;
+}
+
+.homePage .section .bookPannel::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.homePage .section .bookPannel::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.homePage .section .bookPannel::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.homePage .section .bookPannel .backgroundBookImg {
+    position: absolute;
+    width: 100%;
+    height: 650px;
+    margin-top: -60px;
+    filter: brightness(15%);
+    user-select: none;
+    transition: 0.8s;
+}
+
+.homePage .section .bookPannel .backgroundBookImgCover {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0), #242131);
+    top: 390px;
+}
+
+.homePage .section .bookPannel .BookImg {
+    position: absolute;
+    width: 360px;
+    height: 460px;
+    margin-top: 120px;
+    filter: brightness(100%);
+    user-select: none;
+    z-index: 20;
+    margin-left: 80px;
+    box-shadow: 20px 25px 25px rgba(0, 0, 0, 0.4);
+    transition: 0.8s;
+    opacity: 0;
+    border-radius: 4px;
+}
+
+.homePage .section .bookPannel ul {
+    position: absolute;
+    left: 58%;
+    top: 280px;
+}
+
+.homePage .section .bookPannel ul li {
+    margin-top: 20px;
+    width: 400px;
+    list-style: none;
+}
+
+.homePage .section .bookPannel ul li h2 {
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 2.4em;
+    opacity: 1;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    user-select: none;
+    transition: 0.8s;
+}
+
+.homePage .section .bookPannel ul li p {
+    color: rgb(185, 185, 185);
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1.2em;
+    opacity: 1;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    margin-left: 10px;
+    user-select: none;
+    transition: 0.8s;
+}
+
+.homePage .section .bookPannel #addBookBtn {
+    width: 170px;
+    height: 50px;
+    position: absolute;
+    left: 36%;
+    font-weight: bold;
+    top: 530px;
+    font-family: regularFont;
+    background-color: #242131;
+    border: 2px solid rgb(216, 216, 216);
+    color: rgb(216, 216, 216);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.homePage .section .bookPannel #addBookBtn:hover {
+    background-color: rgb(216, 216, 216);
+    color: #242131;
+}
+
+.homePage .section .bookPannel .aboutBook {
+    position: absolute;
+    width: 77%;
+    height: 300px;
+    top: 105vh;
+    margin-left: 80px;
+}
+
+.homePage .section .bookPannel .aboutBook h3 {
+    font-family: regularFont;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+}
+
+.homePage .section .bookPannel .aboutBook p {
+    font-family: regularFont;
+    color: rgb(160, 160, 160);
+    margin-left: 20px;
+    margin-top: 25px;
+    line-height: 26px;
+}
+
+.homePage .section .bookPannel .aboutAuthor {
+    position: absolute;
+    width: 700px;
+    height: 300px;
+    top: 137vh;
+    margin-left: 80px;
+}
+
+.homePage .section .bookPannel .aboutAuthor h3 {
+    font-family: regularFont;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+    user-select: none;
+}
+
+.homePage .section .bookPannel .aboutAuthor p {
+    font-family: regularFont;
+    color: rgb(160, 160, 160);
+    margin-left: 20px;
+    margin-top: 25px;
+    line-height: 26px;
+}
+
+.homePage .section .bookPannel .aboutAuthor #otherAuthorWorkBtn {
+    width: 120px;
+    height: 40px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: regularFont;
+    background-color: #242131;
+    border: 2px solid rgb(216, 216, 216);
+    color: rgb(216, 216, 216);
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.homePage .section .bookPannel .aboutAuthor #otherAuthorWorkBtn:hover {
+    background-color: rgb(216, 216, 216);
+    color: #242131;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis {
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    top: 189vh;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis h3 {
+    font-family: regularFont;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+    user-select: none;
+    margin-left: 80px;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .booksLikeThis {
+    height: 100%;
+    width: 90%;
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 6.5%;
+    overflow: hidden;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis {
+    height: 63%;
+    width: 200px;
+    background-color: #2e3047;
+    position: relative;
+    margin-left: 30px;
+    display: inline-block;
+    margin-top: 60px;
+    cursor: pointer;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+    border-radius: 4px;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis:hover {
+    transform: skewY(3deg) rotateY(8deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis .bookLikeThisImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis .bookLikeThisTitle {
+    font-family: regularFont;
+    color: rgb(160, 160, 160);
+    text-align: center;
+    margin-top: 290px;
+    font-weight: bold;
+}
+
+@keyframes loadingBooks {
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .pushToRight {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background-color: #2e3047;
+    left: 92%;
+    top: 44%;
+    z-index: 10;
+    cursor: pointer;
+    transition: 0.4s;
+    opacity: 1;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .pushToLeft {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background-color: #2e3047;
+    left: 4.4%;
+    top: 44%;
+    z-index: 10;
+    transition: 0.4s;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .pushToRight svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: rgb(92, 92, 116);
+    transition: .4s;
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .pushToRight:hover svg {
+    fill: rgb(152, 152, 180);
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .pushToLeft:hover svg {
+    fill: rgb(152, 152, 180);
+}
+
+.homePage .section .bookPannel .otherBooksLikeThis .pushToLeft svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: rgb(92, 92, 116);
+    transition: .4s;
+}
+
+.homePage .section .bookPannel .commentsBox {
+    position: absolute;
+    top: 239vh;
+    width: 100%;
+    height: fit-content;
+    display: block;
+}
+
+.homePage .section .bookPannel .commentsBox h3 {
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 2em;
+    margin-left: 6%;
+    margin-top: 200px;
+    transform: translateY(600px);
+    color: rgb(235, 235, 235);
+}
+
+.homePage .section .bookPannel .commentsBox .comments {
+    position: absolute;
+    height: fit-content;
+    left: 8%;
+    top: 40px;
+    display: block;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment {
+    position: relative;
+    width: 600px;
+    height: 160px;
+    border-radius: 5px;
+    background-color: rgb(57, 56, 83);
+    margin-top: 50px;
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    display: flex;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment:nth-child(2) {
+    margin-top: 220px;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment .commentProfIcon {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 10px;
+    border: 2px solid rgb(158, 147, 216);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment .commentProfIcon img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment .commentProfName {
+    position: absolute;
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10%;
+    margin-top: 14px;
+    color: rgb(255, 255, 255);
+}
+
+.closeCommentButton {
+    position: absolute;
+    left: 92%;
+    top: 8%;
+    font-weight: bold;
+    font-size: 1em;
+    color: #abadce;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment .commentTxt {
+    position: relative;
+    font-family: regularFont;
+    font-size: .9em;
+    margin-left: 10%;
+    margin-top: 49px;
+    color: rgb(169, 166, 202);
+    padding-right: 10px;
+    width: 88%;
+    display: block;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment .like {
+    position: absolute;
+    left: 86%;
+    top: 77%;
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .comment .dislike {
+    position: absolute;
+    left: 92%;
+    top: 77%;
+    transform: rotate(180deg);
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox {
+    display: block;
+    position: relative;
+    width: 700px;
+    margin-top: 200px;
+    height: 400px;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .addCommentTitle {
+    font-family: regularFont;
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: -60px;
+    position: absolute;
+    top: -800px;
+    transform: translateY(530px);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox #commentTxtBox {
+    width: 90%;
+    height: 70%;
+    position: absolute;
+    margin-top: 30px;
+    background-color: rgb(51, 49, 77);
+    border: none;
+    outline: none;
+    font-family: regularFont;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    resize: none;
+    color: rgb(192, 188, 235);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox #insertCommentBtn {
+    width: 130px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid rgb(209, 205, 255);
+    color: rgb(209, 205, 255);
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1em;
+    transform: translateY(400px);
+    border-radius: 4px;
+    transition: 0.3s;
+
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox #insertCommentBtn:hover {
+    background-color: rgb(209, 205, 255);
+    color: #242131;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating {
+    position: relative;
+    width: 260px;
+    height: 50px;
+    transform: translate(-90px, 280px) rotateY(180deg);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating input {
+    display: none;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating label {
+    display: inline-block;
+    cursor: pointer;
+    width: 30px;
+
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating label::before {
+    content: '\f005';
+    position: relative;
+    font-family: fontAwesome;
+    font-size: 2em;
+    color: #312d42;
+    position: relative;
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating label::after {
+    content: '\f005';
+    position: relative;
+    font-family: fontAwesome;
+    font-size: 2em;
+    color: #8375c0;
+    opacity: 0;
+    margin-left: -30px;
+    z-index: 10;
+    transition: 0.4s;
+    text-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating label:hover:after,
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating label:hover~label:after,
+.homePage .section .bookPannel .commentsBox .comments .addCommentBox .rating input:checked~label:after {
+    opacity: 1;
+}
+
+.homePage .section .bookPannel .bookRate {
+    position: absolute;
+    width: 300px;
+    height: 80px;
+    left: 3%;
+    top: 94vh;
+}
+
+.homePage .section .bookPannel .bookRate li {
+    position: relative;
+    list-style: none;
+    display: inline;
+    margin-left: 10px;
+}
+
+.homePage .section .bookPannel .bookRate li svg {
+    fill: #5a566b;
+}
+
+.homePage .section .bookPannel .bookRate2 {
+    position: absolute;
+    width: 300px;
+    height: 80px;
+    left: 3%;
+    top: 94vh;
+}
+
+.homePage .section .bookPannel .bookRate2 li {
+    position: relative;
+    list-style: none;
+    display: inline;
+    margin-left: 10px;
+}
+
+.homePage .section .bookPannel .bookRate2 li svg {
+    fill: #b2a9df;
 }

@@ -43,19 +43,26 @@
                 </svg>
             </div>
             <div id="profileIcon">
-                <svg id="profileIconSvg" xmlns="http://www.w3.org/2000/svg" width="31" height="31" fill="rgb(201, 201, 201)"
-                    class="bi bi-person-fill" viewBox="0 0 16 16">
+                <svg id="profileIconSvg" xmlns="http://www.w3.org/2000/svg" width="31" height="31"
+                    fill="rgb(201, 201, 201)" class="bi bi-person-fill" viewBox="0 0 16 16">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                 </svg>
                 <img id="profIconPicture" alt="oops">
+            </div>
+            <div id="bookPannelCloseBtn">
+                <svg id="bookPannelCloseBtnSvg" xmlns="http://www.w3.org/2000/svg" width="56" height="56"
+                    fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
             </div>
         </div>
 
         <div class="profilePictureBox">
             <img src="assets/imgPaper.png" alt="loading">
             <div id="profilePicture">
-                <svg id="profilePictureSvg" xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="black" class="bi bi-image"
-                    viewBox="0 0 16 16">
+                <svg id="profilePictureSvg" xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="black"
+                    class="bi bi-image" viewBox="0 0 16 16">
                     <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                     <path
                         d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z" />
@@ -95,14 +102,16 @@
                             d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
                     </svg></span>Readed
             </li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-              </svg>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor" class="bi bi-plus"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
             </li>
         </ul>
-        <audio controls id="gramophoneAudio">  
-            <source src="assets/2_5278634859709858894.mp3" type="audio/mpeg">  
-        </audio> 
+        <audio controls id="gramophoneAudio">
+            <source src="assets/2_5278634859709858894.mp3" type="audio/mpeg">
+        </audio>
         <div id="checkingUsersAccountPage">
             <p>Do you have an account?</p>
             <a href="signIn.html">Log in</a>
@@ -133,6 +142,201 @@
             <ul class="secondetList">
 
             </ul>
+        </div>
+        <div class="bookPannel">
+            <img class="backgroundBookImg" src="" alt="loading">
+            <div class="backgroundBookImgCover"></div>
+            <img class="bookImg" src="" alt="loading">
+            <ul>
+                <li>
+                    <h2 class="bookName"></h2>
+                </li>
+                <li>
+                    <p class="autorName"></p>
+                </li>
+            </ul>
+            <button id="addBookBtn">Add to Shelf <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                    fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+            </button>
+
+            <ul class="bookRate">
+                <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+            </ul>
+            <ul class="bookRate2">
+                <li><svg class="bookRateStar2" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar2" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar2" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar2" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+                <li><svg class="bookRateStar2" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg></li>
+            </ul>
+
+            <div class="aboutBook">
+                <h3>About the book</h3>
+                <p id="aboutBook"></p>
+            </div>
+            <div class="aboutAuthor">
+                <h3>About the author</h3>
+                <p id="aboutAuthor"></p>
+                <button id="otherAuthorWorkBtn">More</button>
+            </div>
+
+            <div class="otherBooksLikeThis">
+                <h3>Other works like this one</h3>
+                <div class="pushToLeft"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                        fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                </div>
+                <div class="booksLikeThis">
+                    <div class="bookLikeThis" style="--i:1">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:2">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:3">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:4">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:5">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:6">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:7">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:8">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:9">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:10">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:11">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:12">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:13">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:14">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                    <div class="bookLikeThis" style="--i:15">
+                        <img src="" class="bookLikeThisImg" alt="loading">
+                        <p class="bookLikeThisTitle">bookName</p>
+                        <p class="bookLikeThisCode"></p>
+                    </div>
+                </div>
+                <div class="pushToRight"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                        fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg></div>
+            </div>
+
+            <div class="commentsBox">
+                <h3>Comments</h3>
+
+                <ul class="comments">
+                    <li class="addCommentBox">
+                        <h3 class="addCommentTitle">Add a comment</h3>
+                        <textarea id="commentTxtBox" placeholder="Your opinion" rows="4" cols="20"></textarea>
+                        <button id="insertCommentBtn">Comment</button>
+                        <div class="rating">
+                            <input type="radio" name="star" id="star1"><label class="star" for="star1"></label>
+                            <input type="radio" name="star" id="star2"><label class="star" for="star2"></label>
+                            <input type="radio" name="star" id="star3"><label class="star" for="star3"></label>
+                            <input type="radio" name="star" id="star4"><label class="star" for="star4"></label>
+                            <input type="radio" name="star" id="star5"><label class="star" for="star5"></label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="backGroundHeader"></div>
     </div>

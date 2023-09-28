@@ -8,6 +8,11 @@
     src: url(assets/Merienda-VariableFont_wght.ttf)
 }
 
+@font-face {
+    font-family: fontAwesome;
+    src: url(assets/font-awesome-4.7.0/fonts/FontAwesome.otf)
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -173,6 +178,26 @@
     font-family: regularFont;
     color: rgb(223, 222, 222);
     transition: 0.3s;
+}
+
+.signUpPage .navBar #bookPannelCloseBtn {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    left: 94%;
+    top: 140px;
+    z-index: 999999999;
+    display: none;
+}
+
+.signUpPage .navBar #bookPannelCloseBtn svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: 0.4s;
 }
 
 .messageBoxFadeInOut {
@@ -565,7 +590,7 @@
     border: none;
     padding: 2px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 120;
     transition: 0.3s;
 }
 
@@ -586,7 +611,7 @@
     top: 53%;
     font-size: 0.8em;
     transition: 0.3s;
-    z-index: 1000;
+    z-index: 121;
 }
 
 .signUpPage .formBox .singUpPageLink a:hover {
@@ -727,6 +752,21 @@
     font-size: 1.1em;
 }
 
+.bookCode {
+    position: relative;
+    top: 50%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    opacity: 0;
+}
+
 .li {
     list-style: none;
     display: inline-block;
@@ -744,4 +784,574 @@
     animation-timing-function: ease;
     animation-duration: 5s;
     animation-fill-mode: backwards;
+}
+
+/* about any book pannel */
+
+.signUpPage .bookPannel {
+    position: fixed;
+    width: 100%;
+    margin-top: -6px;
+    height: 108vh;
+    background-color: #242131;
+    z-index: 125;
+    overflow-y: auto;
+    display: block;
+    transition: 0.6s;
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.signUpPage .bookPannel::-webkit-scrollbar {
+    width: 10px;
+}
+
+.signUpPage .bookPannel::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.signUpPage .bookPannel::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.signUpPage .bookPannel::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.signUpPage .bookPannel .backgroundBookImg {
+    position: absolute;
+    width: 100%;
+    height: 650px;
+    margin-top: -60px;
+    filter: brightness(15%);
+    user-select: none;
+    transition: 0.8s;
+}
+
+.signUpPage .bookPannel .backgroundBookImgCover {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 0, 0), #242131);
+    top: 390px;
+}
+
+.signUpPage .bookPannel .BookImg {
+    position: absolute;
+    width: 360px;
+    height: 460px;
+    margin-top: 120px;
+    filter: brightness(100%);
+    user-select: none;
+    z-index: 20;
+    margin-left: 80px;
+    box-shadow: 20px 25px 25px rgba(0, 0, 0, 0.4);
+    transition: 0.8s;
+    opacity: 0;
+    border-radius: 4px;
+}
+
+.signUpPage .bookPannel ul {
+    position: absolute;
+    left: 58%;
+    top: 280px;
+}
+
+.signUpPage .bookPannel ul li {
+    margin-top: 20px;
+    width: 400px;
+    list-style: none;
+}
+
+.signUpPage .bookPannel ul li h2 {
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 2.4em;
+    opacity: 1;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    user-select: none;
+    transition: 0.8s;
+}
+
+.signUpPage .bookPannel ul li p {
+    color: rgb(185, 185, 185);
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1.2em;
+    opacity: 1;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    margin-left: 10px;
+    user-select: none;
+    transition: 0.8s;
+}
+
+.signUpPage .bookPannel #addBookBtn {
+    width: 170px;
+    height: 50px;
+    position: absolute;
+    left: 36%;
+    font-weight: bold;
+    top: 530px;
+    font-family: regularFont;
+    background-color: #242131;
+    border: 2px solid rgb(216, 216, 216);
+    color: rgb(216, 216, 216);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.signUpPage .bookPannel #addBookBtn:hover {
+    background-color: rgb(216, 216, 216);
+    color: #242131;
+}
+
+.signUpPage .bookPannel .aboutBook {
+    position: absolute;
+    width: 77%;
+    height: 300px;
+    top: 105vh;
+    margin-left: 80px;
+}
+
+.signUpPage .bookPannel .aboutBook h3 {
+    font-family: regularFont;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+}
+
+.signUpPage .bookPannel .aboutBook p {
+    font-family: regularFont;
+    color: rgb(160, 160, 160);
+    margin-left: 20px;
+    margin-top: 25px;
+    line-height: 26px;
+}
+
+.signUpPage .bookPannel .aboutAuthor {
+    position: absolute;
+    width: 700px;
+    height: 300px;
+    top: 137vh;
+    margin-left: 80px;
+}
+
+.signUpPage .bookPannel .aboutAuthor h3 {
+    font-family: regularFont;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+    user-select: none;
+}
+
+.signUpPage .bookPannel .aboutAuthor p {
+    font-family: regularFont;
+    color: rgb(160, 160, 160);
+    margin-left: 20px;
+    margin-top: 25px;
+    line-height: 26px;
+}
+
+.signUpPage .bookPannel .aboutAuthor #otherAuthorWorkBtn {
+    width: 120px;
+    height: 40px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: regularFont;
+    background-color: #242131;
+    border: 2px solid rgb(216, 216, 216);
+    color: rgb(216, 216, 216);
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.signUpPage .bookPannel .aboutAuthor #otherAuthorWorkBtn:hover {
+    background-color: rgb(216, 216, 216);
+    color: #242131;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis {
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    top: 189vh;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis h3 {
+    font-family: regularFont;
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+    user-select: none;
+    margin-left: 80px;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .booksLikeThis {
+    height: 100%;
+    width: 90%;
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 6.5%;
+    overflow: hidden;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis {
+    height: 63%;
+    width: 200px;
+    background-color: #2e3047;
+    position: relative;
+    margin-left: 30px;
+    display: inline-block;
+    margin-top: 60px;
+    cursor: pointer;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+    border-radius: 4px;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis:hover {
+    transform: skewY(3deg) rotateY(8deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis .bookLikeThisImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .booksLikeThis .bookLikeThis .bookLikeThisTitle {
+    font-family: regularFont;
+    color: rgb(160, 160, 160);
+    text-align: center;
+    margin-top: 290px;
+    font-weight: bold;
+}
+
+@keyframes loadingBooks {
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .pushToRight {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background-color: #2e3047;
+    left: 92%;
+    top: 44%;
+    z-index: 10;
+    cursor: pointer;
+    transition: 0.4s;
+    opacity: 1;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .pushToLeft {
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background-color: #2e3047;
+    left: 4.4%;
+    top: 44%;
+    z-index: 10;
+    transition: 0.4s;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .pushToRight svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: rgb(92, 92, 116);
+    transition: .4s;
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .pushToRight:hover svg {
+    fill: rgb(152, 152, 180);
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .pushToLeft:hover svg {
+    fill: rgb(152, 152, 180);
+}
+
+.signUpPage .bookPannel .otherBooksLikeThis .pushToLeft svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: rgb(92, 92, 116);
+    transition: .4s;
+}
+
+.signUpPage .bookPannel .commentsBox {
+    position: absolute;
+    top: 239vh;
+    width: 100%;
+    height: fit-content;
+    display: block;
+}
+
+.signUpPage .bookPannel .commentsBox h3 {
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 2em;
+    margin-left: 6%;
+    margin-top: 200px;
+    transform: translateY(600px);
+    color: rgb(235, 235, 235);
+}
+
+.signUpPage .bookPannel .commentsBox .comments {
+    position: absolute;
+    height: fit-content;
+    left: 8%;
+    top: 40px;
+    display: block;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment {
+    position: relative;
+    width: 600px;
+    height: 160px;
+    border-radius: 5px;
+    background-color: rgb(57, 56, 83);
+    margin-top: 50px;
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    display: flex;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment:nth-child(2) {
+    margin-top: 220px;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment .commentProfIcon {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 10px;
+    border: 2px solid rgb(158, 147, 216);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment .commentProfIcon img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment .commentProfName {
+    position: absolute;
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1em;
+    margin-left: 10%;
+    margin-top: 14px;
+    color: rgb(255, 255, 255);
+}
+
+.closeCommentButton {
+    position: absolute;
+    left: 92%;
+    top: 8%;
+    font-weight: bold;
+    font-size: 1em;
+    color: #abadce;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment .commentTxt {
+    position: relative;
+    font-family: regularFont;
+    font-size: .9em;
+    margin-left: 10%;
+    margin-top: 49px;
+    color: rgb(169, 166, 202);
+    padding-right: 10px;
+    width: 88%;
+    display: block;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment .like {
+    position: absolute;
+    left: 86%;
+    top: 77%;
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .comment .dislike {
+    position: absolute;
+    left: 92%;
+    top: 77%;
+    transform: rotate(180deg);
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox {
+    display: block;
+    position: relative;
+    width: 700px;
+    margin-top: 200px;
+    height: 400px;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .addCommentTitle {
+    font-family: regularFont;
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: -60px;
+    position: absolute;
+    top: -800px;
+    transform: translateY(530px);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox #commentTxtBox {
+    width: 90%;
+    height: 70%;
+    position: absolute;
+    margin-top: 30px;
+    background-color: rgb(51, 49, 77);
+    border: none;
+    outline: none;
+    font-family: regularFont;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    resize: none;
+    color: rgb(192, 188, 235);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox #insertCommentBtn {
+    width: 130px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid rgb(209, 205, 255);
+    color: rgb(209, 205, 255);
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1em;
+    transform: translateY(400px);
+    border-radius: 4px;
+    transition: 0.3s;
+
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox #insertCommentBtn:hover {
+    background-color: rgb(209, 205, 255);
+    color: #242131;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating {
+    position: relative;
+    width: 260px;
+    height: 50px;
+    transform: translate(-90px, 280px) rotateY(180deg);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating input {
+    display: none;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating label {
+    display: inline-block;
+    cursor: pointer;
+    width: 30px;
+
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating label::before {
+    content: '\f005';
+    position: relative;
+    font-family: fontAwesome;
+    font-size: 2em;
+    color: #312d42;
+    position: relative;
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating label::after {
+    content: '\f005';
+    position: relative;
+    font-family: fontAwesome;
+    font-size: 2em;
+    color: #8375c0;
+    opacity: 0;
+    margin-left: -30px;
+    z-index: 10;
+    transition: 0.4s;
+    text-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
+
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating label:hover:after,
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating label:hover~label:after,
+.signUpPage .bookPannel .commentsBox .comments .addCommentBox .rating input:checked~label:after {
+    opacity: 1;
+}
+
+.signUpPage .bookPannel .bookRate {
+    position: absolute;
+    width: 300px;
+    height: 80px;
+    left: 3%;
+    top: 94vh;
+}
+
+.signUpPage .bookPannel .bookRate li {
+    position: relative;
+    list-style: none;
+    display: inline;
+    margin-left: 10px;
+}
+
+.signUpPage .bookPannel .bookRate li svg {
+    fill: #aca8bd;
+}
+
+.signUpPage .bookPannel .bookRate2 {
+    position: absolute;
+    width: 300px;
+    height: 80px;
+    left: 3%;
+    top: 94vh;
+}
+
+.signUpPage .bookPannel .bookRate2 li {
+    position: relative;
+    list-style: none;
+    display: inline;
+    margin-left: 10px;
+}
+
+.signUpPage .bookPannel .bookRate2 li svg {
+    fill: #b2a9df;
 }
