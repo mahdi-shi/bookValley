@@ -8,9 +8,11 @@ app.use(express.json({ limit: '1mb' }))
 
 const dataBase = new DataStore('database.db')
 const dataBase2 = new DataStore('database2.db');
+const dataBase3 = new DataStore('database3.db');
 
 dataBase.loadDatabase();
 dataBase2.loadDatabase();
+dataBase3.loadDatabase();
 
 //getting users data for sign up
 
