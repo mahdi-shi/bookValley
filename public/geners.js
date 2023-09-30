@@ -646,6 +646,16 @@ searchBoxBtn.addEventListener("click", async () => {
         const bookPannel = document.querySelector(".bookPannel");
         const bookPannelCloseBtn = document.querySelector('#bookPannelCloseBtn');
 
+        generBooksPnl.style.left = "-100%";
+        generBooksPnl.style.opacity = "0";
+        backgroundCover.style.opacity = 0;
+        navBar.style.backgroundColor = "transparent";
+        for (let i = 0; i < bookTitles.length; i++) {
+            bookTitles[i].innerHTML = "";
+            bookCovers[i].style.opacity = 0;
+            bookCovers[i].src = "";
+        }
+
         bookPannel.style.opacity = "0"
         bookPannel.style.transform = "translate(-100%)"
         searchPnl.style.marginTop = "-9vh";
@@ -653,7 +663,7 @@ searchBoxBtn.addEventListener("click", async () => {
         bookPannelCloseBtn.style.display = "none"
         bookPannelCloseBtn.style.opacity = "0"
 
-        const allBooks = document.querySelectorAll(".books");
+        const allBooks = document.querySelectorAll(".books2");
 
         if (allBooks.length > 0) {
             for (let i = 0; i < allBooks.length; i++) {
@@ -705,8 +715,8 @@ searchBoxBtn.addEventListener("click", async () => {
             p.appendChild(titlePara);
             p.classList.add("bookTitle2");
             p2.appendChild(codePara);
-            p2.classList.add("bookCode");
-            img.classList.add("bookCover");
+            p2.classList.add("bookCode2");
+            img.classList.add("bookCover2");
             if (data.docs[i].cover_i == null) {
                 img.src = "assets/images (1).jfif";
             }
@@ -714,7 +724,7 @@ searchBoxBtn.addEventListener("click", async () => {
                 img.src = "https://covers.openlibrary.org/b/id/" + data.docs[i].cover_i + "-M.jpg";
             }
 
-            div.classList.add("books");
+            div.classList.add("books2");
             div.appendChild(p);
             div.appendChild(p2);
             div.appendChild(img);
@@ -1357,7 +1367,17 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                 bookPannelCloseBtn.style.display = "none"
                 bookPannelCloseBtn.style.opacity = "0"
 
-                const allBooks = document.querySelectorAll(".books");
+                generBooksPnl.style.left = "-100%";
+                generBooksPnl.style.opacity = "0";
+                backgroundCover.style.opacity = 0;
+                navBar.style.backgroundColor = "transparent";
+                for (let i = 0; i < bookTitles.length; i++) {
+                    bookTitles[i].innerHTML = "";
+                    bookCovers[i].style.opacity = 0;
+                    bookCovers[i].src = "";
+                }
+
+                const allBooks = document.querySelectorAll(".books2");
 
                 if (allBooks.length > 0) {
                     for (let i = 0; i < allBooks.length; i++) {
@@ -1411,8 +1431,8 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     p.appendChild(titlePara);
                     p.classList.add("bookTitle2");
                     p2.appendChild(codePara);
-                    p2.classList.add("bookCode");
-                    img.classList.add("bookCover");
+                    p2.classList.add("bookCode2");
+                    img.classList.add("bookCover2");
                     if (data.docs[i].cover_i == null) {
                         img.src = "assets/images (1).jfif";
                     }
@@ -1420,7 +1440,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         img.src = "https://covers.openlibrary.org/b/id/" + data.docs[i].cover_i + "-M.jpg";
                     }
 
-                    div.classList.add("books");
+                    div.classList.add("books2");
                     div.appendChild(p);
                     div.appendChild(p2);
                     div.appendChild(img);
