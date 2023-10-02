@@ -26,13 +26,33 @@ body {
 
 .ProfPage {
     background-color: #242131;
-    height: 100vh;
+    height: fit-content;
     scroll-behavior: smooth;
+    overflow-y: auto;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .ProfPage .navBar {
     height: 60px;
+    width: 100.9%;
     z-index: 25;
+    position: fixed;
+    transition: 0.4s;
 }
 
 .ProfPage .navBar div {
@@ -312,7 +332,7 @@ body {
     border: 2px solid rgb(192, 181, 165);
     font-family: regularFont;
     border-radius: 5px;
-    color: rgb(230, 230, 230);
+    color: rgb(218, 205, 186);
     transition: 0.3s;
     z-index: 10;
 
@@ -335,7 +355,6 @@ body {
 
 }
 
-
 .profPage .backgroundPic2 {
     width: 200px;
     height: 200px;
@@ -347,7 +366,6 @@ body {
     cursor: pointer;
     transition: 0.2s;
     z-index: 10;
-
 }
 
 .profPage .backgroundPic2:hover {
@@ -480,40 +498,157 @@ body {
 }
 
 .profPage .shelvesBox {
-    width: 240px;
+    width: 322px;
     user-select: none;
-    height: 210px;
-
+    height: 140px;
     z-index: 10;
     position: absolute;
-    left: 30%;
-    top: 430px;
+    left: 8%;
+    top: 116vh;
+    overflow-y: auto;
+}
+
+.profPage .shelvesBox::-webkit-scrollbar {
+    width: 5px;
+}
+
+.profPage .shelvesBox::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.profPage .shelvesBox::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.profPage .shelvesBox::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .profPage .shelvesBox li {
     position: relative;
-    width: 100%;
+    width: 96%;
     user-select: none;
     height: 40px;
-    font-family: regularFont;
     padding-top: 5px;
     z-index: 10;
-    background: linear-gradient(to bottom right, rgb(170, 159, 136), rgb(192, 181, 165));
+    background-color: #242131;
     text-align: center;
-    border-bottom: 2px solid rgb(126, 119, 105);
+    border: 2px solid rgba(192, 181, 165, 0.726);
+    border-radius: 3px;
+    margin-top: 5px;
     cursor: pointer;
-    box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.3),
-        inset -1px -1px 10px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
+    list-style: none;
+    font-family: regularFont;
+    color: rgb(230, 230, 230);
     font-weight: bold;
 }
 
-.profPage .shelvesBox li:last-child {
-    background-color: transparent;
-    opacity: 0.6;
+.shelfLi {
+    position: relative;
+    width: 80%;
+    user-select: none;
+    height: 40px;
+    padding-top: 5px;
+    z-index: 10;
+    background-color: #242131;
+    text-align: center;
+    border: 2px solid rgba(192, 181, 165, 0.726);
+    border-radius: 3px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    list-style: none;
+    font-family: regularFont;
+    color: rgb(230, 230, 230);
+    font-weight: bold;
+
 }
 
-.profPage .shelvesBox li:last-child svg {
+.profPage .shelvesBox li p {
+    font-family: regularFont;
+    color: rgb(192, 181, 165);
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.shelfPara {
+    font-family: regularFont;
+    color: rgb(192, 181, 165);
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.shelfPara:hover {
+    color: #242131;
+}
+
+.shelfSvg {
+    position: absolute;
+    left: 90%;
+    opacity: 0;
+    transition: 0.2s;
+    margin-top: 3px;
+    user-select: none;
+}
+
+.shelfLi:hover .shelfSvg {
+    position: absolute;
+    left: 90%;
+    opacity: 1;
+    transition: 0.2s;
+    margin-top: 3px;
+}
+
+.shelfLi:hover {
+    background-color: rgb(192, 181, 165);
+    color: #242131;
+}
+
+.shelfTitle {
+    font-family: regularFont;
+    color: rgb(228, 228, 228);
+    font-size: 1.7em;
+    position: absolute;
+    left: 8%;
+    z-index: 10;
+    top: 690px;
+}
+
+.profPage .shelvesBox li:hover p {
+    color: #242131;
+}
+
+#addShelfBtn {
+    background-color: transparent;
+    opacity: 0.6;
+    position: absolute;
+    left: 10.3%;
+    top: 137vh;
+    width: 280px;
+    user-select: none;
+    height: 40px;
+    padding-top: 5px;
+    z-index: 10;
+    background-color: #242131;
+    text-align: center;
+    border: 2px solid rgba(192, 181, 165, 0.726);
+    border-radius: 3px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    list-style: none;
+    font-family: regularFont;
+    color: rgb(230, 230, 230);
+    font-weight: bold;
+}
+
+#addShelfBtn:hover {
+    background-color: rgb(192, 181, 165);
+    color: #242131;
+}
+
+#addShelfBtn svg {
     opacity: 1;
     left: 43%;
     margin-top: -3px;
@@ -521,20 +656,20 @@ body {
     user-select: none;
 }
 
-.profPage .shelvesBox li:last-child:hover svg {
+#addShelfBtn:hover svg {
     opacity: 1;
     left: 43%;
     margin-top: -3px;
     text-align: center;
 }
 
-.profPage .shelvesBox li:last-child:hover {
+#addShelfBtn:hover {
     margin-left: 20px;
 }
 
 .profPage .shelvesBox li svg {
     position: absolute;
-    left: 6%;
+    left: 90%;
     opacity: 0;
     transition: 0.2s;
     margin-top: 3px;
@@ -543,25 +678,25 @@ body {
 
 .profPage .shelvesBox li:hover svg {
     position: absolute;
-    left: 6%;
+    left: 90%;
     opacity: 1;
     transition: 0.2s;
     margin-top: 3px;
 }
 
-
 .profPage .shelvesBox li:hover {
-    margin-left: -20px;
+    background-color: rgb(192, 181, 165);
+    color: #242131;
 }
 
 .profPage .shelvesTitle {
     font-family: regularFont;
     color: rgb(228, 228, 228);
-    font-size: 1.5em;
+    font-size: 1.7em;
     position: absolute;
-    left: 31%;
-     z-index: 10;
-    top: 360px;
+    left: 8%;
+    z-index: 10;
+    top: 690px;
 }
 
 .profPage #checkingUsersAccountPage {
@@ -635,7 +770,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 150vh;
     background-color: #242131;
     z-index: 9000;
     opacity: 0;
@@ -646,7 +781,7 @@ body {
 .profPage #editBox {
     width: 35%;
     height: 400px;
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -823,13 +958,13 @@ body {
     margin-left: 0px;
     background-color: #363249;
     margin-top: -200vh;
-    z-index: 20;
+    z-index: 24;
     opacity: 0;
     transition: 0.3s;
     overflow: auto;
 }
 
-.profPage .searchPnl #searchPnlCloseBtn{
+.profPage .searchPnl #searchPnlCloseBtn {
     position: fixed;
     left: 96%;
     top: 100px;
@@ -838,11 +973,11 @@ body {
     z-index: 99999999;
 }
 
-.profPage .searchPnl #searchPnlCloseBtn:hover{
-    fill:#c2bcdd;
+.profPage .searchPnl #searchPnlCloseBtn:hover {
+    fill: #c2bcdd;
 }
 
-.profPage .searchPnl .secondetList{
+.profPage .searchPnl .secondetList {
     position: absolute;
     top: 358px;
     left: 40px;
@@ -852,7 +987,7 @@ body {
     margin-top: -260px
 }
 
-.profPage .searchPnl .secondetList li{
+.profPage .searchPnl .secondetList li {
     list-style: none;
     display: inline-block;
     height: 100%;
@@ -860,18 +995,18 @@ body {
     margin-left: 34px;
     margin-top: 110px;
     position: relative;
-    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
     transition: 0.6s;
 }
 
-.profPage .searchPnl .secondetList li:hover{
+.profPage .searchPnl .secondetList li:hover {
     transform: skewY(5deg) rotateY(15deg);
     transform-style: preserve-3d;
     filter: brightness(110%);
 
 }
 
-.profPage .searchPnl .secondetList li .books{
+.profPage .searchPnl .secondetList li .books {
     position: absolute;
     left: 0;
     top: 0;
@@ -881,18 +1016,33 @@ body {
     background-color: #2e3047;
     animation-name: loadingBooks;
     animation-duration: 2s;
-    animation-fill-mode:forwards ;
+    animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-delay: calc(0.1s * var(--i));
 }
 
 @keyframes loadingBooks {
-    0%{background-color: #2e3047;}
-    30%{background-color: #2e3047;}
-    50%{background-color: #3c3e57;}
-    80%{background-color: #2e3047;}
-    100%{background-color: #2e3047;}
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
 }
+
 .profPage .searchPnl::-webkit-scrollbar {
     width: 10px;
 }
@@ -908,7 +1058,8 @@ body {
 .profPage .searchPnl::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-.bookCover{
+
+.bookCover {
     position: absolute;
     top: 0;
     left: 0;
@@ -934,7 +1085,7 @@ body {
     opacity: 0;
 }
 
-.bookTitle{
+.bookTitle {
     position: relative;
     top: 100%;
     width: 200px;
@@ -948,7 +1099,8 @@ body {
     text-align: center;
     font-size: 1.1em;
 }
-.li{
+
+.li {
     list-style: none;
     display: inline-block;
     height: 100%;
@@ -956,9 +1108,10 @@ body {
     margin-left: 34px;
     margin-top: 90px;
     position: relative;
-    box-shadow: 5px 30px 30px rgba(0,0,0,0.4);
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
     transition: 0.6s;
 }
+
 .profPage #messageBox {
     position: absolute;
     left: 17%;
@@ -983,15 +1136,19 @@ body {
     0% {
         top: -10%;
     }
+
     10% {
         top: 10%;
     }
+
     50% {
         top: 10%;
     }
+
     90% {
         top: 10%;
     }
+
     100% {
         top: -10%;
     }
@@ -999,7 +1156,7 @@ body {
 
 .profPage .backGroundHeader {
     width: 100%;
-    height: 600px;
+    height: 150vh;
     position: absolute;
     top: 0%;
     z-index: 0;
@@ -1575,4 +1732,255 @@ body {
 
 .profPage .bookPannel .bookRate2 li svg {
     fill: #b2a9df;
+}
+
+.profPage .shelfPnl {
+    position: fixed;
+    left: 50%;
+    top: 150%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    z-index: 22;
+    display: block;
+    background-color: #242131;
+    transition: 0.5s;
+    overflow: auto;
+}
+
+.profPage .shelfPnl .shelfPnlCover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(#080808, #242131);
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.profPage .shelfPnl .shelfPnlCover #shelfNameTitle {
+    position: absolute;
+    left: 8%;
+    top: 20%;
+    font-weight: bold;
+    font-family: regularFont;
+    color: rgb(226, 220, 241);
+    font-size: 2em;
+}
+
+.profPage .shelfPnl #shelfPnlCloseBtn {
+    position: fixed;
+    left: 96%;
+    top: 100px;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 99999999;
+}
+
+.profPage .shelfPnl #shelfPnlCloseBtn:hover {
+    fill: #c2bcdd;
+}
+
+.profPage .shelfPnl .secondetList {
+    position: absolute;
+    top: 448px;
+    left: 40px;
+    width: 95%;
+    height: 290px;
+    z-index: 100;
+    margin-top: -260px
+}
+
+.profPage .shelfPnl .secondetList li {
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 110px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+}
+
+.profPage .shelfPnl .secondetList li:hover {
+    transform: skewY(5deg) rotateY(15deg);
+    transform-style: preserve-3d;
+    filter: brightness(110%);
+
+}
+
+.profPage .shelfPnl .secondetList li .books4 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #2e3047;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes loadingBooks {
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
+}
+
+.profPage .shelfPnl::-webkit-scrollbar {
+    width: 10px;
+}
+
+.profPage .shelfPnl::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.profPage .shelfPnl::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.profPage .shelfPnl::-webkit-scrollbar-thumb:hover {
+    background: #555;
+
+}
+
+.profPage .shelfPnl .shelfPnlCover #shelfPnlAlert {
+    text-align: center;
+    font-family: regularFont;
+    font-weight: bold;
+    color: rgb(141, 134, 158)
+}
+
+.bookCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    filter: brightness(100%);
+    transition: 1s;
+}
+
+.bookCode {
+    position: relative;
+    top: 50%;
+    width: 200px;
+    overflow: hidden;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    opacity: 0;
+}
+
+.bookTitle {
+    position: relative;
+    top: 100%;
+    width: 200px;
+    overflow: hidden;
+    margin-top: 12px;
+    height: fit-content;
+    opacity: 1;
+    color: #abadce;
+    font-family: regularFont;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.li {
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+    width: 200px;
+    margin-left: 34px;
+    margin-top: 90px;
+    position: relative;
+    box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.4);
+    transition: 0.6s;
+}
+
+.profPage .nameSelectoreBox {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25353453;
+    display: none;
+    opacity: 0;
+}
+
+.ProfPage .nameSelectoreBox #shelfNameSelector {
+    width: 170px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgb(201, 201, 201);
+    font-weight: bold;
+    font-family: regularFont;
+    padding-left: 5px;
+    color: rgb(165, 165, 165);
+    user-select: none;
+    transition: .3s;
+}
+
+.ProfPage .nameSelectoreBox #shelfNameSelector:focus {
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: white;
+}
+
+.profPage .nameSelectoreBox #shelfName {
+    font-family: regularFont;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #e3e2e973;
+    margin-left: -90px;
+    transform: translate(90px, 37px);
+    transition: 0.3s;
+    z-index: 1;
+
+}
+
+.profPage .nameSelectoreBox #addShelfBtnSlc {
+    background-color: transparent;
+    border: 2px solid rgb(208, 193, 243);
+    padding: 0px;
+    margin-top: -5px;
+    border-radius: 3px;
+    transition: .3s;
+    transform: translate(10px, -7px)
+}
+
+.profPage .nameSelectoreBox #addShelfBtnSlc:hover {
+    background-color: rgb(208, 193, 243);
+}
+
+.profPage .nameSelectoreBox #addShelfBtnSlc:hover svg {
+    fill: rgb(22, 19, 32);
 }

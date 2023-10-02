@@ -303,7 +303,8 @@ searchBoxBtn.addEventListener("click", async () => {
     }
     else {
 
-        searchPnl.style.marginTop = "-18vh";
+        searchPnlCloseBtn.style.display = "block";
+        searchPnl.style.marginTop = "-9vh";
         searchPnl.style.opacity = "0.95";
         bookPannel.style.opacity = "0"
         bookPannel.style.transform = "translate(-100%)"
@@ -1028,8 +1029,8 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
             }, 5000);
         }
         else {
-
-            searchPnl.style.marginTop = "-18vh";
+            searchPnlCloseBtn.style.display = "block";
+            searchPnl.style.marginTop = "-9vh";
             searchPnl.style.opacity = "0.95";
             bookPannel.style.opacity = "0"
             bookPannel.style.transform = "translate(-100%)"
@@ -1766,3 +1767,204 @@ searchPnl.onscroll = () => {
         navBar.style.backgroundColor = "transparent";
     }
 }
+
+const ProfPage = document.querySelector(".ProfPage");
+
+document.body.onscroll = () => {
+
+    if (document.body.scrollTop > 100) {
+        navBar.style.backgroundColor = "#242131";
+    }
+    if (document.body.scrollTop < 100) {
+        navBar.style.backgroundColor = "transparent";
+    }
+}
+
+// any shelf event
+
+const dShelf = document.querySelectorAll(".dShelf");
+const shelfPnl = document.querySelector(".shelfPnl");
+const shelfNameTitle = document.querySelector("#shelfNameTitle");
+const shelfPara = document.querySelectorAll(".shelfPara");
+const shelfPnlCloseBtn = document.querySelector("#shelfPnlCloseBtn");
+
+for (let i = 0; i < dShelf.length; i++) {
+    dShelf[i].addEventListener("click", () => {
+        shelfPnl.style.opacity = 1;
+        shelfPnl.style.top = 50 + "%";
+        navBar.style.backgroundColor = "transparent";
+        shelfNameTitle.innerHTML = shelfPara[i].innerHTML;
+        searchPnlCloseBtn.style.display = "none";
+    })
+}
+
+shelfPnlCloseBtn.addEventListener("click", () => {
+    shelfPnl.style.opacity = 0;
+    shelfPnl.style.top = 150 + "%";
+})
+
+shelfPnl.onscroll = () => {
+
+    if (shelfPnl.scrollTop > 100) {
+        navBar.style.backgroundColor = "#242131";
+    }
+    if (shelfPnl.scrollTop < 100) {
+        navBar.style.backgroundColor = "transparent";
+    }
+}
+
+//adding a new shelf event
+
+const addShelfBtn = document.querySelector("#addShelfBtn");
+const nameSelectoreBox = document.querySelector(".nameSelectoreBox");
+const shelfNameSelector = document.querySelector("#shelfNameSelector");
+const addShelfBtnSlc = document.querySelector("#addShelfBtnSlc");
+const shelfName = document.querySelector("#shelfName");
+const shelvesBox = document.querySelector(".shelvesBox")
+
+addShelfBtn.addEventListener("click", () => {
+    coverPage.style.display = "block";
+    nameSelectoreBox.style.display = "block";
+
+    setTimeout(() => {
+        coverPage.style.opacity = ".5";
+        nameSelectoreBox.style.opacity = "1"
+    }, 100)
+});
+
+coverPage.addEventListener("click", () => {
+    shelfName.style.transform = "translate(90px,37px)"
+    shelfName.style.color = "#e3e2e973";
+    shelfNameSelector.blur()
+    shelfNameSelector.value = "";
+    nameSelectoreBox.style.opacity = "0";
+    setTimeout(() => {
+        nameSelectoreBox.style.display = "none"
+    }, 100);
+})
+
+addShelfBtnSlc.addEventListener("click", () => {
+    if (shelfNameSelector.value == null || shelfNameSelector.value == "") {
+        messageText.innerHTML == "please Fill in the field"
+        messageText.classList.add("msgBoxfadeUpDown");
+        setTimeout(() => {
+            messageText.classList.remove("msgBoxfadeUpDown");
+        }, 5500)
+    }
+    else {
+        let li = document.createElement("li");
+        let span = document.createElement("span");
+        let svg = document.createElement("svg");
+        let path = document.createElement("path");
+        let shelfTitle = document.createElement("p");
+        let shelfTitleTxt = document.createTextNode(shelfNameSelector.value)
+
+        li.classList.add("shelfLi");
+        svg.classList.add("shelfSvg");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("width", "20");
+        svg.setAttribute("height", "20");
+        svg.setAttribute("fill", "black");
+        svg.classList.add("bi");
+        svg.classList.add("bi-chevron-up");
+        svg.setAttribute("viewBox", "0 0 16 16");
+        path.setAttribute("fill-rule", "evenodd");
+        path.setAttribute("d", "M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z");
+        shelfTitle.appendChild(shelfTitleTxt);
+        addShelfBtn.style.width = 275 + "px";
+
+        svg.appendChild(path);
+        span.appendChild(svg);
+        li.appendChild(shelfTitle);
+        li.appendChild(span);
+        shelvesBox.appendChild(li);
+
+        shelfNameSelector.blur()
+        shelfNameSelector.value = "";
+        shelfName.style.transform = "translate(90px,37px)"
+        shelfName.style.color = "#e3e2e973";
+        shelfNameSelector.blur()
+        shelfNameSelector.value = "";
+        nameSelectoreBox.style.opacity = "0";
+        setTimeout(() => {
+            nameSelectoreBox.style.display = "none"
+        }, 100);
+        coverPage.style.opacity = "0";
+        editBox.style.opacity = "0"
+        setTimeout(() => {
+            coverPage.style.display = "none";
+            editBox.style.display = "none";
+        }, 300)
+    }
+})
+
+shelfNameSelector.addEventListener("keydown", (e) => {
+    const keyName = e.key;
+    if (keyName == "Enter") {
+        if (shelfNameSelector.value == null || shelfNameSelector.value == "") {
+            messageText.innerHTML == "please Fill in the field"
+            messageText.classList.add("msgBoxfadeUpDown");
+            setTimeout(() => {
+                messageText.classList.remove("msgBoxfadeUpDown");
+            }, 5500)
+        }
+        else {
+            let li = document.createElement("li");
+            let span = document.createElement("span");
+            let svg = document.createElement("svg");
+            let path = document.createElement("path");
+            let shelfTitle = document.createElement("p");
+            let shelfTitleTxt = document.createTextNode(shelfNameSelector.value)
+
+            li.classList.add("shelfLi");
+            svg.classList.add("shelfSvg");
+            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svg.setAttribute("width", "20");
+            svg.setAttribute("height", "20");
+            svg.setAttribute("fill", "black");
+            svg.classList.add("bi");
+            svg.classList.add("bi-chevron-up");
+            svg.setAttribute("viewBox", "0 0 16 16");
+            path.setAttribute("fill-rule", "evenodd");
+            path.setAttribute("d", "M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z");
+            shelfTitle.appendChild(shelfTitleTxt);
+            addShelfBtn.style.width = 275 + "px";
+
+            svg.appendChild(path);
+            span.appendChild(svg);
+            li.appendChild(shelfTitle);
+            li.appendChild(span);
+            shelvesBox.appendChild(li);
+
+            shelfNameSelector.blur()
+            shelfNameSelector.value = "";
+            shelfName.style.transform = "translate(90px,37px)"
+            shelfName.style.color = "#e3e2e973";
+            shelfNameSelector.blur()
+            shelfNameSelector.value = "";
+            nameSelectoreBox.style.opacity = "0";
+            setTimeout(() => {
+                nameSelectoreBox.style.display = "none"
+            }, 100);
+            coverPage.style.opacity = "0";
+            editBox.style.opacity = "0"
+            setTimeout(() => {
+                coverPage.style.display = "none";
+                editBox.style.display = "none";
+            }, 300);
+        }
+    }
+})
+
+//name selecting for shelf box effect
+
+shelfNameSelector.addEventListener("mousedown", () => {
+    shelfName.style.transform = "translate(20px,10px)"
+    shelfName.style.color = "#e3e2e9";
+});
+
+shelfName.addEventListener("click", () => {
+    shelfName.style.transform = "translate(20px,10px)"
+    shelfName.style.color = "#e3e2e9";
+    shelfNameSelector.focus()
+});

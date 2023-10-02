@@ -205,3 +205,16 @@ app.post("/removeComment", (req, res) => {
 
     })
 })
+
+// insert 3 default shelf to the dataBase
+
+dataBase3.find({}, (error, Data) => {
+    if (error) {
+        res.end();
+        return;
+    }
+
+    dataBase3.insert({ Name: "want to reade"});
+    dataBase3.insert({ Name: "reading"})
+    dataBase3.insert({ Name: "readed"})
+})
