@@ -216,12 +216,12 @@ dataBase3.find({}, (error, Data) => {
 
     console.log(Data.length + "fafadsfasdfasdf");
 
-    if(Data.length == 0){
-        dataBase3.insert({ Name: "want to reade" });
+    if (Data.length == 0) {
+        dataBase3.insert({ Name: "want to read" });
         dataBase3.insert({ Name: "reading" });
         dataBase3.insert({ Name: "readed" });
     }
-    else{
+    else {
         return false;
     }
 
@@ -241,5 +241,22 @@ app.post("/shelfCreator", (req, res) => {
         res.json({
             status: "200"
         });
+    })
+})
+
+app.get("/shelvesData", (req, res) => {
+    let targetShelves = []
+
+    dataBase3.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            targetShelves.push(Data[i]);
+        }
+        console.log(targetShelves);
+        res.json(targetShelves);
     })
 })

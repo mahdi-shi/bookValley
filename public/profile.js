@@ -120,6 +120,48 @@ document.body.onload = async () => {
             profilePictureSvg.style.display = 'none';
             profileIconSvg.style.display = "none";
         }
+
+        const shelvesResponse = await fetch("/shelvesData");
+        const shelvesResponseData = await shelvesResponse.json();
+        console.log(shelvesResponseData);
+
+        if (shelvesResponseData.length > 3) {
+
+            for (let i = 0; i < shelvesResponseData.length; i++) {
+
+                if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
+                    let li = document.createElement("li");
+                    let span = document.createElement("span");
+                    let svg = document.createElement("svg");
+                    let path = document.createElement("path");
+                    let shelfTitle = document.createElement("p");
+                    let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
+
+                    li.classList.add("shelfLi");
+                    svg.classList.add("shelfSvg");
+                    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                    svg.setAttribute("width", "20");
+                    svg.setAttribute("height", "20");
+                    svg.setAttribute("fill", "black");
+                    svg.classList.add("bi");
+                    svg.classList.add("bi-chevron-up");
+                    svg.setAttribute("viewBox", "0 0 16 16");
+                    path.setAttribute("fill-rule", "evenodd");
+                    path.setAttribute("d", "M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z");
+                    shelfTitle.appendChild(shelfTitleTxt);
+                    addShelfBtn.style.width = 275 + "px";
+
+                    svg.appendChild(path);
+                    span.appendChild(svg);
+                    li.appendChild(shelfTitle);
+                    li.appendChild(span);
+                    shelvesBox.appendChild(li);
+
+                    console.log(i);
+                }
+            }
+
+        }
     }
 }
 
@@ -1843,7 +1885,7 @@ coverPage.addEventListener("click", () => {
     }, 100);
 })
 
-addShelfBtnSlc.addEventListener("click",async () => {
+addShelfBtnSlc.addEventListener("click", async () => {
     if (shelfNameSelector.value == null || shelfNameSelector.value == "") {
         messageText.innerHTML == "please Fill in the field"
         messageText.classList.add("msgBoxfadeUpDown");
@@ -1895,7 +1937,7 @@ addShelfBtnSlc.addEventListener("click",async () => {
 
         shelfNameSelector.blur()
         shelfNameSelector.value = "";
-        shelfName.style.transform = "translate("+90+"px+,"+37+"px)";
+        shelfName.style.transform = "translate(" + 90 + "px+," + 37 + "px)";
         shelfName.style.color = "#e3e2e973";
         shelfNameSelector.blur()
         shelfNameSelector.value = "";
@@ -1912,7 +1954,7 @@ addShelfBtnSlc.addEventListener("click",async () => {
     }
 })
 
-shelfNameSelector.addEventListener("keydown", (e) => {
+shelfNameSelector.addEventListener("keydown", async (e) => {
     const keyName = e.key;
     if (keyName == "Enter") {
         if (shelfNameSelector.value == null || shelfNameSelector.value == "") {
@@ -1960,7 +2002,7 @@ shelfNameSelector.addEventListener("keydown", (e) => {
                 },
                 body: JSON.stringify(shelfData)
             };
-    
+
             const ShelfRespons = await fetch("/shelfCreator", options3)
             const ShelfResponsData = await ShelfRespons.json();
 
