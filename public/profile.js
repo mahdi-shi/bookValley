@@ -1843,7 +1843,7 @@ coverPage.addEventListener("click", () => {
     }, 100);
 })
 
-addShelfBtnSlc.addEventListener("click", () => {
+addShelfBtnSlc.addEventListener("click",async () => {
     if (shelfNameSelector.value == null || shelfNameSelector.value == "") {
         messageText.innerHTML == "please Fill in the field"
         messageText.classList.add("msgBoxfadeUpDown");
@@ -1879,9 +1879,23 @@ addShelfBtnSlc.addEventListener("click", () => {
         li.appendChild(span);
         shelvesBox.appendChild(li);
 
+        let shelfName2 = shelfNameSelector.value;
+
+        const shelfData = { shelfName2 }
+        const options3 = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(shelfData)
+        };
+
+        const ShelfRespons = await fetch("/shelfCreator", options3)
+        const ShelfResponsData = await ShelfRespons.json();
+
         shelfNameSelector.blur()
         shelfNameSelector.value = "";
-        shelfName.style.transform = "translate(90px,37px)"
+        shelfName.style.transform = "translate("+90+"px+,"+37+"px)";
         shelfName.style.color = "#e3e2e973";
         shelfNameSelector.blur()
         shelfNameSelector.value = "";
@@ -1935,6 +1949,20 @@ shelfNameSelector.addEventListener("keydown", (e) => {
             li.appendChild(shelfTitle);
             li.appendChild(span);
             shelvesBox.appendChild(li);
+
+            let shelfName2 = shelfNameSelector.value;
+
+            const shelfData = { shelfName2 }
+            const options3 = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(shelfData)
+            };
+    
+            const ShelfRespons = await fetch("/shelfCreator", options3)
+            const ShelfResponsData = await ShelfRespons.json();
 
             shelfNameSelector.blur()
             shelfNameSelector.value = "";

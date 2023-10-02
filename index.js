@@ -171,7 +171,7 @@ app.post("/commentsData", (req, res) => {
             return;
         }
 
-        dataBase2.insert({ Name: req.body.name, Comment: req.body.comment, bookCode : req.body.witchBook , commentPicture: req.body.commentPic })
+        dataBase2.insert({ Name: req.body.name, Comment: req.body.comment, bookCode: req.body.witchBook, commentPicture: req.body.commentPic })
         res.json({
             status: "200"
         });
@@ -214,7 +214,32 @@ dataBase3.find({}, (error, Data) => {
         return;
     }
 
-    dataBase3.insert({ Name: "want to reade"});
-    dataBase3.insert({ Name: "reading"})
-    dataBase3.insert({ Name: "readed"})
+    console.log(Data.length + "fafadsfasdfasdf");
+
+    if(Data.length == 0){
+        dataBase3.insert({ Name: "want to reade" });
+        dataBase3.insert({ Name: "reading" });
+        dataBase3.insert({ Name: "readed" });
+    }
+    else{
+        return false;
+    }
+
+})
+
+//adding new shelf to dataBase
+
+app.post("/shelfCreator", (req, res) => {
+    console.log("i got the reques fuckersss ")
+    dataBase3.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        dataBase3.insert({ Name: req.body.shelfName2 })
+        res.json({
+            status: "200"
+        });
+    })
 })
