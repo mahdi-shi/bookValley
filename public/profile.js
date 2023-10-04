@@ -121,43 +121,51 @@ document.body.onload = async () => {
             profileIconSvg.style.display = "none";
         }
 
+        const dataDefault = { userName }
+        const optionsDefault = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataDefault)
+        };
+
+        const defaultshelvesResponse = await fetch("/DefaultshelvesData",optionsDefault);
+        const defaultshelvesResponseData = await defaultshelvesResponse.json();
+        console.log(defaultshelvesResponseData);
+
         const shelvesResponse = await fetch("/shelvesData");
         const shelvesResponseData = await shelvesResponse.json();
         console.log(shelvesResponseData);
+        const currentUser = localStorage.getItem("userTarget");
 
         if (shelvesResponseData.length > 3) {
 
             for (let i = 0; i < shelvesResponseData.length; i++) {
 
                 if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
-                    let li = document.createElement("li");
-                    let span = document.createElement("span");
-                    let svg = document.createElement("svg");
-                    let path = document.createElement("path");
-                    let shelfTitle = document.createElement("p");
-                    let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
+                    if (shelvesResponseData[i].User == currentUser) {
+                        let li = document.createElement("li");
+                        let shelfTitle = document.createElement("p");
+                        let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
 
-                    li.classList.add("shelfLi");
-                    svg.classList.add("shelfSvg");
-                    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-                    svg.setAttribute("width", "20");
-                    svg.setAttribute("height", "20");
-                    svg.setAttribute("fill", "black");
-                    svg.classList.add("bi");
-                    svg.classList.add("bi-chevron-up");
-                    svg.setAttribute("viewBox", "0 0 16 16");
-                    path.setAttribute("fill-rule", "evenodd");
-                    path.setAttribute("d", "M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z");
-                    shelfTitle.appendChild(shelfTitleTxt);
-                    addShelfBtn.style.width = 275 + "px";
+                        li.classList.add("shelfLi");
+                        shelfTitle.appendChild(shelfTitleTxt);
+                        addShelfBtn.style.width = 275 + "px";
 
-                    svg.appendChild(path);
-                    span.appendChild(svg);
-                    li.appendChild(shelfTitle);
-                    li.appendChild(span);
-                    shelvesBox.appendChild(li);
+                        li.appendChild(shelfTitle);
+                        shelvesBox.appendChild(li);
 
-                    console.log(i);
+                        li.addEventListener("click", () => {
+                            shelfPnl.style.opacity = 1;
+                            shelfPnl.style.top = 50 + "%";
+                            navBar.style.backgroundColor = "transparent";
+                            shelfNameTitle.innerHTML = shelfTitle.innerHTML;
+                            searchPnlCloseBtn.style.display = "none";
+                        })
+
+                        console.log(i);
+                    }
                 }
             }
 
@@ -1895,35 +1903,28 @@ addShelfBtnSlc.addEventListener("click", async () => {
     }
     else {
         let li = document.createElement("li");
-        let span = document.createElement("span");
-        let svg = document.createElement("svg");
-        let path = document.createElement("path");
         let shelfTitle = document.createElement("p");
         let shelfTitleTxt = document.createTextNode(shelfNameSelector.value)
 
         li.classList.add("shelfLi");
-        svg.classList.add("shelfSvg");
-        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        svg.setAttribute("width", "20");
-        svg.setAttribute("height", "20");
-        svg.setAttribute("fill", "black");
-        svg.classList.add("bi");
-        svg.classList.add("bi-chevron-up");
-        svg.setAttribute("viewBox", "0 0 16 16");
-        path.setAttribute("fill-rule", "evenodd");
-        path.setAttribute("d", "M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z");
         shelfTitle.appendChild(shelfTitleTxt);
         addShelfBtn.style.width = 275 + "px";
 
-        svg.appendChild(path);
-        span.appendChild(svg);
         li.appendChild(shelfTitle);
-        li.appendChild(span);
         shelvesBox.appendChild(li);
 
         let shelfName2 = shelfNameSelector.value;
+        let user = localStorage.getItem("userTarget");
 
-        const shelfData = { shelfName2 }
+        li.addEventListener("click", () => {
+            shelfPnl.style.opacity = 1;
+            shelfPnl.style.top = 50 + "%";
+            navBar.style.backgroundColor = "transparent";
+            shelfNameTitle.innerHTML = shelfTitle.innerHTML;
+            searchPnlCloseBtn.style.display = "none";
+        })
+
+        const shelfData = { shelfName2, user }
         const options3 = {
             method: "POST",
             headers: {
@@ -1966,35 +1967,20 @@ shelfNameSelector.addEventListener("keydown", async (e) => {
         }
         else {
             let li = document.createElement("li");
-            let span = document.createElement("span");
-            let svg = document.createElement("svg");
-            let path = document.createElement("path");
             let shelfTitle = document.createElement("p");
             let shelfTitleTxt = document.createTextNode(shelfNameSelector.value)
 
             li.classList.add("shelfLi");
-            svg.classList.add("shelfSvg");
-            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-            svg.setAttribute("width", "20");
-            svg.setAttribute("height", "20");
-            svg.setAttribute("fill", "black");
-            svg.classList.add("bi");
-            svg.classList.add("bi-chevron-up");
-            svg.setAttribute("viewBox", "0 0 16 16");
-            path.setAttribute("fill-rule", "evenodd");
-            path.setAttribute("d", "M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z");
             shelfTitle.appendChild(shelfTitleTxt);
             addShelfBtn.style.width = 275 + "px";
 
-            svg.appendChild(path);
-            span.appendChild(svg);
             li.appendChild(shelfTitle);
-            li.appendChild(span);
             shelvesBox.appendChild(li);
 
             let shelfName2 = shelfNameSelector.value;
+            let user = localStorage.getItem("userTarget");
 
-            const shelfData = { shelfName2 }
+            const shelfData = { shelfName2, user }
             const options3 = {
                 method: "POST",
                 headers: {
@@ -2005,6 +1991,14 @@ shelfNameSelector.addEventListener("keydown", async (e) => {
 
             const ShelfRespons = await fetch("/shelfCreator", options3)
             const ShelfResponsData = await ShelfRespons.json();
+
+            li.addEventListener("click", () => {
+                shelfPnl.style.opacity = 1;
+                shelfPnl.style.top = 50 + "%";
+                navBar.style.backgroundColor = "transparent";
+                shelfNameTitle.innerHTML = shelfTitle.innerHTML;
+                searchPnlCloseBtn.style.display = "none";
+            })
 
             shelfNameSelector.blur()
             shelfNameSelector.value = "";

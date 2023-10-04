@@ -167,7 +167,7 @@ body {
     fill: white;
 }
 
-.genersPage .navBar  #bookPannelCloseBtn {
+.genersPage .navBar #bookPannelCloseBtn {
     position: fixed;
     width: 60px;
     height: 60px;
@@ -1157,8 +1157,8 @@ body {
     overflow-y: auto;
     display: block;
     transition: 0.6s;
-    opacity: 0;
-    transform: translateX(-100%);
+    opacity: 1;
+    transform: translateX(-0%);
 }
 
 .genersPage .rightSide .bookPannel::-webkit-scrollbar {
@@ -1263,6 +1263,80 @@ body {
 .genersPage .rightSide .bookPannel #addBookBtn:hover {
     background-color: rgb(216, 216, 216);
     color: #242131;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems {
+    width: 270px;
+    height: 300px;
+    position: absolute;
+    background-color: #1a1724;
+    background-image: linear-gradient(to bottom, #191622, #14111b);
+    border-radius: 4px;
+    left: 50%;
+    top: 280px;
+    opacity:.97;
+    transition: 0.3s;
+    border-radius: 4px;
+    box-shadow: 8px 8px 15px rgba(0, 0,0, 0.7);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar {
+    width: 4px;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems li{
+    position: relative;
+    width: 120% !important;
+    height: 50px;
+    background-color: transparent;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    transform: translateX(-31px);
+    list-style: none;
+    transition: 0.2s;
+
+}
+
+.genersPage .rightSide .bookPannel .shelfItems li:hover{
+    background-color: #3a334b;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems li p{
+    font-family: regularFont;
+    font-weight: bold;
+    color: #d1cce7;
+    padding: 5px;
+    font-size: .9em;
+    padding-top: 14px;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems li .addShelfItemsImg{
+    width: 15px;
+    height: 15px;
+    margin-top: -40px;
+    position: relative;
+    left: 80%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.genersPage .rightSide .bookPannel .shelfItems li .addShelfItemsImg:hover{
+    filter: brightness(150%);
 }
 
 .genersPage .rightSide .bookPannel .aboutBook {

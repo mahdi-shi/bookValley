@@ -208,24 +208,59 @@ app.post("/removeComment", (req, res) => {
 
 // insert 3 default shelf to the dataBase
 
-dataBase3.find({}, (error, Data) => {
-    if (error) {
-        res.end();
-        return;
-    }
+app.post("/DefaultshelvesData", (req, res) => {
+    console.log("i got the reques fuckersss default ")
+    let isThereStatus;
 
-    console.log(Data.length + "fafadsfasdfasdf");
+    dataBase3.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
 
-    if (Data.length == 0) {
-        dataBase3.insert({ Name: "want to read" });
-        dataBase3.insert({ Name: "reading" });
-        dataBase3.insert({ Name: "readed" });
-    }
-    else {
-        return false;
-    }
+        console.log(Data.length);
 
+        if (Data.length == 0) {
+            console.log("none");
+            dataBase3.insert({ Name: "want to read", User: req.body.userName });
+            dataBase3.insert({ Name: "reading", User: req.body.userName });
+            dataBase3.insert({ Name: "readed", User: req.body.userName });
+        }
+        else {
+            for (let i = 0; i < Data.length; i++) {
+                console.log(Data[i]);
+                if (Data[i].User == req.body.userName) {
+                    isThereStatus = true
+                    console.log(isThereStatus);
+                    break;
+                }
+                else {
+                    isThereStatus = false;
+                    console.log(isThereStatus);
+                }
+            }
+        }
+        if (isThereStatus == false) {
+            dataBase3.insert({ Name: "want to read", User: req.body.userName });
+            dataBase3.insert({ Name: "reading", User: req.body.userName });
+            dataBase3.insert({ Name: "readed", User: req.body.userName });
+            isThereStatus = true;
+        }
+        else {
+            return false
+        }
+    })
 })
+
+/*if (Data[i].User == req.body.userName) {
+    console.log("there is");
+}
+else{
+    dataBase3.insert({ Name: "want to read", User: req.body.userName });
+    dataBase3.insert({ Name: "reading", User: req.body.userName });
+    dataBase3.insert({ Name: "readed", User: req.body.userName });
+    console.log("there isnt");
+}*/
 
 //adding new shelf to dataBase
 
@@ -237,7 +272,7 @@ app.post("/shelfCreator", (req, res) => {
             return;
         }
 
-        dataBase3.insert({ Name: req.body.shelfName2 })
+        dataBase3.insert({ Name: req.body.shelfName2, User: req.body.user })
         res.json({
             status: "200"
         });

@@ -588,8 +588,8 @@ body::-webkit-scrollbar-thumb:hover {
     left: 90%;
     opacity: 0;
     transition: 0.2s;
-    margin-top: 3px;
     user-select: none;
+    transform: translateY(-40px);
 }
 
 .shelfLi:hover .shelfSvg {
