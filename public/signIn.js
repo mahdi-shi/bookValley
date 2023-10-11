@@ -4,6 +4,7 @@ const singInUnameEmail = document.querySelector("#signInUserNameOrEmailTxtBox");
 const signInpassword = document.querySelector("#signInPasswordTxtBox");
 const signUpconstBtn = document.querySelector("#signInSendBtn")
 const messageBox = document.querySelector("#messageBox");
+let witchBookCode;
 
 signUpconstBtn.addEventListener('click', async () => {
 
@@ -234,7 +235,8 @@ document.body.onload = async () => {
 
     if (userName == null) {
         profIconPicture.style.display = "none";
-        profileIconSvg.style.display = "block";    }
+        profileIconSvg.style.display = "block";
+    }
     else {
         const data = { userName }
         const options = {
@@ -257,6 +259,139 @@ document.body.onload = async () => {
             profIconPicture.style.display = "block";
             profIconPicture.src = dataResponse.image;
             profileIconSvg.style.display = "none";
+        }
+
+        const shelfData = { userName }
+        const shelfOptions = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(shelfData)
+        };
+
+        const shelvesResponse = await fetch("/shelvesData", shelfOptions);
+        const shelvesResponseData = await shelvesResponse.json();
+        console.log(shelvesResponseData);
+
+        for (let i = 0; i < shelvesResponseData.length; i++) {
+
+            let li = document.createElement("li");
+            let shelfTitle = document.createElement("p");
+            let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
+            let shelfImg = document.createElement("img");
+
+            li.classList.add("shelfLi");
+            shelfTitle.appendChild(shelfTitleTxt);
+            shelfTitle.classList.add("shelfTitle");
+            shelfImg.src = "assets/addShelfImg.png";
+            shelfImg.classList.add("addShelfItemsImg");
+
+            li.appendChild(shelfTitle);
+            li.appendChild(shelfImg);
+            shelfItems.appendChild(li);
+
+            let bookShelfStatus = false;
+
+            li.addEventListener("click", async () => {
+                const shelfData = { userName }
+                const shelfOptions = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(shelfData)
+                };
+                const shelvesResponse = await fetch("/shelvesData", shelfOptions);
+                const shelvesResponseData = await shelvesResponse.json();
+
+                if (shelvesResponseData[i].book == null) {
+                    messageBox.innerHTML = "the book added to shelf"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000);
+                    console.log(witchBookCode);
+                    console.log(shelvesResponseData[i]);
+                    console.log(shelfBtnStatus);
+                    const shelfName = shelfTitle.innerHTML;
+                    const book = witchBookCode;
+                    const shelfData2 = { userName, shelfName, book }
+                    const shelfOptions2 = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(shelfData2)
+                    };
+
+                    shelfItems.style.left = 40 + "%";
+                    shelfItems.style.top = 410 + "px";
+                    shelfItems.style.opacity = 0;
+                    setTimeout(() => {
+                        shelfItems.style.display = "none";
+                    }, 300);
+
+                    const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
+                    const shelvesResponseData2 = await shelvesResponse2.json();
+
+                    shelfBtnStatus = false;
+                }
+                else {
+
+                    shelfItems.style.left = 40 + "%";
+                    shelfItems.style.top = 410 + "px";
+                    shelfItems.style.opacity = 0;
+                    setTimeout(() => {
+                        shelfItems.style.display = "none";
+                    }, 300);
+
+                    for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
+                        if (shelvesResponseData[i].book[j] == witchBookCode) {
+                            messageBox.innerHTML = "you already have this book in the shelf"
+                            messageBox.classList.add("messageBoxFadeInOut");
+                            setTimeout(() => {
+                                messageBox.classList.remove("messageBoxFadeInOut");
+                            }, 5000);
+                            bookShelfStatus = true;
+                            console.log(shelfBtnStatus);
+                            console.log(witchBookCode);
+                            console.log(shelvesResponseData[i].book[j]);
+                            shelfBtnStatus = false;
+                            break;
+                        }
+                        else {
+                            bookShelfStatus = false;
+                            console.log(shelfBtnStatus);
+                            console.log(witchBookCode);
+                            console.log(shelvesResponseData[i].book[j]);
+                            shelfBtnStatus = false;
+                        }
+                    }
+
+                    if (bookShelfStatus == false) {
+                        messageBox.innerHTML = "book added to the shelf"
+                        messageBox.classList.add("messageBoxFadeInOut");
+                        setTimeout(() => {
+                            messageBox.classList.remove("messageBoxFadeInOut");
+                        }, 5000);
+                        const shelfName = shelfTitle.innerHTML;
+                        const book = witchBookCode;
+                        const shelfData2 = { userName, shelfName, book }
+                        const shelfOptions2 = {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(shelfData2)
+                        };
+                        shelfBtnStatus = false;
+                        const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
+                        const shelvesResponseData2 = await shelvesResponse2.json();
+                    }
+                    shelfBtnStatus = false;
+                }
+            })
         }
     }
 }
@@ -316,8 +451,6 @@ searchBoxBtn.addEventListener("click", async () => {
         const bookRateStar2 = document.querySelectorAll(".bookRateStar2");
         const bookCode = document.querySelectorAll(".bookCode");
         const bookPannelCloseBtnSvg = document.querySelector("#bookPannelCloseBtnSvg");
-
-        let witchBookCode;
 
         const books = document.querySelectorAll(".li");
 
@@ -1006,7 +1139,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
             }, 5000);
         }
         else {
-    
+
             searchPnl.style.marginTop = "-9vh";
             searchPnl.style.opacity = "0.95";
             bookPannel.style.opacity = "0"
@@ -1014,18 +1147,18 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
             bookPannelCloseBtn.style.display = "none"
             bookPannelCloseBtn.style.opacity = "0";
             bookImg.src = null
-    
+
             const allBooks = document.querySelectorAll(".books");
-    
+
             if (allBooks.length > 0) {
                 for (let i = 0; i < allBooks.length; i++) {
                     allBooks[i].remove();
                 }
             }
-    
+
             bookPannel.scrollTo(0, 0);
             searchPnl.scrollTo(0, 0);
-    
+
             const response = await fetch("https://openlibrary.org/search.json?q=" + bookSearchTxtBox.value)
             const data = await response.json();
             const bookLikeThisTitle = document.querySelectorAll(".bookLikeThisTitle");
@@ -1042,29 +1175,29 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
             const bookRateStar2 = document.querySelectorAll(".bookRateStar2");
             const bookCode = document.querySelectorAll(".bookCode");
             const bookPannelCloseBtnSvg = document.querySelector("#bookPannelCloseBtnSvg");
-    
+
             let witchBookCode;
-    
+
             const books = document.querySelectorAll(".li");
-    
+
             if (books.length > 0) {
                 for (let i = 0; i < books.length; i++) {
                     books[i].remove();
                 }
             }
             for (let i = 0; i < data.docs.length; i++) {
-    
+
                 console.log(data.docs[i].title);
-    
+
                 let li = document.createElement("li");
                 let div = document.createElement("div");
                 let p = document.createElement("p");
                 let p2 = document.createElement("p");
                 let img = document.createElement("img");
-    
+
                 let titlePara = document.createTextNode(data.docs[i].title);
                 let codePara = document.createTextNode(data.docs[i].key)
-    
+
                 p.appendChild(titlePara);
                 p.classList.add("bookTitle");
                 p2.appendChild(codePara);
@@ -1076,7 +1209,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                 else {
                     img.src = "https://covers.openlibrary.org/b/id/" + data.docs[i].cover_i + "-M.jpg";
                 }
-    
+
                 div.classList.add("books");
                 div.appendChild(p);
                 div.appendChild(p2);
@@ -1085,21 +1218,21 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                 li.classList.add("li");
                 li.appendChild(div);
                 secondetList.appendChild(li);
-    
+
                 //open any book pannel with user selecting 
-    
+
                 div.addEventListener("click", async () => {
                     if (p2.innerHTML == "") {
                         return false;
                     }
                     else {
-    
+
                         const response = await fetch("https://openlibrary.org" + p2.innerHTML + ".json");
                         const data = await response.json();
-    
+
                         const responseRate = await fetch("https://openlibrary.org" + p2.innerHTML + "/ratings.json");
                         const dataRate = await responseRate.json();
-    
+
                         if (dataRate >= 4) {
                             bookRateStar2[4].style.opacity = "1";
                             bookRateStar2[3].style.opacity = "1";
@@ -1149,9 +1282,9 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             bookRateStar2[1].style.opacity = "0";
                             bookRateStar2[0].style.opacity = "0";
                         }
-    
+
                         console.log(dataRate);
-    
+
                         bookPannel.style.opacity = "1"
                         bookPannel.style.transform = "translate(0%,-15%)"
                         navBar.style.backgroundColor = "transparent";
@@ -1159,7 +1292,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
                         bookPannelCloseBtn.style.display = "block"
                         bookPannelCloseBtn.style.opacity = "1";
-    
+
                         witchBookCode = p2.innerHTML;
                         const witchBook = witchBookCode;
                         const data2 = { witchBook }
@@ -1170,11 +1303,11 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             },
                             body: JSON.stringify(data2)
                         };
-    
+
                         const CommentRespones = await fetch("/dataForBookComments", options2);
                         const CommentResponesData = await CommentRespones.json();
                         console.log(CommentResponesData);
-    
+
                         if (CommentResponesData.length != null) {
                             for (let i = 0; i < CommentResponesData.length; i++) {
                                 let li = document.createElement("li");
@@ -1182,7 +1315,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 let p1 = document.createElement("p");
                                 let p2 = document.createElement("p");
                                 let img = document.createElement("img");
-    
+
                                 li.classList.add("comment");
                                 div.classList.add("commentProfIcon");
                                 let para1Text = document.createTextNode(CommentResponesData[i].Name);
@@ -1200,7 +1333,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 let p3Text = document.createTextNode("x");
                                 p3.appendChild(p3Text);
                                 p3.classList.add("closeCommentButton");
-    
+
                                 if (localStorage.getItem("userTarget") == CommentResponesData[i].Name) {
                                     li.appendChild(p3);
                                     p3.addEventListener("click", async () => {
@@ -1214,12 +1347,12 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                             },
                                             body: JSON.stringify(data3)
                                         };
-    
+
                                         const CommentRespones2 = await fetch("/removeComment", options3);
                                         const CommentResponesData2 = await CommentRespones2.json();
                                     })
                                 }
-    
+
                                 if (CommentResponesData[i].commentPicture == null) {
                                     img.src = "";
                                 }
@@ -1229,8 +1362,8 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 comments.appendChild(li);
                             }
                         }
-    
-    
+
+
                         bookName.innerHTML = data.title;
                         try {
                             if (data.description == null) {
@@ -1249,20 +1382,20 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             }
                         }
                         console.log(data);
-    
+
                         const authorRespones = await fetch("https://openlibrary.org" + data.authors[0].author.key + ".json");
                         const authorResponesData = await authorRespones.json();
                         console.log(authorResponesData);
-    
+
                         autorName.innerHTML = authorResponesData.name;
-    
+
                         try {
                             if (authorResponesData.bio == null) {
                                 aboutAuthor.innerHTML = "This author doesn't have any biography..."
                             }
                             else {
                                 aboutAuthor.innerHTML = authorResponesData.bio.value.slice(0, 310) + " ...";
-    
+
                             }
                         }
                         catch {
@@ -1273,10 +1406,10 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 aboutAuthor.innerHTML = authorResponesData.bio.slice(0, 310) + " ...";
                             }
                         }
-    
+
                         bookName.style.opacity = 1;
                         autorName.style.opacity = 1;
-    
+
                         if (data.covers == null) {
                             bookImg.style.opacity = 1;
                             bookImg.src = "assets/images (1).jfif";
@@ -1290,11 +1423,11 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         const bookSubjectResponse = await fetch("https://openlibrary.org/search.json?q=" + data.title.toLowerCase());
                         const bookSubjectsData = await bookSubjectResponse.json();
                         console.log(bookSubjectsData);
-    
+
                         for (let i = 0; i < bookLikeThisTitle.length; i++) {
                             bookLikeThisTitle[i].innerHTML = bookSubjectsData.docs[i].title;
                             bookLikeThisCode[i].innerHTML = bookSubjectsData.docs[i].key;
-    
+
                             if (bookSubjectsData.docs[i].cover_i == null) {
                                 bookLikeThisImg[i].style.opacity = 1;
                                 bookLikeThisImg[i].src = "assets/images (1).jfif";
@@ -1304,10 +1437,10 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 bookLikeThisImg[i].style.opacity = 1;
                             }
                         }
-    
+
                     }
                 })
-    
+
                 searchPnlCloseBtn.addEventListener("click", () => {
                     searchPnl.style.marginTop = "-200vh";
                     searchPnl.style.opacity = "0";
@@ -1318,11 +1451,11 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             books[i].remove();
                         }
                     }
-    
+
                 })
-    
+
                 searchPnl.onscroll = () => {
-    
+
                     if (searchPnl.scrollTop > 100) {
                         navBar.style.backgroundColor = "#242131";
                     }
@@ -1330,7 +1463,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         navBar.style.backgroundColor = "transparent";
                     }
                 }
-    
+
                 bookPannel.onscroll = () => {
                     if (bookPannel.scrollTop > 140) {
                         navBar.style.backgroundColor = "#242131";
@@ -1343,9 +1476,9 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         bookPannelCloseBtnSvg.style.fill = " rgb(86, 84, 110)";
                     }
                 }
-    
+
                 //close the pannel button
-    
+
                 bookPannelCloseBtnSvg.addEventListener("click", () => {
                     bookPannel.style.opacity = "0"
                     bookPannel.style.transform = "translate(-100%)"
@@ -1359,28 +1492,28 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     backgroundBookImg.style.opacity = 0;
                     bookPannelCloseBtn.style.display = "none"
                     bookPannelCloseBtn.style.opacity = "0"
-    
+
                     for (let i = 0; i < bookLikeThisTitle.length; i++) {
                         bookLikeThisTitle[i].innerHTML = "";
                         bookLikeThisCode[i].innerHTML = "";
                         bookLikeThisImg[i].src = "";
                         bookLikeThisImg[i].style.opacity = 0;
                     }
-    
+
                     pushCount = 0;
                     bookLikeThis[0].style.marginLeft = 0 + "px";
                     pushToLeft.style.display = "none";
                     pushToRight.style.opacity = 1;
                     pushToRight.style.display = "block";
-    
+
                     const comments = document.querySelectorAll(".comment");
                     for (let i = 0; i < comments.length; i++) {
                         comments[i].remove();
                     }
-    
+
                     bookPannel.scrollTo(0, 0);
                 })
-    
+
                 let pushCount = 0;
                 // push other boook like this list to right 
                 pushToRight.addEventListener("click", () => {
@@ -1392,13 +1525,13 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     }, 600)
                     if (pushCount == -2300) {
                         pushToRight.style.opacity = 0;
-    
+
                         setTimeout(() => {
                             pushToRight.style.display = "none";
                         }, 600)
                     }
                 })
-    
+
                 pushToLeft.addEventListener("click", () => {
                     pushCount = pushCount + 460;
                     bookLikeThis[0].style.marginLeft = pushCount + "px";
@@ -1408,14 +1541,14 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     }, 600)
                     if (pushCount == 0) {
                         pushToLeft.style.opacity = 0;
-    
+
                         setTimeout(() => {
                             pushToLeft.style.display = "none";
                         }, 600)
                     }
                 })
             }
-    
+
             for (let i = 0; i < bookLikeThis.length; i++) {
                 bookLikeThis[i].addEventListener("click", async () => {
                     if (bookLikeThisCode[i].innerHTML == "") {
@@ -1424,15 +1557,15 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     else {
                         const response = await fetch("https://openlibrary.org" + bookLikeThisCode[i].innerHTML + ".json");
                         const data = await response.json();
-    
+
                         const responseRate2 = await fetch("https://openlibrary.org" + bookLikeThisCode[i].innerHTML + "/ratings.json");
                         const dataRate2 = await responseRate2.json();
-    
+
                         const comments2 = document.querySelectorAll(".comment");
                         for (let i = 0; i < comments2.length; i++) {
                             comments2[i].remove();
                         }
-    
+
                         if (data.covers == null) {
                             bookImg.style.opacity = 1;
                             bookImg.src = "assets/images (1).jfif";
@@ -1443,9 +1576,9 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             backgroundBookImg.style.opacity = 1;
                             bookImg.style.opacity = 1;
                         }
-    
+
                         bookPannel.scrollTo(0, 0);
-    
+
                         if (dataRate2.summary.average >= 4) {
                             bookRateStar2[4].style.opacity = "1";
                             bookRateStar2[3].style.opacity = "1";
@@ -1495,12 +1628,12 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             bookRateStar2[1].style.opacity = "0";
                             bookRateStar2[0].style.opacity = "0";
                         }
-    
+
                         console.log(dataRate2);
-    
+
                         navBar.style.backgroundColor = "transparent";
                         navBar.style.boxShadow = "none"
-    
+
                         bookName.innerHTML = data.title;
                         try {
                             if (data.description == null) {
@@ -1519,10 +1652,10 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             }
                         }
                         console.log(data);
-    
+
                         const authorRespones = await fetch("https://openlibrary.org" + data.authors[0].author.key + ".json");
                         const authorResponesData = await authorRespones.json();
-    
+
                         autorName.innerHTML = authorResponesData.name;
                         try {
                             if (authorResponesData.bio == null) {
@@ -1530,7 +1663,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             }
                             else {
                                 aboutAuthor.innerHTML = authorResponesData.bio.value.slice(0, 310) + " ...";
-    
+
                             }
                         }
                         catch {
@@ -1541,7 +1674,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 aboutAuthor.innerHTML = authorResponesData.bio.slice(0, 310) + " ...";
                             }
                         }
-    
+
                         witchBookCode = bookLikeThisCode[i].innerHTML;
                         const witchBook = witchBookCode;
                         const data2 = { witchBook }
@@ -1552,11 +1685,11 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             },
                             body: JSON.stringify(data2)
                         };
-    
+
                         const CommentRespones = await fetch("/dataForBookComments", options2);
                         const CommentResponesData = await CommentRespones.json();
                         console.log(CommentResponesData + "her it is");
-    
+
                         if (CommentResponesData.length != null) {
                             for (let i = 0; i < CommentResponesData.length; i++) {
                                 let li = document.createElement("li");
@@ -1564,7 +1697,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 let p1 = document.createElement("p");
                                 let p2 = document.createElement("p");
                                 let img = document.createElement("img");
-    
+
                                 li.classList.add("comment");
                                 div.classList.add("commentProfIcon");
                                 let para1Text = document.createTextNode(CommentResponesData[i].Name);
@@ -1582,7 +1715,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 let p3Text = document.createTextNode("x");
                                 p3.appendChild(p3Text);
                                 p3.classList.add("closeCommentButton");
-    
+
                                 if (localStorage.getItem("userTarget") == CommentResponesData[i].Name) {
                                     li.appendChild(p3);
                                     p3.addEventListener("click", async () => {
@@ -1596,12 +1729,12 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                             },
                                             body: JSON.stringify(data3)
                                         };
-    
+
                                         const CommentRespones2 = await fetch("/removeComment", options3);
                                         const CommentResponesData2 = await CommentRespones2.json();
                                     })
                                 }
-    
+
                                 if (CommentResponesData[i].commentPicture == null) {
                                     img.src = "";
                                 }
@@ -1611,7 +1744,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                                 comments.appendChild(li);
                             }
                         }
-    
+
                         bookName.style.opacity = 1;
                         autorName.style.opacity = 1;
                         pushCount = 0;
@@ -1619,14 +1752,14 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         pushToLeft.style.display = "none";
                         pushToRight.style.opacity = 1;
                         pushToRight.style.display = "block";
-    
+
                         const bookSubjectResponse = await fetch("https://openlibrary.org/search.json?q=" + data.title.toLowerCase());
                         const bookSubjectsData = await bookSubjectResponse.json();
-    
+
                         for (let i = 0; i < bookLikeThisTitle.length; i++) {
                             bookLikeThisTitle[i].innerHTML = bookSubjectsData.docs[i].title;
                             bookLikeThisCode[i].innerHTML = bookSubjectsData.docs[i].key;
-    
+
                             if (bookSubjectsData.docs[i].cover_i == null) {
                                 bookLikeThisImg[i].style.opacity = 1;
                                 bookLikeThisImg[i].src = "assets/images (1).jfif";
@@ -1639,11 +1772,11 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     }
                 })
             }
-    
+
             const addCommentBox = document.querySelector("#insertCommentBtn");
             const comments = document.querySelector(".comments");
             const commentTxtBox = document.querySelector('#commentTxtBox');
-    
+
             addCommentBox.addEventListener("click", async () => {
                 if (commentTxtBox.value == "" || commentTxtBox.value == null) {
                     return false;
@@ -1655,7 +1788,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     let p2 = document.createElement("p");
                     let img = document.createElement("img");
                     let p3 = document.createElement("p");
-    
+
                     const userName = localStorage.getItem("userTarget");
                     const data = { userName }
                     const options = {
@@ -1665,10 +1798,10 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         },
                         body: JSON.stringify(data)
                     };
-    
+
                     const response = await fetch("/dataForProfile", options)
                     const dataResponse = await response.json();
-    
+
                     let p3Text = document.createTextNode("x");
                     p3.appendChild(p3Text);
                     p3.classList.add("closeCommentButton");
@@ -1686,11 +1819,11 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                     li.appendChild(div);
                     li.appendChild(p1);
                     li.appendChild(p2);
-    
+
                     p3.addEventListener("click", () => {
                         li.remove();
                     })
-    
+
                     if (dataResponse.image == null) {
                         img.src = "";
                     }
@@ -1698,14 +1831,14 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         img.src = dataResponse.image;
                     }
                     comments.appendChild(li);
-    
+
                     commentTxtBox.value = "";
-    
+
                     const name = p1.innerHTML;
                     const comment = p2.innerHTML;
                     const commentPic = img.src;
                     const witchBook = witchBookCode;
-    
+
                     const data2 = { name, comment, witchBook, commentPic }
                     const options2 = {
                         method: "POST",
@@ -1714,7 +1847,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         },
                         body: JSON.stringify(data2)
                     };
-    
+
                     const response2 = await fetch("/commentsData", options2)
                     const dataResponse2 = await response2.json();
                 }
@@ -1736,7 +1869,7 @@ searchPnlCloseBtn.addEventListener("click", () => {
 })
 
 const navBar = document.querySelector(".navBar");
-
+const backgroundBookImg = document.querySelector(".backgroundBookImg");
 searchPnl.onscroll = () => {
 
     if (searchPnl.scrollTop > 100) {
@@ -1746,3 +1879,68 @@ searchPnl.onscroll = () => {
         navBar.style.backgroundColor = "transparent";
     }
 }
+
+const shelfItems = document.querySelector(".shelfItems");
+let shelfBtnStatus = false;
+
+addBookBtn.addEventListener("click", () => {
+    if (shelfBtnStatus == false) {
+        shelfItems.style.display = "block";
+        setTimeout(() => {
+            shelfItems.style.left = 50 + "%";
+            shelfItems.style.top = 280 + "px";
+            shelfItems.style.opacity = .97;
+        }, 300);
+        shelfBtnStatus = true;
+    }
+    else {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 410 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    }
+});
+
+backgroundBookImg.addEventListener("click", () => {
+    shelfItems.style.left = 40 + "%";
+    shelfItems.style.top = 410 + "px";
+    shelfItems.style.opacity = 0;
+    setTimeout(() => {
+        shelfItems.style.display = "none";
+
+    }, 300);
+
+    shelfBtnStatus = false;
+})
+
+const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+const BookImg = document.querySelector(".BookImg");
+
+backgroundBookImgCover.addEventListener("click", () => {
+    shelfItems.style.left = 40 + "%";
+    shelfItems.style.top = 410 + "px";
+    shelfItems.style.opacity = 0;
+    setTimeout(() => {
+        shelfItems.style.display = "none";
+
+    }, 300);
+
+    shelfBtnStatus = false;
+})
+
+BookImg.addEventListener("click", () => {
+    shelfItems.style.left = 40 + "%";
+    shelfItems.style.top = 410 + "px";
+    shelfItems.style.opacity = 0;
+    setTimeout(() => {
+        shelfItems.style.display = "none";
+
+    }, 300);
+
+    shelfBtnStatus = false;
+})

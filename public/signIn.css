@@ -213,15 +213,15 @@
     }
 
     10% {
-        margin-top: 70px;
+        margin-top: 30px;
     }
 
     50% {
-        margin-top: 70px;
+        margin-top: 30px;
     }
 
     90% {
-        margin-top: 70px;
+        margin-top: 30px;
     }
 
     100% {
@@ -1354,4 +1354,78 @@
 
 .signUpPage .bookPannel .bookRate2 li svg {
     fill: #b2a9df;
+}
+
+.shelfItems {
+    width: 270px;
+    height: 300px;
+    position: absolute;
+    background-color: #1a1724;
+    background-image: linear-gradient(to bottom, #191622, #14111b);
+    border-radius: 4px;
+    left: 40%;
+    top: 410px;
+    opacity: 0;
+    display: none;
+    transition: 0.3s;
+    border-radius: 4px;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.shelfItems::-webkit-scrollbar {
+    width: 4px;
+}
+
+.shelfItems::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.shelfItems::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.shelfItems::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.shelfLi {
+    position: relative;
+    width: 120% !important;
+    height: 50px;
+    background-color: transparent;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    transform: translateX(-31px);
+    list-style: none;
+    transition: 0.2s;
+}
+
+.shelfLi:hover {
+    background-color: #3a334b;
+}
+
+.shelfTitle {
+    font-family: regularFont;
+    font-weight: bold;
+    color: #d1cce7;
+    padding: 5px;
+    font-size: .9em;
+    padding-top: 14px;
+}
+
+.addShelfItemsImg {
+    width: 15px;
+    height: 15px;
+    margin-top: -40px;
+    position: relative;
+    left: 80%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.addShelfItemsImg:hover {
+    filter: brightness(150%);
 }

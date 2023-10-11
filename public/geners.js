@@ -95,7 +95,8 @@ const bookLikeThisTitle = document.querySelectorAll(".bookLikeThisTitle")
 const bookLikeThisImg = document.querySelectorAll(".bookLikeThisImg");
 const bookLikeThisCode = document.querySelectorAll(".bookLikeThisCode");
 const bookRateStar2 = document.querySelectorAll(".bookRateStar2");
-let witchBookCode;
+const userName = localStorage.getItem("userTarget")
+var witchBookCode;
 
 for (let i = 0; i < books.length; i++) {
     books[i].addEventListener("click", async () => {
@@ -161,6 +162,7 @@ for (let i = 0; i < books.length; i++) {
             }
 
             console.log(dataRate);
+
 
             bookPannel.style.opacity = "1"
             bookPannel.style.transform = "translate(0%,-9%)"
@@ -2032,6 +2034,139 @@ document.body.onload = async () => {
         profIconPicture.src = dataResponse.image;
         profileIconSvg.style.display = "none";
     }
+
+    const shelfData = { userName }
+    const shelfOptions = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(shelfData)
+    };
+
+    const shelvesResponse = await fetch("/shelvesData", shelfOptions);
+    const shelvesResponseData = await shelvesResponse.json();
+    console.log(shelvesResponseData);
+
+    for (let i = 0; i < shelvesResponseData.length; i++) {
+
+        let li = document.createElement("li");
+        let shelfTitle = document.createElement("p");
+        let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
+        let shelfImg = document.createElement("img");
+
+        li.classList.add("shelfLi");
+        shelfTitle.appendChild(shelfTitleTxt);
+        shelfTitle.classList.add("shelfTitle");
+        shelfImg.src = "assets/addShelfImg.png";
+        shelfImg.classList.add("addShelfItemsImg");
+
+        li.appendChild(shelfTitle);
+        li.appendChild(shelfImg);
+        shelfItems.appendChild(li);
+
+        let bookShelfStatus = false;
+
+        li.addEventListener("click", async () => {
+            const shelfData = { userName }
+            const shelfOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(shelfData)
+            };
+            const shelvesResponse = await fetch("/shelvesData", shelfOptions);
+            const shelvesResponseData = await shelvesResponse.json();
+
+            if (shelvesResponseData[i].book == null) {
+                messageBox.innerHTML = "the book added to shelf"
+                messageBox.classList.add("messageBoxFadeInOut");
+                setTimeout(() => {
+                    messageBox.classList.remove("messageBoxFadeInOut");
+                }, 5000);
+                console.log(witchBookCode);
+                console.log(shelvesResponseData[i]);
+                console.log(shelfBtnStatus);
+                const shelfName = shelfTitle.innerHTML;
+                const book = witchBookCode;
+                const shelfData2 = { userName, shelfName, book }
+                const shelfOptions2 = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(shelfData2)
+                };
+
+                shelfItems.style.left = 40 + "%";
+                shelfItems.style.top = 410 + "px";
+                shelfItems.style.opacity = 0;
+                setTimeout(() => {
+                    shelfItems.style.display = "none";
+                }, 300);
+
+                const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
+                const shelvesResponseData2 = await shelvesResponse2.json();
+
+                shelfBtnStatus = false;
+            }
+            else {
+
+                shelfItems.style.left = 40 + "%";
+                shelfItems.style.top = 410 + "px";
+                shelfItems.style.opacity = 0;
+                setTimeout(() => {
+                    shelfItems.style.display = "none";
+                }, 300);
+                
+                for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
+                    if (shelvesResponseData[i].book[j] == witchBookCode) {
+                        messageBox.innerHTML = "you already have this book in the shelf"
+                        messageBox.classList.add("messageBoxFadeInOut");
+                        setTimeout(() => {
+                            messageBox.classList.remove("messageBoxFadeInOut");
+                        }, 5000);
+                        bookShelfStatus = true;
+                        console.log(shelfBtnStatus);
+                        console.log(witchBookCode);
+                        console.log(shelvesResponseData[i].book[j]);
+                        shelfBtnStatus = false;
+                        break;
+                    }
+                    else {
+                        bookShelfStatus = false;
+                        console.log(shelfBtnStatus);
+                        console.log(witchBookCode);
+                        console.log(shelvesResponseData[i].book[j]);
+                        shelfBtnStatus = false;
+                    }
+                }
+
+                if (bookShelfStatus == false) {
+                    messageBox.innerHTML = "book added to the shelf"
+                    messageBox.classList.add("messageBoxFadeInOut");
+                    setTimeout(() => {
+                        messageBox.classList.remove("messageBoxFadeInOut");
+                    }, 5000);
+                    const shelfName = shelfTitle.innerHTML;
+                    const book = witchBookCode;
+                    const shelfData2 = { userName, shelfName, book }
+                    const shelfOptions2 = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(shelfData2)
+                    };
+                    shelfBtnStatus = false;
+                    const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
+                    const shelvesResponseData2 = await shelvesResponse2.json();
+                }
+                shelfBtnStatus = false;
+            }
+        })
+    }
 }
 
 const bookPannel = document.querySelector(".bookPannel");
@@ -2354,3 +2489,68 @@ for (let i = 0; i < bookLikeThis.length; i++) {
         }
     })
 }
+
+const shelfItems = document.querySelector(".shelfItems");
+let shelfBtnStatus = false;
+
+addBookBtn.addEventListener("click", () => {
+    if (shelfBtnStatus == false) {
+        shelfItems.style.display = "block";
+        setTimeout(() => {
+            shelfItems.style.left = 50 + "%";
+            shelfItems.style.top = 280 + "px";
+            shelfItems.style.opacity = .97;
+        }, 300);
+        shelfBtnStatus = true;
+    }
+    else {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 410 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    }
+});
+
+backgroundBookImg.addEventListener("click", () => {
+    shelfItems.style.left = 40 + "%";
+    shelfItems.style.top = 410 + "px";
+    shelfItems.style.opacity = 0;
+    setTimeout(() => {
+        shelfItems.style.display = "none";
+
+    }, 300);
+
+    shelfBtnStatus = false;
+})
+
+const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+const BookImg = document.querySelector(".BookImg");
+
+backgroundBookImgCover.addEventListener("click", () => {
+    shelfItems.style.left = 40 + "%";
+    shelfItems.style.top = 410 + "px";
+    shelfItems.style.opacity = 0;
+    setTimeout(() => {
+        shelfItems.style.display = "none";
+
+    }, 300);
+
+    shelfBtnStatus = false;
+})
+
+BookImg.addEventListener("click", () => {
+    shelfItems.style.left = 40 + "%";
+    shelfItems.style.top = 410 + "px";
+    shelfItems.style.opacity = 0;
+    setTimeout(() => {
+        shelfItems.style.display = "none";
+
+    }, 300);
+
+    shelfBtnStatus = false;
+})

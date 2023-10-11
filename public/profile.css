@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb:hover {
 .ProfPage .navBar {
     height: 60px;
     width: 100.9%;
-    z-index: 25;
+    z-index: 26;
     position: fixed;
     transition: 0.4s;
 }
@@ -1112,7 +1112,7 @@ body::-webkit-scrollbar-thumb:hover {
     transition: 0.6s;
 }
 
-.profPage #messageBox {
+.profPage #messageText {
     position: absolute;
     left: 17%;
     top: -10%;
@@ -1138,15 +1138,15 @@ body::-webkit-scrollbar-thumb:hover {
     }
 
     10% {
-        top: 10%;
+        top: 6%;
     }
 
     50% {
-        top: 10%;
+        top: 6%;
     }
 
     90% {
-        top: 10%;
+        top: 6%;
     }
 
     100% {
@@ -1169,10 +1169,10 @@ body::-webkit-scrollbar-thumb:hover {
 .profPage .bookPannel {
     position: fixed;
     width: 100%;
-    margin-top: -10px;
-    height: 108vh;
+    margin-top: 20px;
+    height: 114vh;
     background-color: #242131;
-    z-index: 23;
+    z-index: 25;
     overflow-y: auto;
     display: block;
     transition: 0.6s;
@@ -1262,6 +1262,80 @@ body::-webkit-scrollbar-thumb:hover {
     margin-left: 10px;
     user-select: none;
     transition: 0.8s;
+}
+
+.shelfItems {
+    width: 270px;
+    height: 300px;
+    position: absolute;
+    background-color: #1a1724;
+    background-image: linear-gradient(to bottom, #191622, #14111b);
+    border-radius: 4px;
+    left: 40%;
+    top: 410px;
+    opacity:0;
+    display: none;
+    transition: 0.3s;
+    border-radius: 4px;
+    box-shadow: 8px 8px 15px rgba(0, 0,0, 0.7);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.shelfItems::-webkit-scrollbar {
+    width: 4px;
+}
+
+.shelfItems::-webkit-scrollbar-track {
+    background: #1a1724;
+}
+
+.shelfItems::-webkit-scrollbar-thumb {
+    background: #282535;
+}
+
+.shelfItems::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.shelfLi2{
+    position: relative;
+    width: 120% !important;
+    height: 50px;
+    background-color: transparent;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+    transform: translateX(-31px);
+    list-style: none;
+    transition: 0.2s;
+}
+
+.shelfLi2:hover{
+    background-color: #3a334b;
+}
+
+.shelfTitle2{
+    font-family: regularFont;
+    font-weight: bold;
+    color: #d1cce7;
+    padding: 5px;
+    font-size: .9em;
+    padding-top: 14px;
+}
+
+.addShelfItemsImg{
+    width: 15px;
+    height: 15px;
+    margin-top: -40px;
+    position: relative;
+    left: 80%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.addShelfItemsImg:hover{
+    filter: brightness(150%);
 }
 
 .profPage .bookPannel #addBookBtn {

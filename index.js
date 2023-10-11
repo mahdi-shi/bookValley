@@ -252,16 +252,6 @@ app.post("/DefaultshelvesData", (req, res) => {
     })
 })
 
-/*if (Data[i].User == req.body.userName) {
-    console.log("there is");
-}
-else{
-    dataBase3.insert({ Name: "want to read", User: req.body.userName });
-    dataBase3.insert({ Name: "reading", User: req.body.userName });
-    dataBase3.insert({ Name: "readed", User: req.body.userName });
-    console.log("there isnt");
-}*/
-
 //adding new shelf to dataBase
 
 app.post("/shelfCreator", (req, res) => {
@@ -279,9 +269,8 @@ app.post("/shelfCreator", (req, res) => {
     })
 })
 
-app.get("/shelvesData", (req, res) => {
+app.post("/shelvesData", (req, res) => {
     let targetShelves = []
-
     dataBase3.find({}, (error, Data) => {
         if (error) {
             res.end();
@@ -289,9 +278,18 @@ app.get("/shelvesData", (req, res) => {
         }
 
         for (let i = 0; i < Data.length; i++) {
-            targetShelves.push(Data[i]);
+            if (Data[i].User == req.body.userName) {
+                targetShelves.push(Data[i]);
+            }
         }
         console.log(targetShelves);
         res.json(targetShelves);
+    })
+})
+
+//adding a book to shelf
+
+app.post("/shelfAdd", (req, res) => {
+    dataBase3.update({ User: req.body.userName, Name: req.body.shelfName }, { $push: { book: req.body.book } }, { multi: true }, function (err, numReplaced) {
     })
 })

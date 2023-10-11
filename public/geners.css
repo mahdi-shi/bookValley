@@ -1114,6 +1114,7 @@ body {
     font-weight: bold;
     opacity: 1;
     user-select: none;
+    z-index: 809583409584385;
 }
 
 .messageBoxFadeInOut {
@@ -1129,15 +1130,15 @@ body {
     }
 
     10% {
-        top: 10%;
+        top: 5%;
     }
 
     50% {
-        top: 10%;
+        top: 5%;
     }
 
     90% {
-        top: 10%;
+        top: 5%;
     }
 
     100% {
@@ -1157,8 +1158,8 @@ body {
     overflow-y: auto;
     display: block;
     transition: 0.6s;
-    opacity: 1;
-    transform: translateX(-0%);
+    opacity: 0;
+    transform: translateX(-100%);
 }
 
 .genersPage .rightSide .bookPannel::-webkit-scrollbar {
@@ -1265,16 +1266,17 @@ body {
     color: #242131;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems {
+.shelfItems {
     width: 270px;
     height: 300px;
     position: absolute;
     background-color: #1a1724;
     background-image: linear-gradient(to bottom, #191622, #14111b);
     border-radius: 4px;
-    left: 50%;
-    top: 280px;
-    opacity:.97;
+    left: 40%;
+    top: 410px;
+    opacity:0;
+    display: none;
     transition: 0.3s;
     border-radius: 4px;
     box-shadow: 8px 8px 15px rgba(0, 0,0, 0.7);
@@ -1282,23 +1284,23 @@ body {
     overflow-x: hidden;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar {
+.shelfItems::-webkit-scrollbar {
     width: 4px;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar-track {
+.shelfItems::-webkit-scrollbar-track {
     background: #1a1724;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar-thumb {
+.shelfItems::-webkit-scrollbar-thumb {
     background: #282535;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems::-webkit-scrollbar-thumb:hover {
+.shelfItems::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems li{
+.shelfLi{
     position: relative;
     width: 120% !important;
     height: 50px;
@@ -1312,11 +1314,11 @@ body {
 
 }
 
-.genersPage .rightSide .bookPannel .shelfItems li:hover{
+.shelfLi:hover{
     background-color: #3a334b;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems li p{
+.shelfTitle{
     font-family: regularFont;
     font-weight: bold;
     color: #d1cce7;
@@ -1325,7 +1327,7 @@ body {
     padding-top: 14px;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems li .addShelfItemsImg{
+.addShelfItemsImg{
     width: 15px;
     height: 15px;
     margin-top: -40px;
@@ -1335,7 +1337,7 @@ body {
     cursor: pointer;
 }
 
-.genersPage .rightSide .bookPannel .shelfItems li .addShelfItemsImg:hover{
+.addShelfItemsImg:hover{
     filter: brightness(150%);
 }
 
@@ -1353,7 +1355,7 @@ body {
     font-weight: bold;
 }
 
-.genersPage .rightSide .bookPannel .aboutBook p {
+.genersPage .rightSide .bookPnnel .aboutBook p {
     font-family: regularFont;
     color: rgb(160, 160, 160);
     margin-left: 20px;
