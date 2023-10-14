@@ -293,3 +293,51 @@ app.post("/shelfAdd", (req, res) => {
     dataBase3.update({ User: req.body.userName, Name: req.body.shelfName }, { $push: { book: req.body.book } }, { multi: true }, function (err, numReplaced) {
     })
 })
+
+//editing for shelf
+
+app.post("/shelfNameEdit", (req, res) => {
+    dataBase3.update({ User: req.body.userName, Name: req.body.oldShelfName }, { $set: { Name: req.body.newShelfName } }, {}, function () {
+
+    })
+
+    let targetUser;
+    dataBase3.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            if (Data[i].User == req.body.newShelfName) {
+                targetUser = Data[i];
+            }
+        }
+        console.log(targetUser);
+        res.json(targetUser);
+    })
+})
+
+//deleting shelf
+
+app.post("/shelfDelete", (req, res) => {
+    dataBase3.remove({ Name: req.body.shelfName,User : req.body.userName }, {}, (err, numRemoved) => {
+
+    })
+
+    let targetUser;
+    dataBase3.find({}, (error, Data) => {
+        if (error) {
+            res.end();
+            return;
+        }
+
+        for (let i = 0; i < Data.length; i++) {
+            if (Data[i].User == req.body.newShelfName) {
+                targetUser = Data[i];
+            }
+        }
+        console.log(targetUser);
+        res.json(targetUser);
+    })
+})

@@ -911,7 +911,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .profPage #messageText {
-    position: absolute;
+    position: fixed;
     top: -30px;
     left: 200px;
     color: white;
@@ -1273,11 +1273,11 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: 4px;
     left: 40%;
     top: 410px;
-    opacity:0;
+    opacity: 0;
     display: none;
     transition: 0.3s;
     border-radius: 4px;
-    box-shadow: 8px 8px 15px rgba(0, 0,0, 0.7);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.7);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -1298,7 +1298,7 @@ body::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
-.shelfLi2{
+.shelfLi2 {
     position: relative;
     width: 120% !important;
     height: 50px;
@@ -1311,11 +1311,11 @@ body::-webkit-scrollbar-thumb:hover {
     transition: 0.2s;
 }
 
-.shelfLi2:hover{
+.shelfLi2:hover {
     background-color: #3a334b;
 }
 
-.shelfTitle2{
+.shelfTitle2 {
     font-family: regularFont;
     font-weight: bold;
     color: #d1cce7;
@@ -1324,7 +1324,7 @@ body::-webkit-scrollbar-thumb:hover {
     padding-top: 14px;
 }
 
-.addShelfItemsImg{
+.addShelfItemsImg {
     width: 15px;
     height: 15px;
     margin-top: -40px;
@@ -1334,7 +1334,7 @@ body::-webkit-scrollbar-thumb:hover {
     cursor: pointer;
 }
 
-.addShelfItemsImg:hover{
+.addShelfItemsImg:hover {
     filter: brightness(150%);
 }
 
@@ -1823,6 +1823,20 @@ body::-webkit-scrollbar-thumb:hover {
     overflow: auto;
 }
 
+.profPage .shelfPnl .shelfPnlCover #editShelfBtn {
+    position: absolute;
+    left: 8%;
+    top: 29%;
+    fill: #aca8bd;
+    cursor: pointer;
+    z-index: 1000000;
+    transition: 0.3s;
+}
+
+.profPage .shelfPnl .shelfPnlCover #editShelfBtn:hover {
+    fill: #d3cfe9;
+}
+
 .profPage .shelfPnl .shelfPnlCover {
     position: absolute;
     left: 0;
@@ -1832,6 +1846,128 @@ body::-webkit-scrollbar-thumb:hover {
     background-image: linear-gradient(#080808, #242131);
     opacity: 1;
     transition: 0.3s;
+}
+
+.profPage .shelfPnl .shelfEditPnlCover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99999;
+    transition: .3s;
+    display: none;
+    opacity: 0;
+}
+
+.profPage .shelfPnl .shelfEditBox{
+    position: fixed;
+    left: 50%;
+    margin-top: 400px;
+    transform: translate(-50%,500px);
+    width: 500px;
+    height: 250px;
+    z-index: 999999;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    background-color: #363347;
+    border-radius: 10px;
+    border: 2px solid rgb(85, 76, 102);
+    overflow: hidden;
+    transition: 0.3s;
+    display: none;
+    opacity: 0;
+}
+
+.profPage .shelfPnl .shelfEditBox #shelfEditPnlCloseBtn{
+    position: absolute;
+    left: 89%;
+    top: 10%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.profPage .shelfPnl .shelfEditBox #shelfEditPnlCloseBtn:hover{
+    fill:rgb(173, 173, 173);
+}
+
+.profPage .shelfPnl .shelfEditBox #shelfEditBoxBtn{
+    position: absolute;
+    top: 78%;
+    left: 75%;
+    background-color: transparent;
+    border: 2px solid rgb(175, 175, 175);
+    color: rgb(175, 175, 175);
+    font-family: regularFont;
+    font-size: .95em;
+    width: 100px;
+    height: 37px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.profPage .shelfPnl .shelfEditBox #shelfEditBoxBtn:hover{
+    background-color: rgb(175, 175, 175);
+    color: #1a1724;
+}
+
+.profPage .shelfPnl .shelfEditBox p {
+    font-family: regularFont;
+    font-weight: bold;
+}
+
+.profPage .shelfPnl .shelfEditBox p:nth-child(1) {
+    color: rgb(236, 236, 236);
+    font-size: 1.3em;
+    margin: 30px;
+    
+}
+
+.profPage .shelfPnl .shelfEditBox p:nth-child(2) {
+    color: rgb(175, 175, 175);
+    font-size: 1.1em;
+    margin: 30px;
+    margin-top: 70px;
+    margin-left: 50px;
+}
+
+.profPage .shelfPnl .shelfEditBox #shelfNameTxtBox {
+    background-color: transparent;
+    margin-top: -80px;
+    margin-left: 130px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(121, 121, 121);
+    color: rgb(175, 175, 175);
+    font-family: regularFont;
+    padding-left: 7px;
+    transition: 0.3s;
+    z-index:234534534;
+}
+
+.profPage .shelfPnl .shelfEditBox .shelfEditBoxName{
+    transform: translateY(-20px);
+    width: 64px;
+}.profPage .shelfPnl .shelfEditBox #shelfNameTxtBox:focus{
+    border-bottom: 2px solid rgb(216, 216, 216);
+    color: rgb(219, 219, 219);
+}
+
+.profPage .shelfPnl .shelfEditBox p:nth-child(4) {
+    color: rgb(175, 175, 175);
+    font-size: .9em;
+    cursor: pointer;
+    margin: 30px;
+    margin-top: 19px;
+    width: 114px;
+    margin-left: 20px;
+    transition: .3s;
+}
+.profPage .shelfPnl .shelfEditBox p:nth-child(4):hover {
+    color: rgb(219, 219, 219);
 }
 
 .profPage .shelfPnl .shelfPnlCover #shelfNameTitle {
@@ -1853,13 +1989,17 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: 99999999;
 }
 
+.shelfPnlCloseBtnHelper {
+    position: absolute;
+}
+
 .profPage .shelfPnl #shelfPnlCloseBtn:hover {
     fill: #c2bcdd;
 }
 
-.profPage .shelfPnl .secondetList {
+.profPage .shelfPnl .secondetList2 {
     position: absolute;
-    top: 448px;
+    top: 438px;
     left: 40px;
     width: 95%;
     height: 290px;
@@ -1867,7 +2007,7 @@ body::-webkit-scrollbar-thumb:hover {
     margin-top: -260px
 }
 
-.profPage .shelfPnl .secondetList li {
+.profPage .shelfPnl .secondetList2 li {
     list-style: none;
     display: inline-block;
     height: 100%;
@@ -1879,14 +2019,14 @@ body::-webkit-scrollbar-thumb:hover {
     transition: 0.6s;
 }
 
-.profPage .shelfPnl .secondetList li:hover {
+.profPage .shelfPnl .secondetList2 li:hover {
     transform: skewY(5deg) rotateY(15deg);
     transform-style: preserve-3d;
     filter: brightness(110%);
 
 }
 
-.profPage .shelfPnl .secondetList li .books4 {
+.profPage .shelfPnl .secondetList2 li .books4 {
     position: absolute;
     left: 0;
     top: 0;
@@ -1988,7 +2128,7 @@ body::-webkit-scrollbar-thumb:hover {
     font-size: 1.1em;
 }
 
-.li {
+.li2 {
     list-style: none;
     display: inline-block;
     height: 100%;
@@ -2057,4 +2197,45 @@ body::-webkit-scrollbar-thumb:hover {
 
 .profPage .nameSelectoreBox #addShelfBtnSlc:hover svg {
     fill: rgb(22, 19, 32);
+}
+
+.profPage .shelfPnl #messageText2 {
+    position: absolute;
+    top: -30px;
+    left: 200px;
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    color: #e6e6e6;
+    font-size: 1.1em;
+    opacity: 1;
+    z-index: 9999932459543;
+}
+
+.msgBoxfadeUpDown {
+    animation-name: msgBoxfadeUpDown2;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes msgBoxfadeUpDown2 {
+    0% {
+        opacity: 0;
+        top: -30px
+    }
+
+    15% {
+        opacity: 1;
+        top: 130px
+    }
+
+    80% {
+        opacity: 1;
+        top: 130px
+    }
+
+    100% {
+        opacity: 0;
+        top: -30px
+    }
 }

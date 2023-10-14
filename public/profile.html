@@ -95,9 +95,9 @@
             </li>
         </ul>
         <button id="addShelfBtn"><svg xmlns=" http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
-            class="bi bi-plus" viewBox="0 0 16 16">
-            <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                class="bi bi-plus" viewBox="0 0 16 16">
+                <path
+                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg>
         </button>
 
@@ -335,15 +335,34 @@
             </div>
         </div>
         <div class="shelfPnl">
-            <div class="shelfPnlCover">
-                <h3 id="shelfNameTitle">Want to read</h3>
-                <svg id="shelfPnlCloseBtn" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#8c85ad"
-                    class="bi bi-x-lg" viewBox="0 0 16 16">
+            <div class="shelfEditPnlCover"></div>
+            <p id="messageText2">please Fill in the field</p>
+            <div class="shelfEditBox">
+                <p>Edit</p>
+                <p class="shelfEditBoxName">Name : </p><input id="shelfNameTxtBox" type="text">
+                <p id="deleteShelfBtn">Want to delete? </p><button id="shelfEditBoxBtn">Done</button>
+                <svg id="shelfEditPnlCloseBtn" class="shelfPnlCloseBtnHelper" style="position: fixed;"
+                    xmlns="http://www.w3.org/2000/svg" width="29" height="29" fill="#8c85ad" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
                     <path
                         d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                 </svg>
             </div>
-            <ul class="secondetList">
+            <div class="shelfPnlCover">
+                <h3 id="shelfNameTitle">Want to read</h3>
+                <svg id="editShelfBtn" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                    class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+                <svg id="shelfPnlCloseBtn" class="shelfPnlCloseBtnHelper" style="position: fixed;"
+                    xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#8c85ad" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                </svg>
+            </div>
+            <ul class="secondetList2">
 
             </ul>
 
