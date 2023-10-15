@@ -5288,7 +5288,7 @@ deleteShelfBtn.addEventListener("click", async () => {
     console.log(shelfData3);
 
     shelfNameTxtBox.value = "";
-    
+
     messageBox.innerHTML = "Shelf deleted"
     messageBox.classList.add("messageBoxFadeInOut");
     setTimeout(() => {
@@ -6054,6 +6054,106 @@ deleteShelfBtn.addEventListener("click", async () => {
                     }
                 })
             }
+        }
+    }
+
+});
+
+//challengBoxStuff
+
+bookChallengeTxt.addEventListener("click", () => {
+    challengBox.style.display = "block";
+    challengBox.style.marginTop = 230 + "px";
+    challengBoxBackgroundCover.style.display = "block";
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.opacity = 1;
+        challengBox.style.opacity = 1
+    }, 300)
+})
+
+backgroundPic4.addEventListener("click", () => {
+    challengBox.style.display = "block";
+    challengBox.style.marginTop = 230 + "px";
+    challengBoxBackgroundCover.style.display = "block";
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.opacity = 1;
+        challengBox.style.opacity = 1
+    }, 300)
+})
+
+const challengBoxBackgroundCover = document.querySelector(".challengBoxBackgroundCover");
+const challengBox = document.querySelector(".challengBox");
+const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
+const bookCounter = document.querySelector("#bookCounter");
+
+challengBoxBackgroundCover.addEventListener("click", () => {
+    challengBox.style.opacity = 0;
+    challengBox.style.marginTop = 400 + "px";
+    challengBoxBackgroundCover.style.opacity = 0;
+    bookCounter.value = "";
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.display = "none";
+        challengBox.style.display = "none"
+    }, 300)
+})
+
+challengBoxCloseBtn.addEventListener("click", () => {
+    challengBox.style.opacity = 0;
+    challengBox.style.marginTop = 400 + "px";
+    challengBoxBackgroundCover.style.opacity = 0;
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.display = "none";
+        challengBox.style.display = "none"
+    }, 300);
+    bookCounter.value = "";
+})
+
+const challengBoxLink = document.querySelector('.challengBoxLink');
+
+challengBoxLink.addEventListener("click", () => {
+    challengBox.style.display = "block";
+    challengBox.style.marginTop = 230 + "px";
+    challengBoxBackgroundCover.style.display = "block";
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.opacity = 1;
+        challengBox.style.opacity = 1
+    }, 300)
+})
+
+const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
+const messageBox3 = document.querySelector("#messageText3");
+
+challengBoxDoneBtn.addEventListener("click", async () => {
+
+    if (bookCounter.value == null || bookCounter.value == "") {
+        messageBox3.innerHTML = "please insert the number";
+        messageBox3.classList.add("msgBoxfadeUpDown3");
+        setTimeout(() => {
+            messageBox3.classList.remove("msgBoxfadeUpDown3");
+        }, 5000);
+    }
+    else {
+        let numbers = /^[0-9]+$/;
+
+        if (!bookCounter.value.match(numbers)) {
+            messageBox3.innerHTML = "please insert number, not words";
+            messageBox3.classList.add("msgBoxfadeUpDown3");
+            setTimeout(() => {
+                messageBox3.classList.remove("msgBoxfadeUpDown3");
+            }, 5000);
+        }
+        else{
+            const idealChallengNumber = bookCounter.value;
+
+            messageBox3.innerHTML = "Your challeng started!";
+            messageBox3.classList.add("msgBoxfadeUpDown3");
+            setTimeout(() => {
+                messageBox3.classList.remove("msgBoxfadeUpDown3");
+            }, 5000);
+
+            bookChallengeTxt.innerHTML = "Your Challeng";
+
+            
         }
     }
 
