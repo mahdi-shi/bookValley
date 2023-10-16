@@ -113,6 +113,25 @@ document.body.onload = async () => {
         const response = await fetch("/dataForProfile", options)
         const dataResponse = await response.json();
 
+        console.log(dataResponse.idealChallengNumber);
+
+        const bookChallengeTxt = document.querySelector("#bookChallengeTxt");
+
+        if (dataResponse.idealChallengNumber != null) {
+            bookChallengeTxt.innerHTML = `Your challeng!`
+            bookChallengeTxt.style.marginTop = 5 + "px"
+            bookChallengeTxt.style.marginLeft = 7 + "px"
+
+            setInterval(() => {
+                const currentData = new Date();
+                const year = currentData.getFullYear();
+
+                if (year == year + 1) {
+                    alert("heh");
+                }
+            }, 1000);
+        }
+
         usernameTxt.textContent = "User-name : " + dataResponse.userName;
         idTxt.textContent = "Id : " + dataResponse._id;
         imageProf.style.display = "block";
@@ -6124,6 +6143,7 @@ const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
 const messageBox3 = document.querySelector("#messageText3");
 
 challengBoxDoneBtn.addEventListener("click", async () => {
+    const currentData = new Date()
 
     if (bookCounter.value == null || bookCounter.value == "") {
         messageBox3.innerHTML = "please insert the number";
@@ -6131,6 +6151,7 @@ challengBoxDoneBtn.addEventListener("click", async () => {
         setTimeout(() => {
             messageBox3.classList.remove("msgBoxfadeUpDown3");
         }, 5000);
+        console.log(currentData.getFullYear());
     }
     else {
         let numbers = /^[0-9]+$/;
@@ -6142,8 +6163,9 @@ challengBoxDoneBtn.addEventListener("click", async () => {
                 messageBox3.classList.remove("msgBoxfadeUpDown3");
             }, 5000);
         }
-        else{
+        else {
             const idealChallengNumber = bookCounter.value;
+            const userName = localStorage.getItem("userTarget");
 
             messageBox3.innerHTML = "Your challeng started!";
             messageBox3.classList.add("msgBoxfadeUpDown3");
@@ -6153,7 +6175,26 @@ challengBoxDoneBtn.addEventListener("click", async () => {
 
             bookChallengeTxt.innerHTML = "Your Challeng";
 
-            
+            const challengData = { idealChallengNumber, userName }
+
+            const challengDataOption = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(challengData)
+            };
+            const createChalleng = await fetch("/addChalleng", challengDataOption);
+            const createChallengData = await createChalleng.json();
+
+            challengBox.style.opacity = 0;
+            challengBox.style.marginTop = 400 + "px";
+            challengBoxBackgroundCover.style.opacity = 0;
+            setTimeout(() => {
+                challengBoxBackgroundCover.style.display = "none";
+                challengBox.style.display = "none"
+            }, 300);
+            bookCounter.value = "";
         }
     }
 
