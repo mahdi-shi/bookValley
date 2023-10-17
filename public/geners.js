@@ -1996,7 +1996,6 @@ searchPnlCloseBtn.addEventListener("click", () => {
             books[i].remove();
         }
     }
-
 })
 
 searchPnl.onscroll = () => {
@@ -2009,6 +2008,7 @@ searchPnl.onscroll = () => {
     }
 }
 
+let shelfBtnStatus = false;
 
 document.body.onload = async () => {
     const userName = localStorage.getItem("userTarget");
@@ -2119,7 +2119,7 @@ document.body.onload = async () => {
                 setTimeout(() => {
                     shelfItems.style.display = "none";
                 }, 300);
-                
+
                 for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
                     if (shelvesResponseData[i].book[j] == witchBookCode) {
                         messageBox.innerHTML = "you already have this book in the shelf"
@@ -2149,7 +2149,36 @@ document.body.onload = async () => {
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
                     }, 5000);
+
                     const shelfName = shelfTitle.innerHTML;
+                    shelfBtnStatus = false;
+
+
+                    if (shelfName == "read") {
+                        const response = await fetch("/dataForProfile", options)
+                        const dataResponse = await response.json();
+                        console.log(dataResponse);
+
+                        if (dataResponse.idealChallengNumber == null) {
+                            return false;
+                        }
+                        else {
+
+                            const currentNumber = dataResponse.ChallengNumber;
+                            const bookCounterNumber = currentNumber + 1;
+                            const updateChalleng = { userName, bookCounterNumber }
+                            const updateChallengOption = {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(updateChalleng)
+                            };
+                            const updateChallengData = await fetch("/updateChallengNumber", updateChallengOption);
+                            const updateChallengResponse = await updateChallengData.json();
+                        }
+                    }
+
                     const book = witchBookCode;
                     const shelfData2 = { userName, shelfName, book }
                     const shelfOptions2 = {
@@ -2159,11 +2188,9 @@ document.body.onload = async () => {
                         },
                         body: JSON.stringify(shelfData2)
                     };
-                    shelfBtnStatus = false;
                     const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
                     const shelvesResponseData2 = await shelvesResponse2.json();
                 }
-                shelfBtnStatus = false;
             }
         })
     }
@@ -2491,8 +2518,6 @@ for (let i = 0; i < bookLikeThis.length; i++) {
 }
 
 const shelfItems = document.querySelector(".shelfItems");
-let shelfBtnStatus = false;
-
 addBookBtn.addEventListener("click", () => {
     if (shelfBtnStatus == false) {
         shelfItems.style.display = "block";

@@ -326,6 +326,15 @@ app.post("/shelfDelete", (req, res) => {
 
 app.post("/addChalleng", (req, res) => {
     dataBase.update({ userName: req.body.userName }, { $set: { idealChallengNumber: req.body.idealChallengNumber } }, {}, function () {
-    
+
+    })
+    dataBase.update({ userName: req.body.userName }, { $set: { ChallengNumber: 0 } }, {}, function () {
+
+    })
+})
+
+app.post("/updateChallengNumber", (req, res) => {
+    dataBase.update({ userName: req.body.userName }, { $set: { ChallengNumber: req.body.bookCounterNumber } }, {}, function () {
+
     })
 })

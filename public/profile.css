@@ -700,9 +700,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .profPage #checkingUsersAccountPage {
-    position: absolute;
+    position: fixed;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     margin-top: -50px;
     background-image: linear-gradient(#0c0c0c, #242131);
     display: block;
