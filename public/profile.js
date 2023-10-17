@@ -117,6 +117,8 @@ document.body.onload = async () => {
 
         const bookChallengeTxt = document.querySelector("#bookChallengeTxt");
 
+        console.log("test");
+
         if (dataResponse.idealChallengNumber != null) {
             bookChallengeTxt.innerHTML = `Your challeng!`
             bookChallengeTxt.style.marginTop = 5 + "px"
@@ -163,14 +165,13 @@ document.body.onload = async () => {
             body: JSON.stringify(shelfData)
         };
 
-        console.log("ohhhhh1");
-
         const shelvesResponse = await fetch("/shelvesData", shelfOptions);
         const shelvesResponseData = await shelvesResponse.json();
         console.log(shelvesResponseData);
 
-        const dShelf = document.querySelectorAll(".dShelf")
+        const dShelf = document.querySelectorAll(".dShelf");
         const shelfPara = document.querySelectorAll(".shelfPara");
+        console.log("ohhhhh2");
 
         for (let k = 0; k < dShelf.length; k++) {
             dShelf[k].addEventListener("click", async () => {
@@ -881,7 +882,7 @@ document.body.onload = async () => {
             console.log("not bad");
             for (let i = 0; i < shelvesResponseData.length; i++) {
                 console.log("not bad again");
-                if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
+                if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "read" && shelvesResponseData[i].Name != "want to read") {
                     let li = document.createElement("li");
                     let shelfTitle = document.createElement("p");
                     let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
@@ -1720,6 +1721,19 @@ document.body.onload = async () => {
 
             console.log(i);
         }
+        const defaulShelfData = { userName }
+        const defaultShelfOptions = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(defaulShelfData)
+        };
+
+        console.log("default shelf checked");
+
+        const defaultShelvesResponse = await fetch("/DefaultshelvesData", defaultShelfOptions);
+        const defaultShelvesResponseData = await defaultShelvesResponse.json();
     }
 }
 
@@ -6080,7 +6094,12 @@ deleteShelfBtn.addEventListener("click", async () => {
 
 //challengBoxStuff
 
+const witchYear = document.querySelector("#witchYear");
+const bookCounter = document.querySelector("#bookCounter");
+
 bookChallengeTxt.addEventListener("click", () => {
+    const currentData = new Date();
+    witchYear.innerHTML = currentData.getFullYear();
     challengBox.style.display = "block";
     challengBox.style.marginTop = 230 + "px";
     challengBoxBackgroundCover.style.display = "block";
@@ -6091,6 +6110,8 @@ bookChallengeTxt.addEventListener("click", () => {
 })
 
 backgroundPic4.addEventListener("click", () => {
+    const currentData = new Date()
+    witchYear.innerHTML = currentData.getFullYear();
     challengBox.style.display = "block";
     challengBox.style.marginTop = 230 + "px";
     challengBoxBackgroundCover.style.display = "block";
@@ -6103,7 +6124,6 @@ backgroundPic4.addEventListener("click", () => {
 const challengBoxBackgroundCover = document.querySelector(".challengBoxBackgroundCover");
 const challengBox = document.querySelector(".challengBox");
 const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
-const bookCounter = document.querySelector("#bookCounter");
 
 challengBoxBackgroundCover.addEventListener("click", () => {
     challengBox.style.opacity = 0;
@@ -6130,6 +6150,8 @@ challengBoxCloseBtn.addEventListener("click", () => {
 const challengBoxLink = document.querySelector('.challengBoxLink');
 
 challengBoxLink.addEventListener("click", () => {
+    const currentData = new Date()
+    witchYear.innerHTML = currentData.getFullYear();
     challengBox.style.display = "block";
     challengBox.style.marginTop = 230 + "px";
     challengBoxBackgroundCover.style.display = "block";
@@ -6164,6 +6186,7 @@ challengBoxDoneBtn.addEventListener("click", async () => {
             }, 5000);
         }
         else {
+
             const idealChallengNumber = bookCounter.value;
             const userName = localStorage.getItem("userTarget");
 
@@ -6171,12 +6194,22 @@ challengBoxDoneBtn.addEventListener("click", async () => {
             messageBox3.classList.add("msgBoxfadeUpDown3");
             setTimeout(() => {
                 messageBox3.classList.remove("msgBoxfadeUpDown3");
-            }, 5000);
+            }, 3000);
+
+            setTimeout(() => {
+                challengBox.style.opacity = 0;
+                challengBox.style.marginTop = 400 + "px";
+                challengBoxBackgroundCover.style.opacity = 0;
+                setTimeout(() => {
+                    challengBoxBackgroundCover.style.display = "none";
+                    challengBox.style.display = "none"
+                }, 300);
+            }, 3000);
 
             bookChallengeTxt.innerHTML = "Your Challeng";
 
             const challengData = { idealChallengNumber, userName }
-
+            bookCounter.value = "";
             const challengDataOption = {
                 method: "POST",
                 headers: {
@@ -6186,16 +6219,6 @@ challengBoxDoneBtn.addEventListener("click", async () => {
             };
             const createChalleng = await fetch("/addChalleng", challengDataOption);
             const createChallengData = await createChalleng.json();
-
-            challengBox.style.opacity = 0;
-            challengBox.style.marginTop = 400 + "px";
-            challengBoxBackgroundCover.style.opacity = 0;
-            setTimeout(() => {
-                challengBoxBackgroundCover.style.display = "none";
-                challengBox.style.display = "none"
-            }, 300);
-            bookCounter.value = "";
         }
     }
-
 });
