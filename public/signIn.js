@@ -5,6 +5,8 @@ const signInpassword = document.querySelector("#signInPasswordTxtBox");
 const signUpconstBtn = document.querySelector("#signInSendBtn")
 const messageBox = document.querySelector("#messageBox");
 let witchBookCode;
+var temp;
+var challengEndingStatus = false;
 
 signUpconstBtn.addEventListener('click', async () => {
 
@@ -311,11 +313,11 @@ document.body.onload = async () => {
                     setTimeout(() => {
                         messageBox.classList.remove("messageBoxFadeInOut");
                     }, 5000);
-                    console.log(witchBookCode);
+                    console.log(temp);
                     console.log(shelvesResponseData[i]);
                     console.log(shelfBtnStatus);
                     const shelfName = shelfTitle.innerHTML;
-                    const book = witchBookCode;
+                    const book = temp;
                     const shelfData2 = { userName, shelfName, book }
                     const shelfOptions2 = {
                         method: "POST",
@@ -334,7 +336,60 @@ document.body.onload = async () => {
 
                     const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
                     const shelvesResponseData2 = await shelvesResponse2.json();
+                    console.log(shelvesResponseData2);
 
+                    if (shelfName == "read") {
+                        const response = await fetch("/dataForProfile", options)
+                        const dataResponse = await response.json();
+                        console.log(dataResponse);
+
+                        if (dataResponse.idealChallengNumber == null) {
+                            return false;
+                        }
+                        else {
+                            if (dataResponse.ChallengNumber == dataResponse.idealChallengNumber) {
+                                challengPara.innerHTML = "Congratulations, you've read " + dataResponse.idealChallengNumber + " books this year :)";
+                                bookCounter.style.display = "none";
+                                challengBoxDoneBtn.style.display = "none";
+                                challengBox.style.display = "block";
+                                challengBoxBackgroundCover.style.display = "block";
+                                challengEndingStatus = true;
+
+                                setTimeout(() => {
+                                    challengBoxBackgroundCover.style.opacity = 1;
+                                    challengBox.style.opacity = 1
+                                }, 300)
+
+                                const challengDataCancel = { userName }
+                                const challengCancelOption = {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(challengDataCancel)
+                                };
+                                const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                                const cancelChallengData = await cancelChalleng.json();
+                                console.log(cancelChallengData);
+                                const currentData = new Date();
+                            }
+                            else {
+                                const currentNumber = dataResponse.ChallengNumber;
+                                const bookCounterNumber = currentNumber + 1;
+                                const updateChalleng = { userName, bookCounterNumber }
+                                const updateChallengOption = {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(updateChalleng)
+                                };
+                                const updateChallengData = await fetch("/updateChallengNumber", updateChallengOption);
+                                const updateChallengResponse = await updateChallengData.json();
+                                console.log(updateChallengResponse);
+                            }
+                        }
+                    }
                     shelfBtnStatus = false;
                 }
                 else {
@@ -375,9 +430,13 @@ document.body.onload = async () => {
                         setTimeout(() => {
                             messageBox.classList.remove("messageBoxFadeInOut");
                         }, 5000);
+
                         const shelfName = shelfTitle.innerHTML;
-                        const book = witchBookCode;
+                        shelfBtnStatus = false;
+
+                        const book = temp;
                         const shelfData2 = { userName, shelfName, book }
+                        console.log(shelfData2);
                         const shelfOptions2 = {
                             method: "POST",
                             headers: {
@@ -385,9 +444,63 @@ document.body.onload = async () => {
                             },
                             body: JSON.stringify(shelfData2)
                         };
-                        shelfBtnStatus = false;
+
                         const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
                         const shelvesResponseData2 = await shelvesResponse2.json();
+                        console.log(shelvesResponseData2);
+
+                        if (shelfName == "read") {
+                            const response = await fetch("/dataForProfile", options)
+                            const dataResponse = await response.json();
+                            console.log(dataResponse);
+
+                            if (dataResponse.idealChallengNumber == null) {
+                                return false;
+                            }
+                            else {
+                                if (dataResponse.ChallengNumber == dataResponse.idealChallengNumber) {
+                                    challengPara.innerHTML = "Congratulations, you've read " + dataResponse.idealChallengNumber + " books this year :)";
+                                    bookCounter.style.display = "none";
+                                    challengBoxDoneBtn.style.display = "none";
+                                    challengBox.style.display = "block";
+                                    challengBoxBackgroundCover.style.display = "block";
+                                    challengEndingStatus = true;
+
+                                    setTimeout(() => {
+                                        challengBoxBackgroundCover.style.opacity = 1;
+                                        challengBox.style.opacity = 1
+                                    }, 300)
+
+                                    const challengDataCancel = { userName }
+                                    const challengCancelOption = {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(challengDataCancel)
+                                    };
+                                    const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                                    const cancelChallengData = await cancelChalleng.json();
+                                    console.log(cancelChallengData);
+                                    const currentData = new Date();
+                                }
+                                else {
+                                    const currentNumber = dataResponse.ChallengNumber;
+                                    const bookCounterNumber = currentNumber + 1;
+                                    const updateChalleng = { userName, bookCounterNumber }
+                                    const updateChallengOption = {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(updateChalleng)
+                                    };
+                                    const updateChallengData = await fetch("/updateChallengNumber", updateChallengOption);
+                                    const updateChallengResponse = await updateChallengData.json();
+                                    console.log(updateChallengResponse);
+                                }
+                            }
+                        }
                     }
                     shelfBtnStatus = false;
                 }
@@ -568,6 +681,8 @@ searchBoxBtn.addEventListener("click", async () => {
                     bookPannelCloseBtn.style.opacity = "1";
 
                     witchBookCode = p2.innerHTML;
+                    temp = p2.innerHTML;
+
                     const witchBook = witchBookCode;
                     const data2 = { witchBook }
                     const options2 = {
@@ -950,6 +1065,8 @@ searchBoxBtn.addEventListener("click", async () => {
                     }
 
                     witchBookCode = bookLikeThisCode[i].innerHTML;
+                    temp = bookLikeThisCode[i].innerHTML;
+
                     const witchBook = witchBookCode;
                     const data2 = { witchBook }
                     const options2 = {
@@ -1294,6 +1411,8 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         bookPannelCloseBtn.style.opacity = "1";
 
                         witchBookCode = p2.innerHTML;
+                        temp = p2.innerHTML;
+
                         const witchBook = witchBookCode;
                         const data2 = { witchBook }
                         const options2 = {
@@ -1676,6 +1795,8 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         }
 
                         witchBookCode = bookLikeThisCode[i].innerHTML;
+                        temp = bookLikeThisCode[i].innerHTML;
+
                         const witchBook = witchBookCode;
                         const data2 = { witchBook }
                         const options2 = {
@@ -1944,3 +2065,169 @@ BookImg.addEventListener("click", () => {
 
     shelfBtnStatus = false;
 })
+
+//challengBoxStuff
+
+const witchYear = document.querySelector("#witchYear");
+const bookCounter = document.querySelector("#bookCounter");
+const challengPara = document.querySelector("#challengPara");
+const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn");
+
+const challengBoxBackgroundCover = document.querySelector(".challengBoxBackgroundCover");
+const challengBox = document.querySelector(".challengBox");
+const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
+const challengBoxLink = document.querySelector(".challengBoxLink");
+
+challengBoxLink.addEventListener("click", async () => {
+    const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
+    const messageBox3 = document.querySelector("#messageText3");
+    const userName = localStorage.getItem("userTarget");
+    const data = { userName }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    const response = await fetch("/dataForProfile", options)
+    const dataResponse = await response.json();
+    console.log(dataResponse)
+    if (dataResponse.idealChallengNumber != null) {
+        challengPara.innerHTML = "You've read " + dataResponse.ChallengNumber + " book out of " + dataResponse.idealChallengNumber;
+        bookCounter.style.display = "none";
+        challengBoxDoneBtn.innerHTML = "Cancel";
+        challengBox.style.display = "block";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+
+            messageBox3.innerHTML = "challeng canceled";
+            messageBox3.classList.add("msgBoxfadeUpDown3");
+            setTimeout(() => {
+                messageBox3.classList.remove("msgBoxfadeUpDown3");
+            }, 3000);
+
+            setTimeout(() => {
+                challengBox.style.opacity = 0;
+                challengBoxBackgroundCover.style.opacity = 0;
+                location.reload();
+                setTimeout(() => {
+                    challengBoxBackgroundCover.style.display = "none";
+                    challengBox.style.display = "none"
+                }, 300);
+            }, 3000);
+
+            const challengDataCancel = { userName }
+            const challengCancelOption = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(challengDataCancel)
+            };
+            const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+            const cancelChallengData = await cancelChalleng.json();
+
+        });
+    }
+    else {
+        challengBox.style.display = "block";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+
+        const currentData = new Date();
+
+        if (challengEndingStatus == true) {
+            challengPara.innerHTML = "How many books do you want to read in " + currentData.getFullYear() + " ?";
+            bookCounter.style.display = "block";
+            challengBoxDoneBtn.innerHTML = "Done";
+            challengBoxDoneBtn.style.display = "block";
+        }
+        else {
+            witchYear.innerHTML = currentData.getFullYear();
+        }
+        challengBoxDoneBtn.addEventListener("click", async () => {
+            const currentData = new Date()
+
+            if (bookCounter.value == null || bookCounter.value == "") {
+                messageBox3.innerHTML = "please insert the number";
+                messageBox3.classList.add("msgBoxfadeUpDown3");
+                setTimeout(() => {
+                    messageBox3.classList.remove("msgBoxfadeUpDown3");
+                }, 5000);
+                console.log(currentData.getFullYear());
+            }
+            else {
+                let numbers = /^[0-9]+$/;
+
+                if (!bookCounter.value.match(numbers)) {
+                    messageBox3.innerHTML = "please insert number, not words";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 5000);
+                }
+                else {
+
+                    const idealChallengNumber = bookCounter.value;
+                    const userName = localStorage.getItem("userTarget");
+
+                    messageBox3.innerHTML = "Your challeng started!";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 3000);
+
+                    setTimeout(() => {
+                        challengBox.style.opacity = 0;
+                        challengBoxBackgroundCover.style.opacity = 0;
+                        setTimeout(() => {
+                            challengBoxBackgroundCover.style.display = "none";
+                            challengBox.style.display = "none"
+                        }, 300);
+                    }, 3000);
+
+                    const challengData = { idealChallengNumber, userName }
+                    bookCounter.value = "";
+                    const challengDataOption = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(challengData)
+                    };
+                    const createChalleng = await fetch("/addChalleng", challengDataOption);
+                    const createChallengData = await createChalleng.json();
+                }
+            }
+        });
+    }
+})
+
+challengBoxBackgroundCover.addEventListener("click", () => {
+    challengBox.style.opacity = 0;
+    challengBoxBackgroundCover.style.opacity = 0;
+    bookCounter.value = "";
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.display = "none";
+        challengBox.style.display = "none"
+    }, 300)
+})
+challengBoxCloseBtn.addEventListener("click", () => {
+    challengBox.style.opacity = 0;
+    challengBoxBackgroundCover.style.opacity = 0;
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.display = "none";
+        challengBox.style.display = "none"
+    }, 300);
+    bookCounter.value = "";
+})
+
+const messageBox3 = document.querySelector("#messageText3");

@@ -49,6 +49,7 @@ profImageInputbox.addEventListener("change", (e) => {
 })
 
 var shelfBtnStatus = false;
+let challengEndingStatus = false;
 
 //styling a paper in page 
 
@@ -113,6 +114,50 @@ document.body.onload = async () => {
         const response = await fetch("/dataForProfile", options)
         const dataResponse = await response.json();
 
+        console.log(dataResponse.idealChallengNumber);
+
+        const bookChallengeTxt = document.querySelector("#bookChallengeTxt");
+
+        console.log(dataResponse);
+
+        if (dataResponse.idealChallengNumber != null) {
+            bookChallengeTxt.innerHTML = `Your challeng!`
+            bookChallengeTxt.style.marginTop = 5 + "px"
+            bookChallengeTxt.style.marginLeft = 7 + "px"
+
+            setInterval(async() => {
+                const currentData = new Date();
+                const year = currentData.getFullYear();
+
+                if (year == year + 1) {
+                    challengPara.innerHTML = "Congratulations, you've read " + dataResponse.idealChallengNumber + " books this year :)";
+                    bookCounter.style.display = "none";
+                    challengBoxDoneBtn.style.display = "none";
+                    challengBox.style.display = "block";
+                    challengBox.style.marginTop = 230 + "px";
+                    challengBoxBackgroundCover.style.display = "block";
+                    setTimeout(() => {
+                        challengBoxBackgroundCover.style.opacity = 1;
+                        challengBox.style.opacity = 1
+                    }, 300)
+
+                    const challengDataCancel = { userName }
+                    const challengCancelOption = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(challengDataCancel)
+                    };
+                    const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                    const cancelChallengData = await cancelChalleng.json();
+                    console.log(cancelChallengData);
+                    const currentData = new Date();
+                    challengEndingStatus = true;
+                }
+            }, 1000);
+        }
+
         usernameTxt.textContent = "User-name : " + dataResponse.userName;
         idTxt.textContent = "Id : " + dataResponse._id;
         imageProf.style.display = "block";
@@ -144,14 +189,13 @@ document.body.onload = async () => {
             body: JSON.stringify(shelfData)
         };
 
-        console.log("ohhhhh1");
-
         const shelvesResponse = await fetch("/shelvesData", shelfOptions);
         const shelvesResponseData = await shelvesResponse.json();
         console.log(shelvesResponseData);
 
-        const dShelf = document.querySelectorAll(".dShelf")
+        const dShelf = document.querySelectorAll(".dShelf");
         const shelfPara = document.querySelectorAll(".shelfPara");
+        console.log("ohhhhh2");
 
         for (let k = 0; k < dShelf.length; k++) {
             dShelf[k].addEventListener("click", async () => {
@@ -862,7 +906,7 @@ document.body.onload = async () => {
             console.log("not bad");
             for (let i = 0; i < shelvesResponseData.length; i++) {
                 console.log("not bad again");
-                if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
+                if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "read" && shelvesResponseData[i].Name != "want to read") {
                     let li = document.createElement("li");
                     let shelfTitle = document.createElement("p");
                     let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
@@ -1681,9 +1725,14 @@ document.body.onload = async () => {
                         setTimeout(() => {
                             messageBox.classList.remove("messageBoxFadeInOut");
                         }, 5000);
+
                         const shelfName = shelfTitle.innerHTML;
+                        shelfBtnStatus = false;
+
+
                         const book = witchBookCode;
                         const shelfData2 = { userName, shelfName, book }
+                        console.log(shelfData2);
                         const shelfOptions2 = {
                             method: "POST",
                             headers: {
@@ -1691,16 +1740,81 @@ document.body.onload = async () => {
                             },
                             body: JSON.stringify(shelfData2)
                         };
-                        shelfBtnStatus = false;
+
+                        if (shelfName == "read") {
+                            const response = await fetch("/dataForProfile", options)
+                            const dataResponse = await response.json();
+                            console.log(dataResponse);
+
+                            if (dataResponse.idealChallengNumber == null) {
+                                return false;
+                            }
+                            else {
+                                if (dataResponse.ChallengNumber == dataResponse.idealChallengNumber) {
+                                    challengPara.innerHTML = "Congratulations, you've read " + dataResponse.idealChallengNumber + " books this year :)";
+                                    bookCounter.style.display = "none";
+                                    challengBoxDoneBtn.style.display = "none";
+                                    challengBox.style.display = "block";
+                                    challengBox.style.marginTop = 230 + "px";
+                                    challengBoxBackgroundCover.style.display = "block";
+                                    setTimeout(() => {
+                                        challengBoxBackgroundCover.style.opacity = 1;
+                                        challengBox.style.opacity = 1
+                                    }, 300)
+
+                                    const challengDataCancel = { userName }
+                                    const challengCancelOption = {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(challengDataCancel)
+                                    };
+                                    const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                                    const cancelChallengData = await cancelChalleng.json();
+                                    console.log(cancelChallengData);
+                                    const currentData = new Date();
+                                    challengEndingStatus = true;
+                                }
+                                else {
+                                    const currentNumber = dataResponse.ChallengNumber;
+                                    const bookCounterNumber = currentNumber + 1;
+                                    const updateChalleng = { userName, bookCounterNumber }
+                                    const updateChallengOption = {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(updateChalleng)
+                                    };
+                                    const updateChallengData = await fetch("/updateChallengNumber", updateChallengOption);
+                                    const updateChallengResponse = await updateChallengData.json();
+                                    console.log(updateChallengResponse);
+                                }
+                            }
+                        }
                         const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
                         const shelvesResponseData2 = await shelvesResponse2.json();
+                        console.log(shelvesResponseData2);
                     }
-                    shelfBtnStatus = false;
                 }
             })
 
             console.log(i);
         }
+        const defaulShelfData = { userName }
+        const defaultShelfOptions = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(defaulShelfData)
+        };
+
+        console.log("default shelf checked");
+
+        const defaultShelvesResponse = await fetch("/DefaultshelvesData", defaultShelfOptions);
+        const defaultShelvesResponseData = await defaultShelvesResponse.json();
     }
 }
 
@@ -3648,7 +3762,7 @@ shelfEditPnlCover.addEventListener("click", () => {
 })
 
 editShelfBtn.addEventListener("click", () => {
-    if (shelfNameTitle.innerHTML == "Want to read" || shelfNameTitle.innerHTML == "Reading" || shelfNameTitle.innerHTML == "Readed") {
+    if (shelfNameTitle.innerHTML == "Want to read" || shelfNameTitle.innerHTML == "Reading" || shelfNameTitle.innerHTML == "Read") {
         messageBox2.innerHTML = "sorry, you can't make change in this shelf"
         messageBox2.classList.add("messageBoxFadeInOut");
         setTimeout(() => {
@@ -3752,7 +3866,7 @@ shelfEditBoxBtn.addEventListener("click", async () => {
                 console.log("not bad");
                 for (let i = 0; i < shelvesResponseData.length; i++) {
                     console.log("not bad again");
-                    if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
+                    if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "read" && shelvesResponseData[i].Name != "want to read") {
                         let li = document.createElement("li");
                         let shelfTitle = document.createElement("p");
                         let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
@@ -4547,7 +4661,7 @@ shelfNameTxtBox.addEventListener("keydown", async (e) => {
                     console.log("not bad");
                     for (let i = 0; i < shelvesResponseData.length; i++) {
                         console.log("not bad again");
-                        if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
+                        if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "read" && shelvesResponseData[i].Name != "want to read") {
                             let li = document.createElement("li");
                             let shelfTitle = document.createElement("p");
                             let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
@@ -5288,7 +5402,7 @@ deleteShelfBtn.addEventListener("click", async () => {
     console.log(shelfData3);
 
     shelfNameTxtBox.value = "";
-    
+
     messageBox.innerHTML = "Shelf deleted"
     messageBox.classList.add("messageBoxFadeInOut");
     setTimeout(() => {
@@ -5341,7 +5455,7 @@ deleteShelfBtn.addEventListener("click", async () => {
         console.log("not bad");
         for (let i = 0; i < shelvesResponseData.length; i++) {
             console.log("not bad again");
-            if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "readed" && shelvesResponseData[i].Name != "want to read") {
+            if (shelvesResponseData[i].Name != "reading" && shelvesResponseData[i].Name != "read" && shelvesResponseData[i].Name != "want to read") {
                 let li = document.createElement("li");
                 let shelfTitle = document.createElement("p");
                 let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
@@ -6058,3 +6172,437 @@ deleteShelfBtn.addEventListener("click", async () => {
     }
 
 });
+
+//challengBoxStuff
+
+const witchYear = document.querySelector("#witchYear");
+const bookCounter = document.querySelector("#bookCounter");
+const challengPara = document.querySelector("#challengPara");
+const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn");
+
+bookChallengeTxt.addEventListener("click", async () => {
+    const userName = localStorage.getItem("userTarget");
+    const data = { userName }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    const response = await fetch("/dataForProfile", options)
+    const dataResponse = await response.json();
+    console.log(dataResponse)
+    if (dataResponse.idealChallengNumber != null) {
+        challengPara.innerHTML = "You've read " + dataResponse.ChallengNumber + " book out of " + dataResponse.idealChallengNumber;
+        bookCounter.style.display = "none";
+        challengBoxDoneBtn.innerHTML = "Cancel";
+        challengBox.style.display = "block";
+        challengBox.style.marginTop = 230 + "px";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+
+            messageBox3.innerHTML = "challeng canceled";
+            messageBox3.classList.add("msgBoxfadeUpDown3");
+            setTimeout(() => {
+                messageBox3.classList.remove("msgBoxfadeUpDown3");
+            }, 3000);
+
+            setTimeout(() => {
+                challengBox.style.opacity = 0;
+                challengBox.style.marginTop = 400 + "px";
+                challengBoxBackgroundCover.style.opacity = 0;
+                location.reload();
+                setTimeout(() => {
+                    challengBoxBackgroundCover.style.display = "none";
+                    challengBox.style.display = "none"
+                }, 300);
+            }, 3000);
+
+            const challengDataCancel = { userName }
+            const challengCancelOption = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(challengDataCancel)
+            };
+            const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+            const cancelChallengData = await cancelChalleng.json();
+
+        });
+    }
+    else {
+        const currentData = new Date();
+        witchYear.innerHTML = currentData.getFullYear();
+        challengBox.style.display = "block";
+        challengBox.style.marginTop = 230 + "px";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+            const currentData = new Date()
+
+            if (bookCounter.value == null || bookCounter.value == "") {
+                messageBox3.innerHTML = "please insert the number";
+                messageBox3.classList.add("msgBoxfadeUpDown3");
+                setTimeout(() => {
+                    messageBox3.classList.remove("msgBoxfadeUpDown3");
+                }, 5000);
+                console.log(currentData.getFullYear());
+            }
+            else {
+                let numbers = /^[0-9]+$/;
+
+                if (!bookCounter.value.match(numbers)) {
+                    messageBox3.innerHTML = "please insert number, not words";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 5000);
+                }
+                else {
+
+                    const idealChallengNumber = bookCounter.value;
+                    const userName = localStorage.getItem("userTarget");
+
+                    messageBox3.innerHTML = "Your challeng started!";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 3000);
+
+                    setTimeout(() => {
+                        challengBox.style.opacity = 0;
+                        challengBox.style.marginTop = 400 + "px";
+                        challengBoxBackgroundCover.style.opacity = 0;
+                        setTimeout(() => {
+                            challengBoxBackgroundCover.style.display = "none";
+                            challengBox.style.display = "none"
+                        }, 300);
+                    }, 3000);
+
+                    bookChallengeTxt.innerHTML = "Your Challeng";
+
+                    const challengData = { idealChallengNumber, userName }
+                    bookCounter.value = "";
+                    const challengDataOption = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(challengData)
+                    };
+                    const createChalleng = await fetch("/addChalleng", challengDataOption);
+                    const createChallengData = await createChalleng.json();
+                }
+            }
+        });
+    }
+})
+
+backgroundPic4.addEventListener("click", async () => {
+    const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
+    const messageBox3 = document.querySelector("#messageText3");
+    const userName = localStorage.getItem("userTarget");
+    const data = { userName }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    const response = await fetch("/dataForProfile", options)
+    const dataResponse = await response.json();
+    console.log(dataResponse)
+    if (dataResponse.idealChallengNumber != null) {
+        challengPara.innerHTML = "You've read " + dataResponse.ChallengNumber + " book out of " + dataResponse.idealChallengNumber;
+        bookCounter.style.display = "none";
+        challengBoxDoneBtn.innerHTML = "Cancel";
+        challengBox.style.display = "block";
+        challengBox.style.marginTop = 230 + "px";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+
+            messageBox3.innerHTML = "challeng canceled";
+            messageBox3.classList.add("msgBoxfadeUpDown3");
+            setTimeout(() => {
+                messageBox3.classList.remove("msgBoxfadeUpDown3");
+            }, 3000);
+
+            setTimeout(() => {
+                challengBox.style.opacity = 0;
+                challengBox.style.marginTop = 400 + "px";
+                challengBoxBackgroundCover.style.opacity = 0;
+                location.reload();
+                setTimeout(() => {
+                    challengBoxBackgroundCover.style.display = "none";
+                    challengBox.style.display = "none"
+                }, 300);
+            }, 3000);
+
+            const challengDataCancel = { userName }
+            const challengCancelOption = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(challengDataCancel)
+            };
+            const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+            const cancelChallengData = await cancelChalleng.json();
+
+        });
+    }
+    else {
+        const currentData = new Date();
+
+        if (challengEndingStatus == true) {
+            challengPara.innerHTML = "How many books do you want to read in " + currentData.getFullYear() + " ?";
+            bookCounter.style.display = "block";
+            challengBoxDoneBtn.innerHTML = "Done";
+            challengBoxDoneBtn.style.display = "block";
+        }
+        else {
+            witchYear.innerHTML = currentData.getFullYear();
+        }
+        challengBox.style.display = "block";
+        challengBox.style.marginTop = 230 + "px";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+            const currentData = new Date()
+
+            if (bookCounter.value == null || bookCounter.value == "") {
+                messageBox3.innerHTML = "please insert the number";
+                messageBox3.classList.add("msgBoxfadeUpDown3");
+                setTimeout(() => {
+                    messageBox3.classList.remove("msgBoxfadeUpDown3");
+                }, 5000);
+                console.log(currentData.getFullYear());
+            }
+            else {
+                let numbers = /^[0-9]+$/;
+
+                if (!bookCounter.value.match(numbers)) {
+                    messageBox3.innerHTML = "please insert number, not words";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 5000);
+                }
+                else {
+
+                    const idealChallengNumber = bookCounter.value;
+                    const userName = localStorage.getItem("userTarget");
+
+                    messageBox3.innerHTML = "Your challeng started!";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 3000);
+
+                    setTimeout(() => {
+                        challengBox.style.opacity = 0;
+                        challengBox.style.marginTop = 400 + "px";
+                        challengBoxBackgroundCover.style.opacity = 0;
+                        setTimeout(() => {
+                            challengBoxBackgroundCover.style.display = "none";
+                            challengBox.style.display = "none"
+                        }, 300);
+                    }, 3000);
+
+                    const challengData = { idealChallengNumber, userName }
+                    bookCounter.value = "";
+                    const challengDataOption = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(challengData)
+                    };
+                    const createChalleng = await fetch("/addChalleng", challengDataOption);
+                    const createChallengData = await createChalleng.json();
+                }
+            }
+        });
+    }
+})
+
+const challengBoxBackgroundCover = document.querySelector(".challengBoxBackgroundCover");
+const challengBox = document.querySelector(".challengBox");
+const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
+const challengBoxLink = document.querySelector(".challengBoxLink");
+
+challengBoxLink.addEventListener("click", async () => {
+    const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
+    const messageBox3 = document.querySelector("#messageText3");
+    const userName = localStorage.getItem("userTarget");
+    const data = { userName }
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+    const response = await fetch("/dataForProfile", options)
+    const dataResponse = await response.json();
+    console.log(dataResponse)
+    if (dataResponse.idealChallengNumber != null) {
+        challengPara.innerHTML = "You've read " + dataResponse.ChallengNumber + " book out of " + dataResponse.idealChallengNumber;
+        bookCounter.style.display = "none";
+        challengBoxDoneBtn.innerHTML = "Cancel";
+        challengBox.style.display = "block";
+        challengBox.style.marginTop = 230 + "px";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+
+            messageBox3.innerHTML = "challeng canceled";
+            messageBox3.classList.add("msgBoxfadeUpDown3");
+            setTimeout(() => {
+                messageBox3.classList.remove("msgBoxfadeUpDown3");
+            }, 3000);
+
+            setTimeout(() => {
+                challengBox.style.opacity = 0;
+                challengBox.style.marginTop = 400 + "px";
+                challengBoxBackgroundCover.style.opacity = 0;
+                location.reload();
+                setTimeout(() => {
+                    challengBoxBackgroundCover.style.display = "none";
+                    challengBox.style.display = "none"
+                }, 300);
+            }, 3000);
+
+            const challengDataCancel = { userName }
+            const challengCancelOption = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(challengDataCancel)
+            };
+            const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+            const cancelChallengData = await cancelChalleng.json();
+
+        });
+    }
+    else {
+        const currentData = new Date();
+
+        if (challengEndingStatus == true) {
+            challengPara.innerHTML = "How many books do you want to read in " + currentData.getFullYear() + " ?";
+            bookCounter.style.display = "block";
+            challengBoxDoneBtn.innerHTML = "Done";
+            challengBoxDoneBtn.style.display = "block";
+        }
+        else {
+            witchYear.innerHTML = currentData.getFullYear();
+        }
+        challengBox.style.display = "block";
+        challengBox.style.marginTop = 230 + "px";
+        challengBoxBackgroundCover.style.display = "block";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.opacity = 1;
+            challengBox.style.opacity = 1
+        }, 300)
+        challengBoxDoneBtn.addEventListener("click", async () => {
+            const currentData = new Date()
+
+            if (bookCounter.value == null || bookCounter.value == "") {
+                messageBox3.innerHTML = "please insert the number";
+                messageBox3.classList.add("msgBoxfadeUpDown3");
+                setTimeout(() => {
+                    messageBox3.classList.remove("msgBoxfadeUpDown3");
+                }, 5000);
+                console.log(currentData.getFullYear());
+            }
+            else {
+                let numbers = /^[0-9]+$/;
+
+                if (!bookCounter.value.match(numbers)) {
+                    messageBox3.innerHTML = "please insert number, not words";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 5000);
+                }
+                else {
+
+                    const idealChallengNumber = bookCounter.value;
+                    const userName = localStorage.getItem("userTarget");
+
+                    messageBox3.innerHTML = "Your challeng started!";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 3000);
+
+                    setTimeout(() => {
+                        challengBox.style.opacity = 0;
+                        challengBox.style.marginTop = 400 + "px";
+                        challengBoxBackgroundCover.style.opacity = 0;
+                        setTimeout(() => {
+                            challengBoxBackgroundCover.style.display = "none";
+                            challengBox.style.display = "none"
+                        }, 300);
+                    }, 3000);
+
+                    const challengData = { idealChallengNumber, userName }
+                    bookCounter.value = "";
+                    const challengDataOption = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(challengData)
+                    };
+                    const createChalleng = await fetch("/addChalleng", challengDataOption);
+                    const createChallengData = await createChalleng.json();
+                }
+            }
+        });
+    }
+})
+
+challengBoxBackgroundCover.addEventListener("click", () => {
+    challengBox.style.opacity = 0;
+    challengBox.style.marginTop = 400 + "px";
+    challengBoxBackgroundCover.style.opacity = 0;
+    bookCounter.value = "";
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.display = "none";
+        challengBox.style.display = "none"
+    }, 300)
+})
+challengBoxCloseBtn.addEventListener("click", () => {
+    challengBox.style.opacity = 0;
+    challengBox.style.marginTop = 400 + "px";
+    challengBoxBackgroundCover.style.opacity = 0;
+    setTimeout(() => {
+        challengBoxBackgroundCover.style.display = "none";
+        challengBox.style.display = "none"
+    }, 300);
+    bookCounter.value = "";
+})
+
+const messageBox3 = document.querySelector("#messageText3");

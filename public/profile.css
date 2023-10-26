@@ -700,9 +700,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .profPage #checkingUsersAccountPage {
-    position: absolute;
+    position: fixed;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     margin-top: -50px;
     background-image: linear-gradient(#0c0c0c, #242131);
     display: block;
@@ -1861,11 +1861,11 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 0;
 }
 
-.profPage .shelfPnl .shelfEditBox{
+.profPage .shelfPnl .shelfEditBox {
     position: fixed;
     left: 50%;
     margin-top: 400px;
-    transform: translate(-50%,500px);
+    transform: translate(-50%, 500px);
     width: 500px;
     height: 250px;
     z-index: 999999;
@@ -1880,7 +1880,7 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 0;
 }
 
-.profPage .shelfPnl .shelfEditBox #shelfEditPnlCloseBtn{
+.profPage .shelfPnl .shelfEditBox #shelfEditPnlCloseBtn {
     position: absolute;
     left: 89%;
     top: 10%;
@@ -1888,11 +1888,11 @@ body::-webkit-scrollbar-thumb:hover {
     transition: .3s;
 }
 
-.profPage .shelfPnl .shelfEditBox #shelfEditPnlCloseBtn:hover{
-    fill:rgb(173, 173, 173);
+.profPage .shelfPnl .shelfEditBox #shelfEditPnlCloseBtn:hover {
+    fill: rgb(173, 173, 173);
 }
 
-.profPage .shelfPnl .shelfEditBox #shelfEditBoxBtn{
+.profPage .shelfPnl .shelfEditBox #shelfEditBoxBtn {
     position: absolute;
     top: 78%;
     left: 75%;
@@ -1908,7 +1908,7 @@ body::-webkit-scrollbar-thumb:hover {
     transition: .2s;
 }
 
-.profPage .shelfPnl .shelfEditBox #shelfEditBoxBtn:hover{
+.profPage .shelfPnl .shelfEditBox #shelfEditBoxBtn:hover {
     background-color: rgb(175, 175, 175);
     color: #1a1724;
 }
@@ -1922,7 +1922,7 @@ body::-webkit-scrollbar-thumb:hover {
     color: rgb(236, 236, 236);
     font-size: 1.3em;
     margin: 30px;
-    
+
 }
 
 .profPage .shelfPnl .shelfEditBox p:nth-child(2) {
@@ -1945,13 +1945,15 @@ body::-webkit-scrollbar-thumb:hover {
     font-family: regularFont;
     padding-left: 7px;
     transition: 0.3s;
-    z-index:234534534;
+    z-index: 234534534;
 }
 
-.profPage .shelfPnl .shelfEditBox .shelfEditBoxName{
+.profPage .shelfPnl .shelfEditBox .shelfEditBoxName {
     transform: translateY(-20px);
     width: 64px;
-}.profPage .shelfPnl .shelfEditBox #shelfNameTxtBox:focus{
+}
+
+.profPage .shelfPnl .shelfEditBox #shelfNameTxtBox:focus {
     border-bottom: 2px solid rgb(216, 216, 216);
     color: rgb(219, 219, 219);
 }
@@ -1966,6 +1968,7 @@ body::-webkit-scrollbar-thumb:hover {
     margin-left: 20px;
     transition: .3s;
 }
+
 .profPage .shelfPnl .shelfEditBox p:nth-child(4):hover {
     color: rgb(219, 219, 219);
 }
@@ -2237,5 +2240,147 @@ body::-webkit-scrollbar-thumb:hover {
     100% {
         opacity: 0;
         top: -30px
+    }
+}
+
+.profPage .challengBoxBackgroundCover {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 120;
+    margin-top: 6px;
+    opacity: 0;
+    display: none;
+}
+
+.profPage .challengBox {
+    position: fixed;
+    left: 50%;
+    margin-top: 400px;
+    transform: translate(-50%, 500px);
+    width: 500px;
+    height: 230px;
+    z-index: 999;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    background-color: #201e2b;
+    border-radius: 10px;
+    border: 2px solid rgb(58, 50, 75);
+    overflow: hidden;
+    transition: 0.3s;
+    display: none;
+    opacity: 0;
+}
+
+.profPage .challengBox h4 {
+    font-family: regularFont;
+    font-weight: bold;
+    margin-top: 15px;
+    color: rgb(206, 202, 212);
+    text-align: center;
+}
+
+.profPage .challengBox #challengBoxCloseBtn {
+    position: absolute;
+    left: 91%;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profPage .challengBox #challengBoxCloseBtn:hover {
+    fill: rgb(202, 202, 202);
+}
+
+.profPage .challengBox p {
+    font-family: regularFont;
+    font-weight: bold;
+    color: rgb(188, 183, 199);
+    text-align: center;
+    margin-top: 30px;
+}
+
+.profPage .challengBox #bookCounter {
+    background-color: transparent;
+    width: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    outline: none;
+    padding-left: 15px;
+    border: none;
+    border-bottom: 2px solid rgb(133, 128, 143);
+    color: rgb(158, 151, 172);
+    font-family: regularFont;
+    transition: .3s;
+}
+
+.profPage .challengBox #bookCounter:focus {
+    border-bottom: 2px solid rgb(189, 182, 204);
+}
+
+.profPage .challengBox #challengBoxDoneBtn {
+    width: 90px;
+    position: absolute;
+    top: 78%;
+    left: 78%;
+    background-color: transparent;
+    font-family: regularFont;
+    color: rgb(188, 183, 199);
+    border-radius: 5px;
+    height: 36px;
+    outline: none;
+    border: 2px solid rgb(163, 157, 175);
+    transition: .3s;
+}
+
+.profPage .challengBox #challengBoxDoneBtn:hover {
+    background-color: rgb(163, 157, 175);
+    color: rgb(36, 36, 46);
+}
+
+.challengBoxLink {
+    cursor: pointer;
+}
+
+.profPage .challengBoxBackgroundCover #messageText3 {
+    position: absolute;
+    top: -80px;
+    left: 200px;
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    color: #e6e6e6;
+    font-size: 1.1em;
+    opacity: 0;
+    z-index: 9999932459543;
+}
+
+.msgBoxfadeUpDown3 {
+    animation-name: msgBoxfadeUpDown3;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes msgBoxfadeUpDown3 {
+    0% {
+        opacity: 0;
+        top: -80px
+    }
+
+    15% {
+        opacity: 1;
+        top: -30px
+    }
+
+    80% {
+        opacity: 1;
+        top: -30px
+    }
+
+    100% {
+        opacity: 0;
+        top: -80px
     }
 }

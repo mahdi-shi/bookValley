@@ -31,7 +31,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="signIn.html">Account</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="#">Challenge</a></li>
+                <li class="challengBoxLink"><a>Challenge</a></li>
                 <li><a href="geners.html">Geners</a></li>
             </ul>
             <div class="bookSearchBox">
@@ -91,7 +91,7 @@
                 <p class="shelfPara">Reading</p>
             </li>
             <li class="dShelf">
-                <p class="shelfPara">Readed</p>
+                <p class="shelfPara">Read</p>
             </li>
         </ul>
         <button id="addShelfBtn"><svg xmlns=" http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor"
@@ -376,6 +376,22 @@
                     <path
                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                 </svg></button>
+        </div>
+        <div class="challengBox">
+            <h4>Challeng Box</h4>
+            <svg id="challengBoxCloseBtn" class="shelfPnlCloseBtnHelper" style="position: fixed;"
+                xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#8c85ad" class="bi bi-x-lg"
+                viewBox="0 0 16 16">
+                <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+            </svg>
+            <P id="challengPara">How many books do you want to read in <span id="witchYear"></span> ?</P>
+            <input type="text" id="bookCounter" size="2" maxlength="2">
+            <button id="challengBoxDoneBtn">Done</button>
+        </div>
+        <div class="challengBoxBackgroundCover">
+            <p id="messageText3">please Fill in the field</p>
+
         </div>
         <div class="backGroundHeader"></div>
     </div>

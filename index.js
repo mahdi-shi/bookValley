@@ -109,26 +109,6 @@ app.post("/dataForProfile", (req, res) => {
     })
 })
 
-app.post("/dataForProfile", (req, res) => {
-    let targetUser = []
-
-    dataBase.find({}, (error, Data) => {
-        if (error) {
-            res.end();
-            return;
-        }
-
-        for (let i = 0; i < Data.length; i++) {
-            if (Data[i].userName == req.body.userName) {
-                targetUser = Data[i];
-                break;
-            }
-        }
-        console.log(targetUser);
-        res.json(targetUser);
-    })
-})
-
 app.post("/saveProfilePic", (req, res) => {
     dataBase.update({ userName: req.body.username }, { $set: { image: req.body.image } }, { multi: true }, function (err, numReplaced) {
     })
@@ -224,7 +204,7 @@ app.post("/DefaultshelvesData", (req, res) => {
             console.log("none");
             dataBase3.insert({ Name: "want to read", User: req.body.userName });
             dataBase3.insert({ Name: "reading", User: req.body.userName });
-            dataBase3.insert({ Name: "readed", User: req.body.userName });
+            dataBase3.insert({ Name: "read", User: req.body.userName });
         }
         else {
             for (let i = 0; i < Data.length; i++) {
@@ -243,7 +223,7 @@ app.post("/DefaultshelvesData", (req, res) => {
         if (isThereStatus == false) {
             dataBase3.insert({ Name: "want to read", User: req.body.userName });
             dataBase3.insert({ Name: "reading", User: req.body.userName });
-            dataBase3.insert({ Name: "readed", User: req.body.userName });
+            dataBase3.insert({ Name: "read", User: req.body.userName });
             isThereStatus = true;
         }
         else {
@@ -292,6 +272,7 @@ app.post("/shelvesData", (req, res) => {
 app.post("/shelfAdd", (req, res) => {
     dataBase3.update({ User: req.body.userName, Name: req.body.shelfName }, { $push: { book: req.body.book } }, { multi: true }, function (err, numReplaced) {
     })
+    res.json("status : 202");
 })
 
 //editing for shelf
@@ -321,7 +302,7 @@ app.post("/shelfNameEdit", (req, res) => {
 //deleting shelf
 
 app.post("/shelfDelete", (req, res) => {
-    dataBase3.remove({ Name: req.body.shelfName,User : req.body.userName }, {}, (err, numRemoved) => {
+    dataBase3.remove({ Name: req.body.shelfName, User: req.body.userName }, {}, (err, numRemoved) => {
 
     })
 
@@ -340,4 +321,35 @@ app.post("/shelfDelete", (req, res) => {
         console.log(targetUser);
         res.json(targetUser);
     })
+})
+
+//creating a challeng
+
+app.post("/addChalleng", (req, res) => {
+    dataBase.update({ userName: req.body.userName }, { $set: { idealChallengNumber: req.body.idealChallengNumber } }, {}, function () {
+
+    })
+    dataBase.update({ userName: req.body.userName }, { $set: { ChallengNumber: 0 } }, {}, function () {
+
+    })
+})
+
+app.post("/updateChallengNumber", (req, res) => {
+    dataBase.update({ userName: req.body.userName }, { $set: { ChallengNumber: req.body.bookCounterNumber } }, {}, function () {
+
+    })
+    res.json("status : 202");
+})
+
+//canceling challeng;
+
+app.post("/challengCanceler", (req, res) => {
+    dataBase.update({ userName: req.body.userName }, { $unset: { idealChallengNumber: true } }, {}, function () {
+
+    });
+    dataBase.update({ userName: req.body.userName }, { $unset: { ChallengNumber: true } }, {}, function () {
+
+    });
+
+    res.json("status : 202");
 })
