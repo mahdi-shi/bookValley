@@ -168,7 +168,7 @@ for (let i = 0; i < books.length; i++) {
             bookPannel.style.transform = "translate(0%,-9%)"
             navBar.style.backgroundColor = "transparent";
             navBar.style.boxShadow = "none"
-            bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
+            bookPannelCloseBtnSvg.style.fill = "#685d74";
             bookPannelCloseBtn.style.display = "block"
             bookPannelCloseBtn.style.opacity = "1";
 
@@ -805,7 +805,7 @@ searchBoxBtn.addEventListener("click", async () => {
                     bookPannel.style.transform = "translate(0%,-9%)"
                     navBar.style.backgroundColor = "transparent";
                     navBar.style.boxShadow = "none"
-                    bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
+                    bookPannelCloseBtnSvg.style.fill = "#685d74";
                     bookPannelCloseBtn.style.display = "block"
                     bookPannelCloseBtn.style.opacity = "1";
 
@@ -1408,8 +1408,6 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                 const bookCode = document.querySelectorAll(".bookCode");
                 const bookPannelCloseBtnSvg = document.querySelector("#bookPannelCloseBtnSvg");
 
-                let witchBookCode;
-
                 const books = document.querySelectorAll(".li");
 
                 if (books.length > 0) {
@@ -1521,7 +1519,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             bookPannel.style.transform = "translate(0%,-9%)"
                             navBar.style.backgroundColor = "transparent";
                             navBar.style.boxShadow = "none"
-                            bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
+                            bookPannelCloseBtnSvg.style.fill = "#685d74";
                             bookPannelCloseBtn.style.display = "block"
                             bookPannelCloseBtn.style.opacity = "1";
 

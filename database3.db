@@ -1,25 +1,5 @@
-<<<<<<< HEAD
-{"Name":"want to read","User":"mahdi","_id":"5KTM6SkHesqiWFP2"}
-{"Name":"reading","User":"mahdi","_id":"Sy9pxCwXqNJhIxuG"}
-{"Name":"justAcademia","User":"ehsan","_id":"VNsV3dF7DsYMbQy0","book":["/works/OL413674W","/works/OL54141W","/works/OL53918W","/works/OL54059W","/works/OL82563W","/works/OL52266W","/works/OL27468204W","/works/OL515051W","/works/OL53908W"]}
-{"Name":"reading","User":"ehsan","_id":"hf7PoTAHCpX7ZC6G","book":["/works/OL849825W","/works/OL54059W"]}
-{"Name":"readed","User":"mahdi","_id":"maLRDrS0sBNYIMCu"}
-{"Name":"readed","User":"ehsan","_id":"t8QSmhZQ9ZeoZHML","book":["/works/OL54059W"]}
-{"Name":"want to read","User":"ehsan","_id":"xiMYX1YG2q5e9vhX"}
-{"Name":"academia","User":"ehsan2","_id":"Opn9KXAXX8ZRhSpm"}
-=======
 {"Name":"want to read","User":"Mahdi","_id":"AOtkQOHsMFRysCkE","book":["/works/OL54056W","/works/OL82586W"]}
 {"Name":"dark academia","User":"Mahdi","_id":"G98KLwj0yCHnNyfM","book":["/works/OL82586W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h"}
-{"Name":"reading","User":"Mahdi","_id":"mKsmcqVt9L2KZsdR","book":["/works/OL54056W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W","/works/OL2950903W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W","/works/OL2950903W","/works/OL4590483W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W","/works/OL2950903W","/works/OL4590483W","/works/OL4321736W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W","/works/OL2950903W","/works/OL4590483W","/works/OL4321736W","/works/OL26214722W"]}
-{"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W","/works/OL2950903W","/works/OL4590483W","/works/OL4321736W","/works/OL26214722W","/works/OL54153W"]}
 {"Name":"read","User":"Mahdi","_id":"PibRssbvQT8T6J1h","book":["/works/OL53959W","/works/OL24600612W","/works/OL849825W","/works/OL82586W","/works/OL2950903W","/works/OL4590483W","/works/OL4321736W","/works/OL26214722W","/works/OL54153W","/works/OL53918W"]}
->>>>>>> challeng
+{"Name":"reading","User":"Mahdi","_id":"mKsmcqVt9L2KZsdR","book":["/works/OL54056W"]}
+{"Name":"dark academia","User":"Mahdi","_id":"G98KLwj0yCHnNyfM","book":["/works/OL82586W","/works/OL54056W"]}

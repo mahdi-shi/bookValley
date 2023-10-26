@@ -676,7 +676,7 @@ searchBoxBtn.addEventListener("click", async () => {
                     bookPannel.style.transform = "translate(0%,-15%)"
                     navBar.style.backgroundColor = "transparent";
                     navBar.style.boxShadow = "none"
-                    bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
+                    bookPannelCloseBtnSvg.style.fill = "#685d74";
                     bookPannelCloseBtn.style.display = "block"
                     bookPannelCloseBtn.style.opacity = "1";
 
@@ -1406,7 +1406,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                         bookPannel.style.transform = "translate(0%,-15%)"
                         navBar.style.backgroundColor = "transparent";
                         navBar.style.boxShadow = "none"
-                        bookPannelCloseBtnSvg.style.fill = " rgb(41, 41, 51)";
+                        bookPannelCloseBtnSvg.style.fill = "#685d74";
                         bookPannelCloseBtn.style.display = "block"
                         bookPannelCloseBtn.style.opacity = "1";
 

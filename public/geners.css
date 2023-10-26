@@ -185,6 +185,7 @@ body {
     transform: translate(-50%, -50%);
     cursor: pointer;
     transition: 0.4s;
+    fill: #685d74;
 }
 
 .genersPage .rightSide {
