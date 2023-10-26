@@ -33,7 +33,7 @@ body {
 .homePage .navBar {
     height: 60px;
     transition: 0.3s;
-    z-index: 25;
+    z-index: 125;
     position: fixed;
     width: 100.8%;
 }
@@ -187,6 +187,7 @@ body {
     transform: translate(-50%, -50%);
     cursor: pointer;
     transition: 0.4s;
+    fill: #8375c0;
 }
 
 .homePage .header {
@@ -2009,4 +2010,147 @@ body::-webkit-scrollbar-thumb:hover {
 
 .homePage .section .bookPannel .bookRate2 li svg {
     fill: #b2a9df;
+}
+
+.homePage .section .challengBoxBackgroundCover {
+    position: fixed;
+    width: 100%;
+    height: 101vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 120;
+    margin-top: -654px;
+    margin-left: 10px;
+    opacity: 0;
+    display: none;
+}
+
+.homePage .section .challengBox {
+    position: fixed;
+    left: 50%;
+    margin-top: -330px;
+    transform: translate(-50%, -490px);
+    width: 500px;
+    height: 230px;
+    z-index: 979;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    background-color: #201e2b;
+    border-radius: 10px;
+    border: 2px solid rgb(58, 50, 75);
+    overflow: hidden;
+    transition: 0.3s;
+    display: none;
+    opacity: 0;
+}
+
+.homePage .section .challengBox h4 {
+    font-family: regularFont;
+    font-weight: bold;
+    margin-top: 15px;
+    color: rgb(206, 202, 212);
+    text-align: center;
+}
+
+.homePage .section .challengBox #challengBoxCloseBtn {
+    position: absolute;
+    left: 91%;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.homePage .section .challengBox #challengBoxCloseBtn:hover {
+    fill: rgb(202, 202, 202);
+}
+
+.homePage .section .challengBox p {
+    font-family: regularFont;
+    font-weight: bold;
+    color: rgb(188, 183, 199);
+    text-align: center;
+    margin-top: 30px;
+}
+
+.homePage .section .challengBox #bookCounter {
+    background-color: transparent;
+    width: 50px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    outline: none;
+    padding-left: 15px;
+    border: none;
+    border-bottom: 2px solid rgb(133, 128, 143);
+    color: rgb(158, 151, 172);
+    font-family: regularFont;
+    transition: .3s;
+}
+
+.homePage .section .challengBox #bookCounter:focus {
+    border-bottom: 2px solid rgb(189, 182, 204);
+}
+
+.homePage .section .challengBox #challengBoxDoneBtn {
+    width: 90px;
+    position: absolute;
+    top: 78%;
+    left: 78%;
+    background-color: transparent;
+    font-family: regularFont;
+    color: rgb(188, 183, 199);
+    border-radius: 5px;
+    height: 36px;
+    outline: none;
+    border: 2px solid rgb(163, 157, 175);
+    transition: .3s;
+}
+
+.homePage .section .challengBox #challengBoxDoneBtn:hover {
+    background-color: rgb(163, 157, 175);
+    color: rgb(36, 36, 46);
+}
+
+.challengBoxLink {
+    cursor: pointer;
+}
+
+.homePage .section .challengBoxBackgroundCover #messageText3 {
+    position: absolute;
+    top: -80px;
+    left: 200px;
+    color: white;
+    font-family: regularFont;
+    font-weight: bold;
+    color: #e6e6e6;
+    font-size: 1.1em;
+    opacity: 0;
+    z-index: 9999932459543;
+}
+
+.msgBoxfadeUpDown3 {
+    animation-name: msgBoxfadeUpDown3;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes msgBoxfadeUpDown3 {
+    0% {
+        opacity: 0;
+        top: -80px
+    }
+
+    15% {
+        opacity: 1;
+        top: 30px
+    }
+
+    80% {
+        opacity: 1;
+        top: 30px
+    }
+
+    100% {
+        opacity: 0;
+        top: -80px
+    }
 }

@@ -31,7 +31,7 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="signIn.html">Account</a></li>
                 <li><a href="profile.html">Profile</a></li>
-                <li><a href="#">Challenge</a></li>
+                <li class="challengBoxLink"><a href="#">Challenge</a></li>
                 <li><a href="geners.html">Geners</a></li>
             </ul>
             <div class="bookSearchBox">
@@ -397,8 +397,24 @@
                 </ul>
                 <ul class="footerLsTwo">
                     <li><a href="#">Writing</a></li>
-                    <li><a href="#">Challenge</a></li>
+                    <li class="challengBoxLink"><a href="#">Challenge</a></li>
                 </ul>
+            </div>
+
+            <div class="challengBox">
+                <h4>Challeng Box</h4>
+                <svg id="challengBoxCloseBtn" class="shelfPnlCloseBtnHelper" style="position: fixed;"
+                    xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#8c85ad" class="bi bi-x-lg"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                </svg>
+                <P id="challengPara">How many books do you want to read in <span id="witchYear"></span> ?</P>
+                <input type="text" id="bookCounter" size="2" maxlength="2">
+                <button id="challengBoxDoneBtn">Done</button>
+            </div>
+            <div class="challengBoxBackgroundCover">
+                <p id="messageText3">please Fill in the field</p>
             </div>
         </div>
 
@@ -414,176 +430,12 @@
     const backgroundBookImg = document.querySelector(".backgroundBookImg");
     var witchBookCode;
 
+    var challengEndingStatus = false;
+
     profileIcon.addEventListener("click", () => {
         window.location.assign("profile.html");
     })
 
-    document.body.onload = async () => {
-        const userName = localStorage.getItem("userTarget");
-
-        if (userName == null) {
-            profIconPicture.style.display = "none";
-            profileIconSvg.style.display = "block";
-        }
-        else {
-            const data = { userName }
-            const options = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            };
-
-            const response = await fetch("/dataForProfile", options)
-            const dataResponse = await response.json();
-
-            if (dataResponse.image == null) {
-                profIconPicture.style.display = "none";
-                profileIconSvg.style.display = "block";
-            }
-            else {
-                profIconPicture.style.display = "block";
-                profIconPicture.src = dataResponse.image;
-                profileIconSvg.style.display = "none";
-            }
-
-            const shelfData = { userName }
-            const shelfOptions = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(shelfData)
-            };
-
-            const shelvesResponse = await fetch("/shelvesData", shelfOptions);
-            const shelvesResponseData = await shelvesResponse.json();
-            console.log(shelvesResponseData);
-
-            for (let i = 0; i < shelvesResponseData.length; i++) {
-
-                let li = document.createElement("li");
-                let shelfTitle = document.createElement("p");
-                let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
-                let shelfImg = document.createElement("img");
-
-                li.classList.add("shelfLi");
-                shelfTitle.appendChild(shelfTitleTxt);
-                shelfTitle.classList.add("shelfTitle");
-                shelfImg.src = "assets/addShelfImg.png";
-                shelfImg.classList.add("addShelfItemsImg");
-
-                li.appendChild(shelfTitle);
-                li.appendChild(shelfImg);
-                shelfItems.appendChild(li);
-
-                let bookShelfStatus = false;
-
-                li.addEventListener("click", async () => {
-                    const shelfData = { userName }
-                    const shelfOptions = {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(shelfData)
-                    };
-                    const shelvesResponse = await fetch("/shelvesData", shelfOptions);
-                    const shelvesResponseData = await shelvesResponse.json();
-
-                    if (shelvesResponseData[i].book == null) {
-                        messageBox.innerHTML = "the book added to shelf"
-                        messageBox.classList.add("messageBoxFadeInOut");
-                        setTimeout(() => {
-                            messageBox.classList.remove("messageBoxFadeInOut");
-                        }, 5000);
-                        console.log(witchBookCode);
-                        console.log(shelvesResponseData[i]);
-                        console.log(shelfBtnStatus);
-                        const shelfName = shelfTitle.innerHTML;
-                        const book = witchBookCode;
-                        const shelfData2 = { userName, shelfName, book }
-                        const shelfOptions2 = {
-                            method: "POST",
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(shelfData2)
-                        };
-
-                        shelfItems.style.left = 40 + "%";
-                        shelfItems.style.top = 410 + "px";
-                        shelfItems.style.opacity = 0;
-                        setTimeout(() => {
-                            shelfItems.style.display = "none";
-                        }, 300);
-
-                        const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
-                        const shelvesResponseData2 = await shelvesResponse2.json();
-
-                        shelfBtnStatus = false;
-                    }
-                    else {
-
-                        shelfItems.style.left = 40 + "%";
-                        shelfItems.style.top = 410 + "px";
-                        shelfItems.style.opacity = 0;
-                        setTimeout(() => {
-                            shelfItems.style.display = "none";
-                        }, 300);
-
-                        for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
-                            if (shelvesResponseData[i].book[j] == witchBookCode) {
-                                messageBox.innerHTML = "you already have this book in the shelf"
-                                messageBox.classList.add("messageBoxFadeInOut");
-                                setTimeout(() => {
-                                    messageBox.classList.remove("messageBoxFadeInOut");
-                                }, 5000);
-                                bookShelfStatus = true;
-                                console.log(shelfBtnStatus);
-                                console.log(witchBookCode);
-                                console.log(shelvesResponseData[i].book[j]);
-                                shelfBtnStatus = false;
-                                break;
-                            }
-                            else {
-                                bookShelfStatus = false;
-                                console.log(shelfBtnStatus);
-                                console.log(witchBookCode);
-                                console.log(shelvesResponseData[i].book[j]);
-                                shelfBtnStatus = false;
-                            }
-                        }
-
-                        if (bookShelfStatus == false) {
-                            messageBox.innerHTML = "book added to the shelf"
-                            messageBox.classList.add("messageBoxFadeInOut");
-                            setTimeout(() => {
-                                messageBox.classList.remove("messageBoxFadeInOut");
-                            }, 5000);
-                            const shelfName = shelfTitle.innerHTML;
-                            const book = witchBookCode;
-                            const shelfData2 = { userName, shelfName, book }
-                            const shelfOptions2 = {
-                                method: "POST",
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(shelfData2)
-                            };
-                            shelfBtnStatus = false;
-                            const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
-                            const shelvesResponseData2 = await shelvesResponse2.json();
-                        }
-                        shelfBtnStatus = false;
-                    }
-                })
-
-                console.log(i);
-            }
-        }
-    }
     const navBar = document.querySelector(".navBar")
     document.onscroll = () => {
         if (scrollY > 600) {
@@ -596,6 +448,8 @@
     }
 
     //searching stuff
+
+    var temp;
 
     const searchPnl = document.querySelector(".searchPnl");
     const searchPnlCloseBtn = document.querySelector("#searchPnlCloseBtn");
@@ -651,8 +505,6 @@
             const bookRateStar2 = document.querySelectorAll(".bookRateStar2");
             const bookCode = document.querySelectorAll(".bookCode");
             const bookPannelCloseBtnSvg = document.querySelector("#bookPannelCloseBtnSvg");
-
-            let witchBookCode;
 
             const books = document.querySelectorAll(".li");
 
@@ -770,6 +622,8 @@
                         bookPannelCloseBtn.style.opacity = "1";
 
                         witchBookCode = p2.innerHTML;
+                        temp = p2.innerHTML;
+
                         const witchBook = witchBookCode;
                         const data2 = { witchBook }
                         const options2 = {
@@ -1154,6 +1008,8 @@
                         }
 
                         witchBookCode = bookLikeThisCode[i].innerHTML;
+                        temp = bookLikeThisCode[i].innerHTML;
+
                         const witchBook = witchBookCode;
                         const data2 = { witchBook }
                         const options2 = {
@@ -1382,9 +1238,6 @@
                 const bookRateStar2 = document.querySelectorAll(".bookRateStar2");
                 const bookCode = document.querySelectorAll(".bookCode");
                 const bookPannelCloseBtnSvg = document.querySelector("#bookPannelCloseBtnSvg");
-
-                let witchBookCode;
-
                 const books = document.querySelectorAll(".li");
 
                 if (books.length > 0) {
@@ -1501,6 +1354,8 @@
                             bookPannelCloseBtn.style.opacity = "1";
 
                             witchBookCode = p2.innerHTML;
+                            temp = p2.innerHTML;
+
                             const witchBook = witchBookCode;
                             const data2 = { witchBook }
                             const options2 = {
@@ -1884,6 +1739,8 @@
                             }
 
                             witchBookCode = bookLikeThisCode[i].innerHTML;
+                            temp = bookLikeThisCode[i].innerHTML;
+
                             const witchBook = witchBookCode;
                             const data2 = { witchBook }
                             const options2 = {
@@ -2065,6 +1922,282 @@
         }
     })
 
+    document.body.onload = async () => {
+        const userName = localStorage.getItem("userTarget");
+
+        if (userName == null) {
+            profIconPicture.style.display = "none";
+            profileIconSvg.style.display = "block";
+        }
+        else {
+            const data = { userName }
+            const options = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+
+            const response = await fetch("/dataForProfile", options)
+            const dataResponse = await response.json();
+
+            if (dataResponse.image == null) {
+                profIconPicture.style.display = "none";
+                profileIconSvg.style.display = "block";
+            }
+            else {
+                profIconPicture.style.display = "block";
+                profIconPicture.src = dataResponse.image;
+                profileIconSvg.style.display = "none";
+            }
+
+            const shelfData = { userName }
+            const shelfOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(shelfData)
+            };
+
+            const shelvesResponse = await fetch("/shelvesData", shelfOptions);
+            const shelvesResponseData = await shelvesResponse.json();
+            console.log(shelvesResponseData);
+
+            for (let i = 0; i < shelvesResponseData.length; i++) {
+
+                let li = document.createElement("li");
+                let shelfTitle = document.createElement("p");
+                let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
+                let shelfImg = document.createElement("img");
+
+                li.classList.add("shelfLi");
+                shelfTitle.appendChild(shelfTitleTxt);
+                shelfTitle.classList.add("shelfTitle");
+                shelfImg.src = "assets/addShelfImg.png";
+                shelfImg.classList.add("addShelfItemsImg");
+
+                li.appendChild(shelfTitle);
+                li.appendChild(shelfImg);
+                shelfItems.appendChild(li);
+
+                let bookShelfStatus = false;
+
+                li.addEventListener("click", async () => {
+                    const shelfData = { userName }
+                    const shelfOptions = {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(shelfData)
+                    };
+                    const shelvesResponse = await fetch("/shelvesData", shelfOptions);
+                    const shelvesResponseData = await shelvesResponse.json();
+
+                    if (shelvesResponseData[i].book == null) {
+                        messageBox.innerHTML = "the book added to shelf"
+                        messageBox.classList.add("messageBoxFadeInOut");
+                        setTimeout(() => {
+                            messageBox.classList.remove("messageBoxFadeInOut");
+                        }, 5000);
+                        console.log(temp);
+                        console.log(shelvesResponseData[i]);
+                        console.log(shelfBtnStatus);
+                        const shelfName = shelfTitle.innerHTML;
+                        const book = temp;
+                        const shelfData2 = { userName, shelfName, book }
+                        const shelfOptions2 = {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(shelfData2)
+                        };
+
+                        shelfItems.style.left = 40 + "%";
+                        shelfItems.style.top = 410 + "px";
+                        shelfItems.style.opacity = 0;
+                        setTimeout(() => {
+                            shelfItems.style.display = "none";
+                        }, 300);
+
+                        const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
+                        const shelvesResponseData2 = await shelvesResponse2.json();
+                        console.log(shelvesResponseData2);
+
+                        if (shelfName == "read") {
+                            const response = await fetch("/dataForProfile", options)
+                            const dataResponse = await response.json();
+                            console.log(dataResponse);
+
+                            if (dataResponse.idealChallengNumber == null) {
+                                return false;
+                            }
+                            else {
+                                if (dataResponse.ChallengNumber == dataResponse.idealChallengNumber) {
+                                    challengPara.innerHTML = "Congratulations, you've read " + dataResponse.idealChallengNumber + " books this year :)";
+                                    bookCounter.style.display = "none";
+                                    challengBoxDoneBtn.style.display = "none";
+                                    challengBox.style.display = "block";
+                                    challengBoxBackgroundCover.style.display = "block";
+                                    challengEndingStatus = true;
+                                    setTimeout(() => {
+                                        challengBoxBackgroundCover.style.opacity = 1;
+                                        challengBox.style.opacity = 1
+                                    }, 300)
+
+                                    const challengDataCancel = { userName }
+                                    const challengCancelOption = {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(challengDataCancel)
+                                    };
+                                    const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                                    const cancelChallengData = await cancelChalleng.json();
+                                    console.log(cancelChallengData);
+                                    const currentData = new Date();
+                                }
+                                else {
+                                    const currentNumber = dataResponse.ChallengNumber;
+                                    const bookCounterNumber = currentNumber + 1;
+                                    const updateChalleng = { userName, bookCounterNumber }
+                                    const updateChallengOption = {
+                                        method: "POST",
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(updateChalleng)
+                                    };
+                                    const updateChallengData = await fetch("/updateChallengNumber", updateChallengOption);
+                                    const updateChallengResponse = await updateChallengData.json();
+                                    console.log(updateChallengResponse);
+                                }
+                            }
+                        }
+
+                        shelfBtnStatus = false;
+                    }
+                    else {
+                        shelfItems.style.left = 40 + "%";
+                        shelfItems.style.top = 410 + "px";
+                        shelfItems.style.opacity = 0;
+                        setTimeout(() => {
+                            shelfItems.style.display = "none";
+                        }, 300);
+
+                        for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
+                            if (shelvesResponseData[i].book[j] == witchBookCode) {
+                                messageBox.innerHTML = "you already have this book in the shelf"
+                                messageBox.classList.add("messageBoxFadeInOut");
+                                setTimeout(() => {
+                                    messageBox.classList.remove("messageBoxFadeInOut");
+                                }, 5000);
+                                bookShelfStatus = true;
+                                console.log(shelfBtnStatus);
+                                console.log(temp);
+                                console.log(shelvesResponseData[i].book[j]);
+                                shelfBtnStatus = false;
+                                break;
+                            }
+                            else {
+                                bookShelfStatus = false;
+                                console.log(shelfBtnStatus);
+                                console.log(temp);
+                                console.log(shelvesResponseData[i].book[j]);
+                                shelfBtnStatus = false;
+                            }
+                        }
+
+                        if (bookShelfStatus == false) {
+                            messageBox.innerHTML = "book added to the shelf"
+                            messageBox.classList.add("messageBoxFadeInOut");
+                            setTimeout(() => {
+                                messageBox.classList.remove("messageBoxFadeInOut");
+                            }, 5000);
+
+                            const shelfName = shelfTitle.innerHTML;
+                            shelfBtnStatus = false;
+
+                            const book = temp;
+                            const shelfData2 = { userName, shelfName, book }
+                            console.log(shelfData2);
+                            const shelfOptions2 = {
+                                method: "POST",
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(shelfData2)
+                            };
+
+                            const shelvesResponse2 = await fetch("/shelfAdd", shelfOptions2);
+                            const shelvesResponseData2 = await shelvesResponse2.json();
+                            console.log(shelvesResponseData2);
+
+                            if (shelfName == "read") {
+                                const response = await fetch("/dataForProfile", options)
+                                const dataResponse = await response.json();
+                                console.log(dataResponse);
+
+                                if (dataResponse.idealChallengNumber == null) {
+                                    return false;
+                                }
+                                else {
+                                    if (dataResponse.ChallengNumber == dataResponse.idealChallengNumber) {
+                                        challengPara.innerHTML = "Congratulations, you've read " + dataResponse.idealChallengNumber + " books this year :)";
+                                        bookCounter.style.display = "none";
+                                        challengBoxDoneBtn.style.display = "none";
+                                        challengBox.style.display = "block";
+                                        challengBoxBackgroundCover.style.display = "block";
+                                        challengEndingStatus = true;
+                                        setTimeout(() => {
+                                            challengBoxBackgroundCover.style.opacity = 1;
+                                            challengBox.style.opacity = 1
+                                        }, 300)
+
+                                        const challengDataCancel = { userName }
+                                        const challengCancelOption = {
+                                            method: "POST",
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify(challengDataCancel)
+                                        };
+                                        const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                                        const cancelChallengData = await cancelChalleng.json();
+                                        console.log(cancelChallengData);
+                                        const currentData = new Date();
+                                    }
+                                    else {
+                                        const currentNumber = dataResponse.ChallengNumber;
+                                        const bookCounterNumber = currentNumber + 1;
+                                        const updateChalleng = { userName, bookCounterNumber }
+                                        const updateChallengOption = {
+                                            method: "POST",
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify(updateChalleng)
+                                        };
+                                        const updateChallengData = await fetch("/updateChallengNumber", updateChallengOption);
+                                        const updateChallengResponse = await updateChallengData.json();
+                                        console.log(updateChallengResponse);
+                                    }
+                                }
+                            }
+                        }
+                        shelfBtnStatus = false;
+                    }
+                })
+
+                console.log(i);
+            }
+        }
+    }
+
     const shelfItems = document.querySelector(".shelfItems");
     let shelfBtnStatus = false;
 
@@ -2129,6 +2262,174 @@
 
         shelfBtnStatus = false;
     })
+
+    //challengBoxStuff
+
+    const witchYear = document.querySelector("#witchYear");
+    const bookCounter = document.querySelector("#bookCounter");
+    const challengPara = document.querySelector("#challengPara");
+    const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn");
+
+    const challengBoxBackgroundCover = document.querySelector(".challengBoxBackgroundCover");
+    const challengBox = document.querySelector(".challengBox");
+    const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
+    const challengBoxLink = document.querySelector(".challengBoxLink");
+
+    challengBoxLink.addEventListener("click", async () => {
+        const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
+        const messageBox3 = document.querySelector("#messageText3");
+        const userName = localStorage.getItem("userTarget");
+        const data = { userName }
+        const options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        const response = await fetch("/dataForProfile", options)
+        const dataResponse = await response.json();
+        console.log(dataResponse)
+        if (dataResponse.idealChallengNumber != null) {
+            challengPara.innerHTML = "You've read " + dataResponse.ChallengNumber + " book out of " + dataResponse.idealChallengNumber;
+            bookCounter.style.display = "none";
+            challengBoxDoneBtn.innerHTML = "Cancel";
+            challengBox.style.display = "block";
+            challengBoxBackgroundCover.style.display = "block";
+            setTimeout(() => {
+                challengBoxBackgroundCover.style.opacity = 1;
+                challengBox.style.opacity = 1
+            }, 300)
+            challengBoxDoneBtn.addEventListener("click", async () => {
+
+                messageBox3.innerHTML = "challeng canceled";
+                messageBox3.classList.add("msgBoxfadeUpDown3");
+                setTimeout(() => {
+                    messageBox3.classList.remove("msgBoxfadeUpDown3");
+                }, 3000);
+
+                setTimeout(() => {
+                    challengBox.style.opacity = 0;
+                    challengBoxBackgroundCover.style.opacity = 0;
+                    location.reload();
+                    setTimeout(() => {
+                        challengBoxBackgroundCover.style.display = "none";
+                        challengBox.style.display = "none"
+                    }, 300);
+                }, 3000);
+
+                const challengDataCancel = { userName }
+                const challengCancelOption = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(challengDataCancel)
+                };
+                const cancelChalleng = await fetch("/challengCanceler", challengCancelOption);
+                const cancelChallengData = await cancelChalleng.json();
+                console.log(cancelChallengData);
+
+            });
+        }
+        else {
+            challengBox.style.display = "block";
+            challengBoxBackgroundCover.style.display = "block";
+            setTimeout(() => {
+                challengBoxBackgroundCover.style.opacity = 1;
+                challengBox.style.opacity = 1
+            }, 300)
+
+            const currentData = new Date();
+
+            if (challengEndingStatus == true) {
+                challengPara.innerHTML = "How many books do you want to read in " + currentData.getFullYear() + " ?";
+                bookCounter.style.display = "block";
+                challengBoxDoneBtn.innerHTML = "Done";
+                challengBoxDoneBtn.style.display = "block";
+            }
+            else {
+                witchYear.innerHTML = currentData.getFullYear();
+            }
+            challengBoxDoneBtn.addEventListener("click", async () => {
+                const currentData = new Date()
+
+                if (bookCounter.value == null || bookCounter.value == "") {
+                    messageBox3.innerHTML = "please insert the number";
+                    messageBox3.classList.add("msgBoxfadeUpDown3");
+                    setTimeout(() => {
+                        messageBox3.classList.remove("msgBoxfadeUpDown3");
+                    }, 5000);
+                    console.log(currentData.getFullYear());
+                }
+                else {
+                    let numbers = /^[0-9]+$/;
+
+                    if (!bookCounter.value.match(numbers)) {
+                        messageBox3.innerHTML = "please insert number, not words";
+                        messageBox3.classList.add("msgBoxfadeUpDown3");
+                        setTimeout(() => {
+                            messageBox3.classList.remove("msgBoxfadeUpDown3");
+                        }, 5000);
+                    }
+                    else {
+
+                        const idealChallengNumber = bookCounter.value;
+                        const userName = localStorage.getItem("userTarget");
+
+                        messageBox3.innerHTML = "Your challeng started!";
+                        messageBox3.classList.add("msgBoxfadeUpDown3");
+                        setTimeout(() => {
+                            messageBox3.classList.remove("msgBoxfadeUpDown3");
+                        }, 3000);
+
+                        setTimeout(() => {
+                            challengBox.style.opacity = 0;
+                            challengBoxBackgroundCover.style.opacity = 0;
+                            setTimeout(() => {
+                                challengBoxBackgroundCover.style.display = "none";
+                                challengBox.style.display = "none"
+                            }, 300);
+                        }, 3000);
+
+                        const challengData = { idealChallengNumber, userName }
+                        bookCounter.value = "";
+                        const challengDataOption = {
+                            method: "POST",
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(challengData)
+                        };
+                        const createChalleng = await fetch("/addChalleng", challengDataOption);
+                        const createChallengData = await createChalleng.json();
+                    }
+                }
+            });
+        }
+    })
+
+    challengBoxBackgroundCover.addEventListener("click", () => {
+        challengBox.style.opacity = 0;
+        challengBoxBackgroundCover.style.opacity = 0;
+        bookCounter.value = "";
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.display = "none";
+            challengBox.style.display = "none"
+        }, 300)
+    })
+    challengBoxCloseBtn.addEventListener("click", () => {
+        challengBox.style.opacity = 0;
+        challengBoxBackgroundCover.style.opacity = 0;
+        setTimeout(() => {
+            challengBoxBackgroundCover.style.display = "none";
+            challengBox.style.display = "none"
+        }, 300);
+        bookCounter.value = "";
+    })
+
+    const messageBox3 = document.querySelector("#messageText3");
+
 
 </script>
 

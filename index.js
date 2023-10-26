@@ -272,6 +272,7 @@ app.post("/shelvesData", (req, res) => {
 app.post("/shelfAdd", (req, res) => {
     dataBase3.update({ User: req.body.userName, Name: req.body.shelfName }, { $push: { book: req.body.book } }, { multi: true }, function (err, numReplaced) {
     })
+    res.json("status : 202");
 })
 
 //editing for shelf
@@ -337,4 +338,18 @@ app.post("/updateChallengNumber", (req, res) => {
     dataBase.update({ userName: req.body.userName }, { $set: { ChallengNumber: req.body.bookCounterNumber } }, {}, function () {
 
     })
+    res.json("status : 202");
+})
+
+//canceling challeng;
+
+app.post("/challengCanceler", (req, res) => {
+    dataBase.update({ userName: req.body.userName }, { $unset: { idealChallengNumber: true } }, {}, function () {
+
+    });
+    dataBase.update({ userName: req.body.userName }, { $unset: { ChallengNumber: true } }, {}, function () {
+
+    });
+
+    res.json("status : 202");
 })
