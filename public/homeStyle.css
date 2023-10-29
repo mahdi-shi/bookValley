@@ -857,8 +857,6 @@ body {
     height: auto;
 }
 
-
-
 .homePage .section .homePageShelvesBooksListText p {
     font-family: regularFont;
     color: white;
@@ -878,9 +876,49 @@ body {
 .homePage .section .homePageShelvesBooksList {
     width: 90%;
     height: 160px;
-    background-color: #29253d;
+    background-color: transparent;
     border-radius: 10px;
-    border: 4px solid rgb(48, 36, 68);
+    border: none;
+
+}
+
+.homePage .section .homePageShelvesBooksList .homePageShelvesBooksListLi {
+    position: relative;
+    height: 126%;
+    width: 150px;
+    display: inline-block;
+    margin-left: 20px;
+    background-color: #2e3047;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.homePage .section .homePageShelvesBooksList .homePageShelvesBooksListLi:hover {
+    filter: brightness(120%);
+}
+
+.homePage .section .homePageShelvesBooksList .homePageShelvesBooksListLi .homePageShelvesBooksListLiImg {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.homePage .section .homePageShelvesBooksList .homePageShelvesBooksListLi .homePageShelvesBooksListLiTitle {
+    font-family: regularFont;
+    text-align: center;
+    margin-top: 90px;
+    color: #abadce;
+}
+
+.homePage .section .homePageShelvesBooksList .homePageShelvesBooksListLi .homePageShelvesBooksListLiCode {
+    font-family: regularFont;
+    text-align: center;
+    margin-top: -100px;
+    color: #abadce;
+    opacity: 0;
 }
 
 .homePage .section .homePageShelvesBooksListText {
@@ -902,9 +940,74 @@ body {
 
 .homePage .section .recommendedBookList {
     height: 100vh;
-    background-color: #29253d;
+    background-color: transparent;
     border-radius: 10px;
-    border: 4px solid rgb(48, 36, 68);
+}
+
+.homePage .section .recommendedBookList .recommendedBooksLi {
+    position: relative;
+    width: 170px;
+    height: 260px;
+    display: inline-block;
+    border-radius: 4px;
+    transition: .3s;
+    cursor: pointer;
+    margin-left: 40px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+    background-color: #2e3047;
+    animation-name: loadingBooks;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-delay: calc(0.1s * var(--i));
+    margin-top: 5px;
+}
+
+@keyframes loadingBooks {
+    0% {
+        background-color: #2e3047;
+    }
+
+    30% {
+        background-color: #2e3047;
+    }
+
+    50% {
+        background-color: #3c3e57;
+    }
+
+    80% {
+        background-color: #2e3047;
+    }
+
+    100% {
+        background-color: #2e3047;
+    }
+}
+
+.homePage .section .recommendedBookList .recommendedBooksLi:hover {
+    filter: brightness(110%);
+    transform: skewY(3deg) rotateY(8deg);
+    transform-style: preserve-3d;
+}
+
+.homePage .section .recommendedBookList .recommendedBooksLi .recommendedBooksImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.homePage .section .recommendedBookList .recommendedBooksLi .recommendedBooksName {
+    color: #c2bcdd;
+    font-family: regularFont;
+    text-align: center;
+    margin-top: 11px;
+}
+
+.homePage .section .recommendedBookList .recommendedBooksLi .recommendedBooksCode {
+    opacity: 0;
 }
 
 .homePage .section .homePageGenersTitle p {
