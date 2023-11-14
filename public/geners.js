@@ -4796,3 +4796,105 @@ challengBoxCloseBtn.addEventListener("click", () => {
     }, 300);
     bookCounter.value = "";
 })
+
+//responsiving
+
+const helpMenu = document.querySelector(".helpMenu");
+const menuTempBox = document.querySelector(".menuTempBox");
+const list = document.querySelector(".list")
+let menuStatus = false;
+
+helpMenu.addEventListener("click", () => {
+    if (document.body.clientWidth < 450 && document.body.clientWidth > 415) {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 74 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 131 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+    else if (document.body.clientWidth < 415 && document.body.clientWidth > 281) {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 70 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 101 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+    else if (document.body.clientWidth < 281) {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 60 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 101 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+    else {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 60 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 101 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+});
+
+window.onresize = () => {
+    if (document.body.clientWidth > 490) {
+        list.style.display = "block"
+        menuTempBox.style.left = 101 + "%";
+        setTimeout(() => {
+            list.style.opacity = 1;
+        }, 100);
+    }
+    else {
+        list.style.opacity = 0;
+        setTimeout(() => {
+            list.style.display = "none";
+        }, 100);
+    }
+}
