@@ -4572,18 +4572,32 @@ for (let i = 0; i < bookLikeThis.length; i++) {
     })
 }
 
-const shelfItems = document.querySelector(".shelfItems");
-addBookBtn.addEventListener("click", () => {
-    if (shelfBtnStatus == false) {
-        shelfItems.style.display = "block";
-        setTimeout(() => {
-            shelfItems.style.left = 50 + "%";
-            shelfItems.style.top = 280 + "px";
-            shelfItems.style.opacity = .97;
-        }, 300);
-        shelfBtnStatus = true;
-    }
-    else {
+if (document.body.clientWidth > 1025) {
+    const shelfItems = document.querySelector(".shelfItems");
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 50 + "%";
+                shelfItems.style.top = 280 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 410 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+
+    backgroundBookImg.addEventListener("click", () => {
         shelfItems.style.left = 40 + "%";
         shelfItems.style.top = 410 + "px";
         shelfItems.style.opacity = 0;
@@ -4593,45 +4607,343 @@ addBookBtn.addEventListener("click", () => {
         }, 300);
 
         shelfBtnStatus = false;
-    }
-});
+    })
 
-backgroundBookImg.addEventListener("click", () => {
-    shelfItems.style.left = 40 + "%";
-    shelfItems.style.top = 410 + "px";
-    shelfItems.style.opacity = 0;
-    setTimeout(() => {
-        shelfItems.style.display = "none";
+    const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+    const BookImg = document.querySelector(".BookImg");
 
-    }, 300);
+    backgroundBookImgCover.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 410 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
 
-    shelfBtnStatus = false;
-})
+        }, 300);
 
-const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
-const BookImg = document.querySelector(".BookImg");
+        shelfBtnStatus = false;
+    })
 
-backgroundBookImgCover.addEventListener("click", () => {
-    shelfItems.style.left = 40 + "%";
-    shelfItems.style.top = 410 + "px";
-    shelfItems.style.opacity = 0;
-    setTimeout(() => {
-        shelfItems.style.display = "none";
+    BookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 410 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+        }, 300);
+        shelfBtnStatus = false;
+    })
+}
+else if(document.body.clientWidth < 1025 && document.body.clientWidth > 825){
+    const shelfItems = document.querySelector(".shelfItems");
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 57 + "%";
+                shelfItems.style.top = 400 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 510 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
 
-    }, 300);
+            }, 300);
 
-    shelfBtnStatus = false;
-})
+            shelfBtnStatus = false;
+        }
+    });
 
-BookImg.addEventListener("click", () => {
-    shelfItems.style.left = 40 + "%";
-    shelfItems.style.top = 410 + "px";
-    shelfItems.style.opacity = 0;
-    setTimeout(() => {
-        shelfItems.style.display = "none";
-    }, 300);
-    shelfBtnStatus = false;
-})
+    backgroundBookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+    const BookImg = document.querySelector(".BookImg");
+
+    backgroundBookImgCover.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    BookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+        }, 300);
+        shelfBtnStatus = false;
+    })
+}
+else if(document.body.clientWidth < 825 && document.body.clientWidth > 770){
+    const shelfItems = document.querySelector(".shelfItems");
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 57 + "%";
+                shelfItems.style.top = 320 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 510 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+
+    backgroundBookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+    const BookImg = document.querySelector(".BookImg");
+
+    backgroundBookImgCover.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    BookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+        }, 300);
+        shelfBtnStatus = false;
+    })
+}
+else if(document.body.clientWidth < 770 && document.body.clientWidth > 480){
+    const shelfItems = document.querySelector(".shelfItems");
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 52 + "%";
+                shelfItems.style.top = 260 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 510 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+
+    backgroundBookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+    const BookImg = document.querySelector(".BookImg");
+
+    backgroundBookImgCover.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    BookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+        }, 300);
+        shelfBtnStatus = false;
+    })
+}
+else if(document.body.clientWidth < 432 && document.body.clientWidth > 380){
+    const shelfItems = document.querySelector(".shelfItems");
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 4 + "%";
+                shelfItems.style.top = 260 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 4 + "%";
+            shelfItems.style.top = 510 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+
+    backgroundBookImg.addEventListener("click", () => {
+        shelfItems.style.left = 4 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+    const BookImg = document.querySelector(".BookImg");
+
+    backgroundBookImgCover.addEventListener("click", () => {
+        shelfItems.style.left = 4 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    BookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+        }, 300);
+        shelfBtnStatus = false;
+    })
+}
+else if(document.body.clientWidth < 376 && document.body.clientWidth > 290){
+    const shelfItems = document.querySelector(".shelfItems");
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 4 + "%";
+                shelfItems.style.top = 260 + "px";
+                shelfItems.style.opacity = .970
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 4 + "%";
+            shelfItems.style.top = 510 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+
+    backgroundBookImg.addEventListener("click", () => {
+        shelfItems.style.left = 4 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    const backgroundBookImgCover = document.querySelector(".backgroundBookImgCover")
+    const BookImg = document.querySelector(".BookImg");
+
+    backgroundBookImgCover.addEventListener("click", () => {
+        shelfItems.style.left = 4 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+
+        }, 300);
+
+        shelfBtnStatus = false;
+    })
+
+    BookImg.addEventListener("click", () => {
+        shelfItems.style.left = 40 + "%";
+        shelfItems.style.top = 510 + "px";
+        shelfItems.style.opacity = 0;
+        setTimeout(() => {
+            shelfItems.style.display = "none";
+        }, 300);
+        shelfBtnStatus = false;
+    })
+}
 
 //challenge box stuff
 

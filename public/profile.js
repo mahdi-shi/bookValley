@@ -911,9 +911,13 @@ document.body.onload = async () => {
                     let shelfTitle = document.createElement("p");
                     let shelfTitleTxt = document.createTextNode(shelvesResponseData[i].Name)
 
-                    li.classList.add("shelfLi");
+                    if (document.body.clientWidth < 450) {
+                        li.classList.add("tempShelfLi2");
+                    }
+                    else {
+                        li.classList.add("shelfLi");
+                    }
                     shelfTitle.appendChild(shelfTitleTxt);
-                    addShelfBtn.style.width = 275 + "px";
 
                     li.appendChild(shelfTitle);
                     shelvesBox.appendChild(li);
@@ -1980,7 +1984,6 @@ deleteAccountTxt.addEventListener("click", async () => {
 
 //searching stuff
 
-
 searchBoxBtn.addEventListener("click", async () => {
 
     if (bookSearchTxtBox.value == null || bookSearchTxtBox.value == "") {
@@ -1992,10 +1995,10 @@ searchBoxBtn.addEventListener("click", async () => {
     else {
 
         searchPnlCloseBtn.style.display = "block";
-        searchPnl.style.marginTop = "-9vh";
+        searchPnl.style.marginTop = "124vh";
         searchPnl.style.opacity = "0.95";
         bookPannel.style.opacity = "0"
-        bookPannel.style.transform = "translate(-100%)"
+        bookPannel.style.transform = "translateX(-100%)";
         bookPannelCloseBtn.style.display = "none"
         bookPannelCloseBtn.style.opacity = "0";
         bookImg.src = null
@@ -2716,7 +2719,7 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
         }
         else {
             searchPnlCloseBtn.style.display = "block";
-            searchPnl.style.marginTop = "-9vh";
+            searchPnl.style.marginTop = "124vh";
             searchPnl.style.opacity = "0.95";
             bookPannel.style.opacity = "0"
             bookPannel.style.transform = "translate(-100%)"
@@ -3545,9 +3548,14 @@ addShelfBtnSlc.addEventListener("click", async () => {
         let shelfTitle = document.createElement("p");
         let shelfTitleTxt = document.createTextNode(shelfNameSelector.value)
 
-        li.classList.add("shelfLi");
+
+        if (document.body.clientWidth < 450) {
+            li.classList.add("tempShelfLi2");
+        }
+        else {
+            li.classList.add("shelfLi");
+        }
         shelfTitle.appendChild(shelfTitleTxt);
-        addShelfBtn.style.width = 275 + "px";
 
         li.appendChild(shelfTitle);
         shelvesBox.appendChild(li);
@@ -3609,9 +3617,13 @@ shelfNameSelector.addEventListener("keydown", async (e) => {
             let shelfTitle = document.createElement("p");
             let shelfTitleTxt = document.createTextNode(shelfNameSelector.value)
 
-            li.classList.add("shelfLi");
+            if (document.body.clientWidth < 450) {
+                li.classList.add("tempShelfLi2");
+            }
+            else {
+                li.classList.add("shelfLi");
+            }
             shelfTitle.appendChild(shelfTitleTxt);
-            addShelfBtn.style.width = 275 + "px";
 
             li.appendChild(shelfTitle);
             shelvesBox.appendChild(li);
@@ -3741,7 +3753,6 @@ const shelfEditBox = document.querySelector(".shelfEditBox");
 const shelfEditPnlCover = document.querySelector(".shelfEditPnlCover");
 const editShelfBtn = document.querySelector("#editShelfBtn");
 
-
 shelfEditPnlCloseBtn.addEventListener("click", () => {
     shelfEditBox.style.opacity = 0;
     shelfEditBox.style.marginTop = 400 + "px";
@@ -3771,7 +3782,12 @@ editShelfBtn.addEventListener("click", () => {
     }
     else {
         shelfEditBox.style.display = "block";
-        shelfEditBox.style.marginTop = 300 + "px";
+        if (document.body.clientWidth < 430) {
+            shelfEditBox.style.marginTop = 600 + "px";
+        }
+        else{
+            shelfEditBox.style.marginTop = 300 + "px";
+        }
         shelfEditPnlCover.style.display = "block";
         setTimeout(() => {
             shelfEditPnlCover.style.opacity = "1";
@@ -7324,3 +7340,105 @@ challengBoxCloseBtn.addEventListener("click", () => {
 })
 
 const messageBox3 = document.querySelector("#messageText3");
+   
+//responsiving
+
+const helpMenu = document.querySelector(".helpMenu");
+const menuTempBox = document.querySelector(".menuTempBox");
+const list = document.querySelector(".list")
+let menuStatus = false;
+
+helpMenu.addEventListener("click", () => {
+    if (document.body.clientWidth < 450 && document.body.clientWidth > 415) {;
+        if (menuStatus == false) {
+            menuTempBox.style.left = 74 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 131 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+    else if (document.body.clientWidth < 415 && document.body.clientWidth > 281) {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 70 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 101 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+    else if (document.body.clientWidth < 281) {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 60 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 101 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+    else {
+        if (menuStatus == false) {
+            menuTempBox.style.left = 60 + "%";
+            list.style.display = "block"
+
+            setTimeout(() => {
+                list.style.opacity = 1;
+            }, 100);
+            menuStatus = true;
+        }
+        else {
+            menuTempBox.style.left = 101 + "%";
+            list.style.opacity = 0;
+            setTimeout(() => {
+                list.style.display = "none";
+            }, 100);
+            menuStatus = false;
+        }
+    }
+});
+
+window.onresize = () => {
+    if (document.body.clientWidth > 490) {
+        list.style.display = "block"
+        menuTempBox.style.left = 101 + "%";
+        setTimeout(() => {
+            list.style.opacity = 1;
+        }, 100);
+    }
+    else {
+        list.style.opacity = 0;
+        setTimeout(() => {
+            list.style.display = "none";
+        }, 100);
+    }
+}

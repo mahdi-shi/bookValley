@@ -3016,268 +3016,25 @@
             let counter = -1;
 
             for (let i = 0; i < shelvesResponseData.length; i++) {
-                for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
-                    counter++;
-                    if (counter <= 4) {
-                        const response = await fetch("https://openlibrary.org" + shelvesResponseData[i + 1].book[j] + ".json");
-                        const data = await response.json();
+                if (shelvesResponseData[i].book != null) {
+                    for (let j = 0; j < shelvesResponseData[i].book.length; j++) {
+                        counter++;
+                        if (counter <= 4) {
+                            const response = await fetch("https://openlibrary.org" + shelvesResponseData[i + 1].book[j] + ".json");
+                            const data = await response.json();
+                            console.log(data);
+                            try {
+                                homePageShelvesBooksListLiImg[counter].src = "https://covers.openlibrary.org/b/id/" + data.covers[0] + "-M.jpg";
+                                homePageShelvesBooksListLiImg[counter].style.opacity = 1;
+                                homePageShelvesBooksListLiTitle[counter].innerHTML = data.title;
+                                homePageShelvesBooksListLiCode[counter].innerHTML = data.key;
+                            }
+                            catch {
 
-                        console.log(data);
-                        try {
-                            homePageShelvesBooksListLiImg[counter].src = "https://covers.openlibrary.org/b/id/" + data.covers[0] + "-M.jpg";
-                            homePageShelvesBooksListLiImg[counter].style.opacity = 1;
-                            homePageShelvesBooksListLiTitle[counter].innerHTML = data.title;
-                            homePageShelvesBooksListLiCode[counter].innerHTML = data.key;
-                        }
-                        catch {
-
+                            }
                         }
                     }
                 }
-            }
-
-            const recommendedBooksLi = document.querySelectorAll(".recommendedBooksLi");
-            const recommendedBooksImg = document.querySelectorAll(".recommendedBooksImg");
-            const recommendedBooksName = document.querySelectorAll(".recommendedBooksName");
-            const recommendedBooksCode = document.querySelectorAll(".recommendedBooksCode");
-
-            const recommendResponse = await fetch('http://openlibrary.org/subjects/books.json?limit=300');
-            const recommendResponseData = await recommendResponse.json();
-            console.log(recommendResponseData);
-
-            let counter2 = Math.floor(Math.random() * 100);
-
-            for (let i = 0; i < 10; i++) {
-                recommendedBooksCode[i].innerHTML = recommendResponseData.works[i + counter2].key;
-                recommendedBooksName[i].innerHTML = recommendResponseData.works[i + counter2].title;
-
-                if (recommendResponseData.works[i + counter2].cover_id == null) {
-                    recommendedBooksImg[i].style.opacity = 1;
-                    recommendedBooksImg[i].src = "assets/images (1).jfif";
-                }
-                else {
-                    recommendedBooksImg[i].src = "https://covers.openlibrary.org/b/id/" + recommendResponseData.works[i + counter2].cover_id + "-M.jpg";
-                    recommendedBooksImg[i].style.opacity = 1;
-                }
-
-                recommendedBooksLi[i].addEventListener("click", async () => {
-                    const response = await fetch("https://openlibrary.org" + recommendResponseData.works[i + counter2].key + ".json");
-                    const data = await response.json();
-
-                    const responseRate = await fetch("https://openlibrary.org" + recommendResponseData.works[i + counter2].key + "/ratings.json");
-                    const dataRate = await responseRate.json();
-
-                    if (dataRate >= 4) {
-                        bookRateStar2[4].style.opacity = "1";
-                        bookRateStar2[3].style.opacity = "1";
-                        bookRateStar2[2].style.opacity = "1";
-                        bookRateStar2[1].style.opacity = "1";
-                        bookRateStar2[0].style.opacity = "1";
-                    }
-                    else if (dataRate.summary.average < 4 && dataRate.summary.average >= 3) {
-                        bookRateStar2[4].style.opacity = "0";
-                        bookRateStar2[3].style.opacity = "1";
-                        bookRateStar2[2].style.opacity = "1";
-                        bookRateStar2[1].style.opacity = "1";
-                        bookRateStar2[0].style.opacity = "1";
-                    }
-                    else if (dataRate.summary.average < 3 && dataRate.summary.average >= 2) {
-                        bookRateStar2[4].style.opacity = "0";
-                        bookRateStar2[3].style.opacity = "0";
-                        bookRateStar2[2].style.opacity = "1";
-                        bookRateStar2[1].style.opacity = "1";
-                        bookRateStar2[0].style.opacity = "1";
-                    }
-                    else if (dataRate.summary.average < 2 && dataRate.summary.average >= 1) {
-                        bookRateStar2[4].style.opacity = "0";
-                        bookRateStar2[3].style.opacity = "0";
-                        bookRateStar2[2].style.opacity = "0";
-                        bookRateStar2[1].style.opacity = "1";
-                        bookRateStar2[0].style.opacity = "1";
-                    }
-                    else if (dataRate.summary.average < 1 && dataRate.summary.average > 0) {
-                        bookRateStar2[4].style.opacity = "0";
-                        bookRateStar2[3].style.opacity = "0";
-                        bookRateStar2[2].style.opacity = "0";
-                        bookRateStar2[1].style.opacity = "0";
-                        bookRateStar2[0].style.opacity = "1";
-                    }
-                    else if (dataRate.summary.average == null) {
-                        bookRateStar2[4].style.opacity = "0";
-                        bookRateStar2[3].style.opacity = "0";
-                        bookRateStar2[2].style.opacity = "0";
-                        bookRateStar2[1].style.opacity = "0";
-                        bookRateStar2[0].style.opacity = "1";
-                    }
-                    else if (dataRate.summary.average == 0) {
-                        bookRateStar2[4].style.opacity = "0";
-                        bookRateStar2[3].style.opacity = "0";
-                        bookRateStar2[2].style.opacity = "0";
-                        bookRateStar2[1].style.opacity = "0";
-                        bookRateStar2[0].style.opacity = "0";
-                    }
-
-                    console.log(dataRate);
-
-                    bookPannel.style.opacity = "1"
-                    bookPannel.style.transform = "translate(0%,-95%)"
-                    navBar.style.backgroundColor = "transparent";
-                    navBar.style.boxShadow = "none"
-                    bookPannelCloseBtnSvg.style.fill = "#685d74";
-                    bookPannelCloseBtn.style.display = "block"
-                    bookPannelCloseBtn.style.opacity = "1";
-
-                    witchBookCode = recommendResponseData.works[i].key;
-                    temp = recommendResponseData.works[i].key;
-
-                    const witchBook = witchBookCode;
-                    const data2 = { witchBook }
-                    const options2 = {
-                        method: "POST",
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data2)
-                    };
-
-                    const CommentRespones = await fetch("/dataForBookComments", options2);
-                    const CommentResponesData = await CommentRespones.json();
-                    console.log(CommentResponesData);
-
-                    if (CommentResponesData.length != null) {
-                        for (let i = 0; i < CommentResponesData.length; i++) {
-                            let li = document.createElement("li");
-                            let div = document.createElement("div");
-                            let p1 = document.createElement("p");
-                            let p2 = document.createElement("p");
-                            let img = document.createElement("img");
-
-                            li.classList.add("comment");
-                            div.classList.add("commentProfIcon");
-                            let para1Text = document.createTextNode(CommentResponesData[i].Name);
-                            let para2Text = document.createTextNode(CommentResponesData[i].Comment);
-                            p1.appendChild(para1Text);
-                            p2.appendChild(para2Text);
-                            p1.classList.add("commentProfName");
-                            p2.classList.add("commentTxt");
-                            img.classList.add("commentProfIconimg");
-                            div.appendChild(img);
-                            li.appendChild(div);
-                            li.appendChild(p1);
-                            li.appendChild(p2);
-                            let p3 = document.createElement("p");
-                            let p3Text = document.createTextNode("x");
-                            p3.appendChild(p3Text);
-                            p3.classList.add("closeCommentButton");
-
-                            if (localStorage.getItem("userTarget") == CommentResponesData[i].Name) {
-                                li.appendChild(p3);
-                                p3.addEventListener("click", async () => {
-                                    li.remove();
-                                    const tempComment = CommentResponesData[i].Comment;
-                                    const data3 = { tempComment }
-                                    const options3 = {
-                                        method: "POST",
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        },
-                                        body: JSON.stringify(data3)
-                                    };
-
-                                    const CommentRespones2 = await fetch("/removeComment", options3);
-                                    const CommentResponesData2 = await CommentRespones2.json();
-                                })
-                            }
-
-                            if (CommentResponesData[i].commentPicture == null) {
-                                img.src = "";
-                            }
-                            else {
-                                img.src = CommentResponesData[i].commentPicture;
-                            }
-                            comments.appendChild(li);
-                        }
-                    }
-
-
-                    bookName.innerHTML = data.title;
-                    try {
-                        if (data.description == null) {
-                            aboutBook.innerHTML = "This book doesn't have any decription..."
-                        }
-                        else {
-                            aboutBook.innerHTML = data.description.value.slice(0, 510) + " ...";
-                        }
-                    }
-                    catch {
-                        if (data.description == null) {
-                            aboutBook.innerHTML = "This book doesn't have any decription..."
-                        }
-                        else {
-                            aboutBook.innerHTML = data.description.slice(0, 510) + " ...";
-                        }
-                    }
-                    console.log(data);
-
-                    const authorRespones = await fetch("https://openlibrary.org" + data.authors[0].author.key + ".json");
-                    const authorResponesData = await authorRespones.json();
-                    console.log(authorResponesData);
-
-                    autorName.innerHTML = authorResponesData.name;
-
-                    try {
-                        if (authorResponesData.bio == null) {
-                            aboutAuthor.innerHTML = "This author doesn't have any biography..."
-                        }
-                        else {
-                            aboutAuthor.innerHTML = authorResponesData.bio.value.slice(0, 310) + " ...";
-
-                        }
-                    }
-                    catch {
-                        if (authorResponesData.bio == null) {
-                            aboutAuthor.innerHTML = "This author doesn't have any biography..."
-                        }
-                        else {
-                            aboutAuthor.innerHTML = authorResponesData.bio.slice(0, 310) + " ...";
-                        }
-                    }
-
-                    bookName.style.opacity = 1;
-                    autorName.style.opacity = 1;
-
-                    if (data.covers == null) {
-                        bookImg.style.opacity = 1;
-                        bookImg.src = "assets/images (1).jfif";
-                    }
-                    else {
-                        bookImg.src = "https://covers.openlibrary.org/b/id/" + data.covers[0] + "-L.jpg";
-                        backgroundBookImg.src = "https://covers.openlibrary.org/b/id/" + data.covers[1] + "-M.jpg"
-                        backgroundBookImg.style.opacity = 1;
-                        bookImg.style.opacity = 1;
-                    }
-                    const bookSubjectResponse = await fetch("https://openlibrary.org/search.json?q=" + data.title.toLowerCase());
-                    const bookSubjectsData = await bookSubjectResponse.json();
-                    console.log(bookSubjectsData);
-
-
-
-                    for (let i = 0; i < bookLikeThisTitle.length; i++) {
-                        bookLikeThisTitle[i].innerHTML = bookSubjectsData.docs[i].title;
-                        bookLikeThisCode[i].innerHTML = bookSubjectsData.docs[i].key;
-
-                        if (bookSubjectsData.docs[i].cover_i == null) {
-                            bookLikeThisImg[i].style.opacity = 1;
-                            bookLikeThisImg[i].src = "assets/images (1).jfif";
-                        }
-                        else {
-                            bookLikeThisImg[i].src = "https://covers.openlibrary.org/b/id/" + bookSubjectsData.docs[i].cover_i + "-M.jpg";
-                            bookLikeThisImg[i].style.opacity = 1;
-                        }
-                    }
-
-                })
-
             }
 
             bookPannel.onscroll = () => {
@@ -3588,6 +3345,248 @@
                     }
                 })
             }
+        }
+        const recommendedBooksLi = document.querySelectorAll(".recommendedBooksLi");
+        const recommendedBooksImg = document.querySelectorAll(".recommendedBooksImg");
+        const recommendedBooksName = document.querySelectorAll(".recommendedBooksName");
+        const recommendedBooksCode = document.querySelectorAll(".recommendedBooksCode");
+
+        const recommendResponse = await fetch('http://openlibrary.org/subjects/books.json?limit=300');
+        const recommendResponseData = await recommendResponse.json();
+        console.log(recommendResponseData);
+
+        let counter2 = Math.floor(Math.random() * 100);
+
+        for (let i = 0; i < 10; i++) {
+            recommendedBooksCode[i].innerHTML = recommendResponseData.works[i + counter2].key;
+            recommendedBooksName[i].innerHTML = recommendResponseData.works[i + counter2].title;
+
+            if (recommendResponseData.works[i + counter2].cover_id == null) {
+                recommendedBooksImg[i].style.opacity = 1;
+                recommendedBooksImg[i].src = "assets/images (1).jfif";
+            }
+            else {
+                recommendedBooksImg[i].src = "https://covers.openlibrary.org/b/id/" + recommendResponseData.works[i + counter2].cover_id + "-M.jpg";
+                recommendedBooksImg[i].style.opacity = 1;
+            }
+
+            recommendedBooksLi[i].addEventListener("click", async () => {
+                const response = await fetch("https://openlibrary.org" + recommendResponseData.works[i + counter2].key + ".json");
+                const data = await response.json();
+
+                const responseRate = await fetch("https://openlibrary.org" + recommendResponseData.works[i + counter2].key + "/ratings.json");
+                const dataRate = await responseRate.json();
+
+                if (dataRate >= 4) {
+                    bookRateStar2[4].style.opacity = "1";
+                    bookRateStar2[3].style.opacity = "1";
+                    bookRateStar2[2].style.opacity = "1";
+                    bookRateStar2[1].style.opacity = "1";
+                    bookRateStar2[0].style.opacity = "1";
+                }
+                else if (dataRate.summary.average < 4 && dataRate.summary.average >= 3) {
+                    bookRateStar2[4].style.opacity = "0";
+                    bookRateStar2[3].style.opacity = "1";
+                    bookRateStar2[2].style.opacity = "1";
+                    bookRateStar2[1].style.opacity = "1";
+                    bookRateStar2[0].style.opacity = "1";
+                }
+                else if (dataRate.summary.average < 3 && dataRate.summary.average >= 2) {
+                    bookRateStar2[4].style.opacity = "0";
+                    bookRateStar2[3].style.opacity = "0";
+                    bookRateStar2[2].style.opacity = "1";
+                    bookRateStar2[1].style.opacity = "1";
+                    bookRateStar2[0].style.opacity = "1";
+                }
+                else if (dataRate.summary.average < 2 && dataRate.summary.average >= 1) {
+                    bookRateStar2[4].style.opacity = "0";
+                    bookRateStar2[3].style.opacity = "0";
+                    bookRateStar2[2].style.opacity = "0";
+                    bookRateStar2[1].style.opacity = "1";
+                    bookRateStar2[0].style.opacity = "1";
+                }
+                else if (dataRate.summary.average < 1 && dataRate.summary.average > 0) {
+                    bookRateStar2[4].style.opacity = "0";
+                    bookRateStar2[3].style.opacity = "0";
+                    bookRateStar2[2].style.opacity = "0";
+                    bookRateStar2[1].style.opacity = "0";
+                    bookRateStar2[0].style.opacity = "1";
+                }
+                else if (dataRate.summary.average == null) {
+                    bookRateStar2[4].style.opacity = "0";
+                    bookRateStar2[3].style.opacity = "0";
+                    bookRateStar2[2].style.opacity = "0";
+                    bookRateStar2[1].style.opacity = "0";
+                    bookRateStar2[0].style.opacity = "1";
+                }
+                else if (dataRate.summary.average == 0) {
+                    bookRateStar2[4].style.opacity = "0";
+                    bookRateStar2[3].style.opacity = "0";
+                    bookRateStar2[2].style.opacity = "0";
+                    bookRateStar2[1].style.opacity = "0";
+                    bookRateStar2[0].style.opacity = "0";
+                }
+
+                console.log(dataRate);
+
+                bookPannel.style.opacity = "1"
+                bookPannel.style.transform = "translate(0%,-95%)"
+                navBar.style.backgroundColor = "transparent";
+                navBar.style.boxShadow = "none"
+                bookPannelCloseBtnSvg.style.fill = "#685d74";
+                bookPannelCloseBtn.style.display = "block"
+                bookPannelCloseBtn.style.opacity = "1";
+
+                witchBookCode = recommendResponseData.works[i].key;
+                temp = recommendResponseData.works[i].key;
+
+                const witchBook = witchBookCode;
+                const data2 = { witchBook }
+                const options2 = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data2)
+                };
+
+                const CommentRespones = await fetch("/dataForBookComments", options2);
+                const CommentResponesData = await CommentRespones.json();
+                console.log(CommentResponesData);
+
+                if (CommentResponesData.length != null) {
+                    for (let i = 0; i < CommentResponesData.length; i++) {
+                        let li = document.createElement("li");
+                        let div = document.createElement("div");
+                        let p1 = document.createElement("p");
+                        let p2 = document.createElement("p");
+                        let img = document.createElement("img");
+
+                        li.classList.add("comment");
+                        div.classList.add("commentProfIcon");
+                        let para1Text = document.createTextNode(CommentResponesData[i].Name);
+                        let para2Text = document.createTextNode(CommentResponesData[i].Comment);
+                        p1.appendChild(para1Text);
+                        p2.appendChild(para2Text);
+                        p1.classList.add("commentProfName");
+                        p2.classList.add("commentTxt");
+                        img.classList.add("commentProfIconimg");
+                        div.appendChild(img);
+                        li.appendChild(div);
+                        li.appendChild(p1);
+                        li.appendChild(p2);
+                        let p3 = document.createElement("p");
+                        let p3Text = document.createTextNode("x");
+                        p3.appendChild(p3Text);
+                        p3.classList.add("closeCommentButton");
+
+                        if (localStorage.getItem("userTarget") == CommentResponesData[i].Name) {
+                            li.appendChild(p3);
+                            p3.addEventListener("click", async () => {
+                                li.remove();
+                                const tempComment = CommentResponesData[i].Comment;
+                                const data3 = { tempComment }
+                                const options3 = {
+                                    method: "POST",
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(data3)
+                                };
+
+                                const CommentRespones2 = await fetch("/removeComment", options3);
+                                const CommentResponesData2 = await CommentRespones2.json();
+                            })
+                        }
+
+                        if (CommentResponesData[i].commentPicture == null) {
+                            img.src = "";
+                        }
+                        else {
+                            img.src = CommentResponesData[i].commentPicture;
+                        }
+                        comments.appendChild(li);
+                    }
+                }
+
+
+                bookName.innerHTML = data.title;
+                try {
+                    if (data.description == null) {
+                        aboutBook.innerHTML = "This book doesn't have any decription..."
+                    }
+                    else {
+                        aboutBook.innerHTML = data.description.value.slice(0, 510) + " ...";
+                    }
+                }
+                catch {
+                    if (data.description == null) {
+                        aboutBook.innerHTML = "This book doesn't have any decription..."
+                    }
+                    else {
+                        aboutBook.innerHTML = data.description.slice(0, 510) + " ...";
+                    }
+                }
+                console.log(data);
+
+                const authorRespones = await fetch("https://openlibrary.org" + data.authors[0].author.key + ".json");
+                const authorResponesData = await authorRespones.json();
+                console.log(authorResponesData);
+
+                autorName.innerHTML = authorResponesData.name;
+
+                try {
+                    if (authorResponesData.bio == null) {
+                        aboutAuthor.innerHTML = "This author doesn't have any biography..."
+                    }
+                    else {
+                        aboutAuthor.innerHTML = authorResponesData.bio.value.slice(0, 310) + " ...";
+
+                    }
+                }
+                catch {
+                    if (authorResponesData.bio == null) {
+                        aboutAuthor.innerHTML = "This author doesn't have any biography..."
+                    }
+                    else {
+                        aboutAuthor.innerHTML = authorResponesData.bio.slice(0, 310) + " ...";
+                    }
+                }
+
+                bookName.style.opacity = 1;
+                autorName.style.opacity = 1;
+
+                if (data.covers == null) {
+                    bookImg.style.opacity = 1;
+                    bookImg.src = "assets/images (1).jfif";
+                }
+                else {
+                    bookImg.src = "https://covers.openlibrary.org/b/id/" + data.covers[0] + "-L.jpg";
+                    backgroundBookImg.src = "https://covers.openlibrary.org/b/id/" + data.covers[1] + "-M.jpg"
+                    backgroundBookImg.style.opacity = 1;
+                    bookImg.style.opacity = 1;
+                }
+                const bookSubjectResponse = await fetch("https://openlibrary.org/search.json?q=" + data.title.toLowerCase());
+                const bookSubjectsData = await bookSubjectResponse.json();
+                console.log(bookSubjectsData);
+
+
+
+                for (let i = 0; i < bookLikeThisTitle.length; i++) {
+                    bookLikeThisTitle[i].innerHTML = bookSubjectsData.docs[i].title;
+                    bookLikeThisCode[i].innerHTML = bookSubjectsData.docs[i].key;
+
+                    if (bookSubjectsData.docs[i].cover_i == null) {
+                        bookLikeThisImg[i].style.opacity = 1;
+                        bookLikeThisImg[i].src = "assets/images (1).jfif";
+                    }
+                    else {
+                        bookLikeThisImg[i].src = "https://covers.openlibrary.org/b/id/" + bookSubjectsData.docs[i].cover_i + "-M.jpg";
+                        bookLikeThisImg[i].style.opacity = 1;
+                    }
+                }
+
+            })
         }
     }
 
@@ -4221,12 +4220,6 @@
         }
     })
 
-    //if (userName == null) {
-
-    //}
-    //else {
-    //}
-
     const shelfItems = document.querySelector(".shelfItems");
     let shelfBtnStatus = false;
 
@@ -4524,24 +4517,24 @@
                 menuStatus = false;
             }
         }
-        else{
-            if (menuStatus == false) {
-            menuTempBox.style.left = 60 + "%";
-            list.style.display = "block"
-
-            setTimeout(() => {
-                list.style.opacity = 1;
-            }, 100);
-            menuStatus = true;
-        }
         else {
-            menuTempBox.style.left = 101 + "%";
-            list.style.opacity = 0;
-            setTimeout(() => {
-                list.style.display = "none";
-            }, 100);
-            menuStatus = false;
-        }
+            if (menuStatus == false) {
+                menuTempBox.style.left = 60 + "%";
+                list.style.display = "block"
+
+                setTimeout(() => {
+                    list.style.opacity = 1;
+                }, 100);
+                menuStatus = true;
+            }
+            else {
+                menuTempBox.style.left = 101 + "%";
+                list.style.opacity = 0;
+                setTimeout(() => {
+                    list.style.display = "none";
+                }, 100);
+                menuStatus = false;
+            }
         }
     });
 
