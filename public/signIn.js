@@ -904,36 +904,72 @@ searchBoxBtn.addEventListener("click", async () => {
             })
 
             let pushCount = 0;
+            let pp = 0
             // push other boook like this list to right 
             pushToRight.addEventListener("click", () => {
-                pushCount = pushCount - 460;
-                bookLikeThis[0].style.marginLeft = pushCount + "px";
-                pushToLeft.style.display = "block";
-                setTimeout(() => {
-                    pushToLeft.style.opacity = 1;
-                }, 600)
-                if (pushCount == -2300) {
-                    pushToRight.style.opacity = 0;
-
+                if (document.body.clientWidth <= 430) {
+                    pp += 15;
+                    pushCount = pushCount - (600 + pp);
+                    bookLikeThis[0].style.marginLeft = pushCount + "px";
+                    pushToLeft.style.display = "block";
                     setTimeout(() => {
-                        pushToRight.style.display = "none";
+                        pushToLeft.style.opacity = 1;
                     }, 600)
+                    if (pushCount <= -9140) {
+                        pushToRight.style.opacity = 0;
+    
+                        setTimeout(() => {
+                            pushToRight.style.display = "none";
+                        }, 600)
+                    }
+                }
+                else{
+                    pushCount = pushCount - 460;
+                    bookLikeThis[0].style.marginLeft = pushCount + "px";
+                    pushToLeft.style.display = "block";
+                    setTimeout(() => {
+                        pushToLeft.style.opacity = 1;
+                    }, 600)
+                    if (pushCount == -2300) {
+                        pushToRight.style.opacity = 0;
+    
+                        setTimeout(() => {
+                            pushToRight.style.display = "none";
+                        }, 600)
+                    }
                 }
             })
 
             pushToLeft.addEventListener("click", () => {
-                pushCount = pushCount + 460;
-                bookLikeThis[0].style.marginLeft = pushCount + "px";
-                pushToRight.style.display = "block";
-                setTimeout(() => {
-                    pushToRight.style.opacity = 1;
-                }, 600)
-                if (pushCount == 0) {
-                    pushToLeft.style.opacity = 0;
-
+                if (document.body.clientWidth >= 430) {
+                    pushCount = pushCount + 660;
+                    bookLikeThis[0].style.marginLeft = pushCount + "px";
+                    pushToRight.style.display = "block";
                     setTimeout(() => {
-                        pushToLeft.style.display = "none";
+                        pushToRight.style.opacity = 1;
                     }, 600)
+                    if (pushCount == 0) {
+                        pushToLeft.style.opacity = 0;
+    
+                        setTimeout(() => {
+                            pushToLeft.style.display = "none";
+                        }, 600)
+                    }
+                }
+                else{
+                    pushCount = pushCount + 460;
+                    bookLikeThis[0].style.marginLeft = pushCount + "px";
+                    pushToRight.style.display = "block";
+                    setTimeout(() => {
+                        pushToRight.style.opacity = 1;
+                    }, 600)
+                    if (pushCount == 0) {
+                        pushToLeft.style.opacity = 0;
+    
+                        setTimeout(() => {
+                            pushToLeft.style.display = "none";
+                        }, 600)
+                    }
                 }
             })
         }
@@ -2801,6 +2837,12 @@ const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
 const challengBoxLink = document.querySelector(".challengBoxLink");
 
 challengBoxLink.addEventListener("click", async () => {
+    list.style.opacity = 0;
+    setTimeout(() => {
+        list.style.display = "none";
+    }, 400); 
+    menuTempBox.style.left = 161 + "%";
+    helpMenuStatus = false;
     const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
     const messageBox3 = document.querySelector("#messageText3");
     const userName = localStorage.getItem("userTarget");
@@ -2953,3 +2995,29 @@ challengBoxCloseBtn.addEventListener("click", () => {
 })
 
 const messageBox3 = document.querySelector("#messageText3");
+
+
+const helpMenu = document.querySelector(".helpMenu");
+const menuTempBox = document.querySelector(".menuTempBox");
+const list = document.querySelector(".list");
+let helpMenuStatus = false;
+
+helpMenu.addEventListener("click",() => {
+    if (!helpMenuStatus) {
+        list.style.display = "block";
+        menuTempBox.style.left = 61 + "%";
+        setTimeout(() => {
+            list.style.opacity = 1;
+        }, 100); 
+        helpMenuStatus = true;   
+    }
+    else{
+        list.style.opacity = 0;
+        setTimeout(() => {
+            list.style.display = "none";
+        }, 400); 
+        menuTempBox.style.left = 161 + "%";
+        helpMenuStatus = false;
+    }
+    
+})

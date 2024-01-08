@@ -1758,7 +1758,6 @@ bookSearchTxtBox.addEventListener("keydown", async (e) => {
                             books[i].remove();
                         }
                     }
-
                 })
 
                 searchPnl.onscroll = () => {
@@ -2914,28 +2913,80 @@ const backgroundBookImg = document.querySelector(".backgroundBookImg ");
 const shelfItems = document.querySelector(".shelfItems");
 let shelfBtnStatus = false;
 
-addBookBtn.addEventListener("click", () => {
-    if (shelfBtnStatus == false) {
-        shelfItems.style.display = "block";
-        setTimeout(() => {
-            shelfItems.style.left = 50 + "%";
-            shelfItems.style.top = 280 + "px";
-            shelfItems.style.opacity = .97;
-        }, 300);
-        shelfBtnStatus = true;
-    }
-    else {
-        shelfItems.style.left = 40 + "%";
-        shelfItems.style.top = 410 + "px";
-        shelfItems.style.opacity = 0;
-        setTimeout(() => {
-            shelfItems.style.display = "none";
+if (document.body.clientWidth <= 1024) {
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 490 + "px";
+                shelfItems.style.top = 380 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 10 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
 
-        }, 300);
+            }, 300);
 
-        shelfBtnStatus = false;
-    }
-});
+            shelfBtnStatus = false;
+        }
+    });
+}
+if (document.body.clientWidth <= 820) {
+    addBookBtn.addEventListener("click", () => {
+        alert("g")
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 490 + "px";
+                shelfItems.style.top = 320 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 10 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+}
+else {
+    addBookBtn.addEventListener("click", () => {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 490 + "px";
+                shelfItems.style.top = 380 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 10 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    });
+
+}
 
 backgroundBookImg.addEventListener("click", () => {
     shelfItems.style.left = 40 + "%";
@@ -2945,7 +2996,6 @@ backgroundBookImg.addEventListener("click", () => {
         shelfItems.style.display = "none";
 
     }, 300);
-
     shelfBtnStatus = false;
 })
 
@@ -3141,3 +3191,13 @@ challengBoxCloseBtn.addEventListener("click", () => {
 })
 
 const messageBox3 = document.querySelector("#messageText3");
+
+const helpMenu = document.querySelector(".helpMenu");
+const menuTempBox = document.querySelector(".menuTempBox");
+const list = document.querySelector(".list");
+
+helpMenu.addEventListener("click",() => {
+
+    console.log("heh");
+
+})
