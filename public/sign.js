@@ -2913,14 +2913,16 @@ const backgroundBookImg = document.querySelector(".backgroundBookImg ");
 const shelfItems = document.querySelector(".shelfItems");
 let shelfBtnStatus = false;
 
-if (document.body.clientWidth <= 1024) {
-    addBookBtn.addEventListener("click", () => {
+
+addBookBtn.addEventListener("click", () => {
+    if (document.body.clientWidth <= 1024 && document.body.clientWidth > 820) {
         if (shelfBtnStatus == false) {
             shelfItems.style.display = "block";
             setTimeout(() => {
                 shelfItems.style.left = 490 + "px";
                 shelfItems.style.top = 380 + "px";
                 shelfItems.style.opacity = .97;
+
             }, 300);
             shelfBtnStatus = true;
         }
@@ -2933,13 +2935,10 @@ if (document.body.clientWidth <= 1024) {
 
             }, 300);
 
-            shelfBtnStatus = false;
+            shelfBtnStatus = true;
         }
-    });
-}
-if (document.body.clientWidth <= 820) {
-    addBookBtn.addEventListener("click", () => {
-        alert("g")
+    }
+    if (document.body.clientWidth <= 820 && document.body.clientWidth > 768) {
         if (shelfBtnStatus == false) {
             shelfItems.style.display = "block";
             setTimeout(() => {
@@ -2960,15 +2959,13 @@ if (document.body.clientWidth <= 820) {
 
             shelfBtnStatus = false;
         }
-    });
-}
-else {
-    addBookBtn.addEventListener("click", () => {
+    }
+    if (document.body.clientWidth <= 768 && document.body.clientWidth > 430) {
         if (shelfBtnStatus == false) {
             shelfItems.style.display = "block";
             setTimeout(() => {
                 shelfItems.style.left = 490 + "px";
-                shelfItems.style.top = 380 + "px";
+                shelfItems.style.top = 320 + "px";
                 shelfItems.style.opacity = .97;
             }, 300);
             shelfBtnStatus = true;
@@ -2984,9 +2981,100 @@ else {
 
             shelfBtnStatus = false;
         }
-    });
+    }
+    if (document.body.clientWidth <= 430 && document.body.clientWidth > 414) {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 490 + "px";
+                shelfItems.style.top = 320 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 10 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
 
-}
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    }
+    if (document.body.clientWidth <= 414 && document.body.clientWidth > 390) {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 490 + "px";
+                shelfItems.style.top = 320 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 10 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    }
+    if (document.body.clientWidth <= 390) {
+        if (shelfBtnStatus == false) {
+            shelfItems.style.display = "block";
+            setTimeout(() => {
+                shelfItems.style.left = 490 + "px";
+                shelfItems.style.top = 320 + "px";
+                shelfItems.style.opacity = .97;
+            }, 300);
+            shelfBtnStatus = true;
+        }
+        else {
+            shelfItems.style.left = 40 + "%";
+            shelfItems.style.top = 10 + "px";
+            shelfItems.style.opacity = 0;
+            setTimeout(() => {
+                shelfItems.style.display = "none";
+
+            }, 300);
+
+            shelfBtnStatus = false;
+        }
+    }
+    else {
+        addBookBtn.addEventListener("click", () => {
+            if (shelfBtnStatus == false) {
+                shelfItems.style.display = "block";
+                setTimeout(() => {
+                    shelfItems.style.left = 490 + "px";
+                    shelfItems.style.top = 380 + "px";
+                    shelfItems.style.opacity = .97;
+                }, 300);
+                shelfBtnStatus = true;
+            }
+            else {
+                shelfItems.style.left = 40 + "%";
+                shelfItems.style.top = 10 + "px";
+                shelfItems.style.opacity = 0;
+                setTimeout(() => {
+                    shelfItems.style.display = "none";
+
+                }, 300);
+
+                shelfBtnStatus = false;
+            }
+        });
+    }
+});
+
+
 
 backgroundBookImg.addEventListener("click", () => {
     shelfItems.style.left = 40 + "%";
@@ -3039,6 +3127,12 @@ const challengBoxCloseBtn = document.querySelector("#challengBoxCloseBtn");
 const challengBoxLink = document.querySelector(".challengBoxLink");
 
 challengBoxLink.addEventListener("click", async () => {
+    list.style.opacity = 0;
+    setTimeout(() => {
+        list.style.display = "none";
+    }, 400); 
+    menuTempBox.style.left = 161 + "%";
+    helpMenuStatus = false;
     const challengBoxDoneBtn = document.querySelector("#challengBoxDoneBtn")
     const messageBox3 = document.querySelector("#messageText3");
     const userName = localStorage.getItem("userTarget");
@@ -3195,9 +3289,24 @@ const messageBox3 = document.querySelector("#messageText3");
 const helpMenu = document.querySelector(".helpMenu");
 const menuTempBox = document.querySelector(".menuTempBox");
 const list = document.querySelector(".list");
+let helpMenuStatus = false;
 
 helpMenu.addEventListener("click",() => {
-
-    console.log("heh");
-
+    if (!helpMenuStatus) {
+        list.style.display = "block";
+        menuTempBox.style.left = 61 + "%";
+        setTimeout(() => {
+            list.style.opacity = 1;
+        }, 100); 
+        helpMenuStatus = true;   
+    }
+    else{
+        list.style.opacity = 0;
+        setTimeout(() => {
+            list.style.display = "none";
+        }, 400); 
+        menuTempBox.style.left = 161 + "%";
+        helpMenuStatus = false;
+    }
+    
 })
