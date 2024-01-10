@@ -9690,6 +9690,7 @@
         box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.7);
         overflow-y: auto;
         overflow-x: hidden;
+        
     }
     
     .shelfItems::-webkit-scrollbar {
